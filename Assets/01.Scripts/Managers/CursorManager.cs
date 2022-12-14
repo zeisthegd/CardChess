@@ -62,31 +62,17 @@ namespace Penwyn.Game
         {
             if (SceneManager.Instance != null)
             {
-                if (scene.name == SceneManager.Instance.MatchSceenName)
-                {
-                    _isPermanentlyHide = true;
-                    HideMouse();
-                }
-                else
-                {
-                    _isPermanentlyHide = false;
-                    ShowMouse();
-                }
             }
         }
 
         public virtual void OnEnable()
         {
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            InputReader.Instance.ChangeMouseVisibilityPressed += ShowMouse;
-            InputReader.Instance.ChangeMouseVisibilityReleased += HideMouse;
         }
 
         public virtual void OnDisable()
         {
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-            InputReader.Instance.ChangeMouseVisibilityPressed -= ShowMouse;
-            InputReader.Instance.ChangeMouseVisibilityReleased -= HideMouse;
         }
     }
 }

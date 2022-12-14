@@ -16,17 +16,14 @@ namespace Penwyn.Game
 {
     public class CombatManager : SingletonMonoBehaviour<CombatManager>
     {
-        protected TeamData _firstTeam;
-        protected TeamData _secondTeam;
+        
 
 
     }
 
     public enum Turn
     {
-        Self,
-        Enemy,
-        Teammate
+        BLACK, WHITE
     }
 }
 

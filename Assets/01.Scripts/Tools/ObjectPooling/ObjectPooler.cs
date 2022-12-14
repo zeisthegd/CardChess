@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 using NaughtyAttributes;
 
-
 namespace Penwyn.Game
 {
     public class ObjectPooler : MonoBehaviour
@@ -51,7 +50,7 @@ namespace Penwyn.Game
             if (_waitingPool == null)
             {
                 _waitingPool = new GameObject(DefinePoolName());
-                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_waitingPool, this.gameObject.scene);
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_waitingPool,  UnityEngine.SceneManagement.SceneManager.GetActiveScene());
                 _objectPool = _waitingPool.AddComponent<ObjectPool>();
                 _objectPool.PooledObjects = new List<GameObject>();
                 ApplyNesting();
@@ -116,7 +115,7 @@ namespace Penwyn.Game
 
         public virtual bool NoPoolFound()
         {
-            if (_objectPool != null)
+            if (ObjectPool != null)
                 FindSharedPool();
             return _objectPool == null;
         }

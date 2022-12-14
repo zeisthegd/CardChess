@@ -15,13 +15,13 @@ namespace Penwyn.Game
         public void ChangeBGMVolume(float value)
         {
             BGMVolume = value;
-            GameManager.Instance.AudioPlayer.BGMSource.volume = value;
+            //GameManager.Instance.AudioPlayer.BGMSource.volume = value;
         }
 
         public void ChangeSFXVolume(float value)
         {
             SFXVolume = value;
-            GameManager.Instance.AudioPlayer.AdjustAllSFXVolume(value);
+            //GameManager.Instance.AudioPlayer.AdjustAllSFXVolume(value);
         }
 
         public float BgmVolume { get => BGMVolume; }

@@ -14,6 +14,20 @@ namespace Penwyn.Game
         [HideIf("InfiniteLifeTime")]
         public float LifeTime = 1;
 
+        protected virtual void Awake()
+        {
+        }
+
+        protected virtual void Update()
+        {
+
+        }
+
+        protected virtual void FixedUpdate()
+        {
+
+        }
+
         protected virtual void OnEnable()
         {
             if (LifeTime > 0 && !InfiniteLifeTime)

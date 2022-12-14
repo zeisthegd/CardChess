@@ -91,12 +91,12 @@ namespace Penwyn.UI
 
         void OnEnable()
         {
-            // GameManager.Instance.GameStarted += OnGameStarted;
+            GameEventList.Instance.CombatStart.OnEventRaised += OnGameStarted;
         }
 
         void OnDisable()
         {
-            //  GameManager.Instance.GameStarted -= OnGameStarted;
+            GameEventList.Instance.CombatStart.OnEventRaised -= OnGameStarted;
         }
     }
 

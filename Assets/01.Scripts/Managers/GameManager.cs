@@ -23,11 +23,13 @@ namespace Penwyn.Game
         [Expandable] public CameraManager CameraManager;
         [Expandable] public SceneManager SceneManager;
         [Expandable] public PlayerManager PlayerManager;
+
         [Expandable] public InputManager InputManager;
 
         public AudioPlayer AudioPlayer;
         public CombatManager CombatManager;
         public LevelManager LevelManager;
+        public DeckManager DeckManager;
 
         [Header("Utilities")]
         public CursorUtility CursorUtility;
@@ -44,6 +46,7 @@ namespace Penwyn.Game
         public static GameManager Instance;
         public event UnityAction GameStarted;
         protected GameState _gameState;
+        protected GameMode _mode = GameMode.PVP;
 
 
         void Awake()
@@ -77,11 +80,17 @@ namespace Penwyn.Game
         /// </summary>
         public IEnumerator StartGameCoroutine()
         {
-            _gameState = GameState.LevelLoading;
-            InputReader.Instance.DisableGameplayInput();
-            yield return new WaitForSeconds(MatchSettings.LevelLoadTime + MatchSettings.PlayerPositioningTime);
-            InputReader.Instance.EnableGameplayInput();
+            _gameState = GameState.BoardLoading;
+
+            yield return new WaitForSeconds(1);
+            PlayerManager.CreatePlayers(_mode);
+            DeckManager.InitializeCards();
+
+            yield return new WaitForSeconds(1);
+            DeckManager.DrawCardsAtTurnStart();
             _gameState = GameState.Started;
+
+            GameEventList.Instance.CombatStart.RaiseEvent();
         }
 
         void CheckSingleton()
@@ -99,7 +108,8 @@ namespace Penwyn.Game
 
         public virtual void OnRoomSceneLoaded()
         {
-            _gameState = GameState.TeamChoosing;
+            _gameState = GameState.GettingReady;
+            DeckManager = FindObjectOfType<DeckManager>();
         }
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -117,8 +127,15 @@ namespace Penwyn.Game
     public enum GameState
     {
         NotInRoom,
-        TeamChoosing,
-        LevelLoading,
+        GettingReady,
+        BoardLoading,
         Started
+    }
+
+    public enum GameMode
+    {
+        PVP,
+        PVE,
+        AIvAI
     }
 }

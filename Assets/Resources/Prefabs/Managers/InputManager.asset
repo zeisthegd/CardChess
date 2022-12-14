@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b8c6c582deef94f91ef83913d6e9e2, type: 3}
   m_Name: InputManager
   m_EditorClassIdentifier: 
-  InputReader: {fileID: 11400000, guid: 0123a418d854de7498c0d2c4a0d8f6c2, type: 2}
+  InputReader: {fileID: 11400000, guid: 29e1624f23c7e5e41bd7f2fa9984fbaa, type: 2}
   ShouldHideCursor: 0

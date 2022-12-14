@@ -14,7 +14,6 @@ namespace Penwyn.Tools
         {
             if (ui == null)
                 ui = GetComponent<RectTransform>();
-            //InputReader.Instance.CloseUI += Hide;
         }
 
         public void DynamicShowHide()
@@ -41,7 +40,6 @@ namespace Penwyn.Tools
             showSqn.Append(ui.DOScale(Vector3.zero, 0.25F)).onComplete += () =>
             {
                 ui.gameObject.SetActive(false);
-            //InputReader.Instance.EnableGameplayInput();
         };
         }
     }

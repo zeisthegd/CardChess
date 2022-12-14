@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TitleSceenName: Title
   LobbySceenName: Lobby
-  RoomSceenName: MainGame
-  MatchSceenName: 
+  RoomSceenName: Room
+  MatchSceenName: Room

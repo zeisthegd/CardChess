@@ -18,7 +18,7 @@ namespace Penwyn.Tools
         protected override void Start()
         {
             base.Start();
-            _virtualCamera = FindObjectOfType<CameraController>().GetComponent<CinemachineVirtualCamera>();
+            _virtualCamera = Camera.main.GetComponent<CinemachineVirtualCamera>();
             if (_virtualCamera)
                 _virtualCameraNoise = _virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }

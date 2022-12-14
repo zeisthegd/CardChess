@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 4428497f869e6e14192895506e0e6569
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - cardDrawn: {instanceID: 0}
+  - cardUsed: {instanceID: 0}
+  - cardDiscarded: {instanceID: 0}
+  - pointerEnter: {instanceID: 0}
+  - pointerExit: {instanceID: 0}
+  - pointerBeginDrag: {instanceID: 0}
+  - pointerDragging: {instanceID: 0}
+  - pointerSelect: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

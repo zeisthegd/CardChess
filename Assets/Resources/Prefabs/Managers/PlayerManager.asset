@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b2ea16523b93a44bf69b30e4bd400c, type: 3}
   m_Name: PlayerManager
   m_EditorClassIdentifier: 
-  PlayerPrefabPath: Prefabs/Character/Player/Duck
-  LocalPlayerMarker: {fileID: 4987888652526050738, guid: c3cde6ebde77626498b0a6c06bc29b81,
-    type: 3}
-  LocalPlayer: {fileID: 0}
+  DuelistPrefab: {fileID: 1903658823723204751, guid: 1c4d5504474c8cd4491a1ea997dba1da, type: 3}
+  MainPlayer: {fileID: 0}
+  OtherPlayer: {fileID: 0}
+  DefaultData: {fileID: 11400000, guid: 98f44477f43329b47ac49a0009ce7a5a, type: 2}
