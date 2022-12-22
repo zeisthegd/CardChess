@@ -14,6 +14,7 @@ namespace Penwyn.Game
             CardEventList.Instance = new CardEventList();
             GameEventList.Instance = new GameEventList();
             ProtagonistEventList.Instance = new ProtagonistEventList();
+            SquareEventList.Instance = new SquareEventList();
         }
     }
 }

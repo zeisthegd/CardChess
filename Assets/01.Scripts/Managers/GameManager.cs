@@ -27,21 +27,11 @@ namespace Penwyn.Game
         [Expandable] public InputManager InputManager;
 
         public AudioPlayer AudioPlayer;
-        public CombatManager CombatManager;
+        public DuelManager DuelManager;
         public LevelManager LevelManager;
         public DeckManager DeckManager;
 
-        [Header("Utilities")]
-        public CursorUtility CursorUtility;
-
-        //[SerializeField] AudioPlayer audioPlayer;
-
-        [Header("Level Stuff")]
-        //[SerializeField] Level levelPref;
-        public string LevelPath;
         [Expandable] public MatchSettings MatchSettings;
-
-        //   Level currentLevel;
 
         public static GameManager Instance;
         public event UnityAction GameStarted;
@@ -81,6 +71,8 @@ namespace Penwyn.Game
         public IEnumerator StartGameCoroutine()
         {
             _gameState = GameState.BoardLoading;
+            DuelManager.FindBoardView();
+            DuelManager.BoardView.SpawnBoardSquares();
 
             yield return new WaitForSeconds(1);
             PlayerManager.CreatePlayers(_mode);
@@ -110,6 +102,8 @@ namespace Penwyn.Game
         {
             _gameState = GameState.GettingReady;
             DeckManager = FindObjectOfType<DeckManager>();
+            if (PhotonNetwork.IsMasterClient)
+                DuelManager.CreateBoardView();
         }
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)

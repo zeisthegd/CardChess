@@ -6,6 +6,7 @@ namespace Penwyn.Game
 {
     public abstract class PieceData : ScriptableObject
     {
+        public Sprite Sprite;
         public abstract List<Square> FindLegalMoves();
     }
 }

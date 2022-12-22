@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemies
   - Weapon
+  - UserInterface
+  - BoardPosition
   layers:
   - Default
   - TransparentFX

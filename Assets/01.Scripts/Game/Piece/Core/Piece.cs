@@ -6,7 +6,22 @@ namespace Penwyn.Game
 {
     public class Piece : MonoBehaviour
     {
-        public PieceData Data;
+        private PieceData _data;
+        
+        public void Load(PieceData data)
+        {
+            this._data = data;
+        }
+    }
+
+    public enum PieceIndex
+    {
+        P,
+        N,
+        B,
+        R,
+        Q,
+        K
     }
 
 }

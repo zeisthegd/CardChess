@@ -41,7 +41,7 @@ namespace Penwyn.Game
             {
                 Card card = DeckManager.Instance.HandPile.GetCard(i);
                 card.gameObject.SetActive(true);
-                //Rescale(card);
+                Rescale(card);
                 MoveToPosition(card, i);
                 RotateAtPosition(card, i);
             }
@@ -93,7 +93,7 @@ namespace Penwyn.Game
                 card.SetCanvasOrder(9999);
                 card.transform.DOScale(Vector3.one * HoverScale, HoverSpeed / 2);
                 card.transform.DOLocalMove(destination, HoverSpeed);
-                card.transform.DORotate(Vector3.zero, HoverSpeed).onComplete += card.ShowInfo;
+                card.transform.DORotate(Vector3.zero, HoverSpeed);
                 MoveNearbyCardAside(card);
             }
         }

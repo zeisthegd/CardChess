@@ -43,6 +43,9 @@ MonoBehaviour:
   - RPC_Respawn
   - StartGame
   - StopTime
+  - FindBoardViewClient
+  - CreatePiece
+  - RPC_CreatePiece
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -24,7 +24,7 @@ namespace Penwyn.Game
         public RectTransform InfoPanel;
         public EventTrigger EventTrigger;
         private Duelist _owner;
-
+ 
 
         public virtual void Use(List<Piece> targetList)
         {
@@ -45,9 +45,10 @@ namespace Penwyn.Game
             CostTxt?.SetText(data.Cost.GetCurrentValueText());
         }
 
-        public virtual void ShowInfo()
+        public virtual void ShowInfo(bool isShown = true)
         {
-
+            NameTxt.enabled = isShown;
+            CostTxt.enabled = isShown;
         }
 
         public void EnergyCheck()
@@ -64,6 +65,7 @@ namespace Penwyn.Game
 
         private void OnEnable()
         {
+            ShowInfo(false);
             ConnectEvents();
         }
         private void OnDisable()
@@ -84,34 +86,30 @@ namespace Penwyn.Game
 
         public void OnMouseEnter()
         {
-            Debug.Log("OnMouseEnter");
+            ShowInfo(true);
             CardEventList.Instance.PointerEnter.RaiseEvent(this);
         }
 
         public void OnMouseExit()
         {
-            Debug.Log("OnMouseExit");
+            ShowInfo(false);
             CardEventList.Instance.PointerExit.RaiseEvent(this);
         }
 
         public void OnMouseSelect()
         {
-            Debug.Log("OnMouseSelect");
             CardEventList.Instance.PointerSelect.RaiseEvent(this);
         }
 
         public void OnMouseDragging()
         {
-            Debug.Log("OnMouseDragging");
             CardEventList.Instance.PointerDragging.RaiseEvent(this);
         }
 
         public void OnMouseBeginDrag()
         {
-            Debug.Log("OnMouseBeginDrag");
             CardEventList.Instance.PointerBeginDrag.RaiseEvent(this);
         }
-
 
         public bool EnoughEnergy { get => Data.Cost.CurrentValue <= Owner.Data.Energy.CurrentValue; }
         public Duelist Owner { get => _owner; set => _owner = value; }

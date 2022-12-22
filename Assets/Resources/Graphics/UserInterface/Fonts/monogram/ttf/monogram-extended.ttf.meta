@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6d81353ba9282484591f6df12b440f3e
+guid: 6862f430f9c61ff40bd00758384cda11
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Patrick Hand
+  - monogramextended
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

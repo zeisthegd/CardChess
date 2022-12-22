@@ -19,5 +19,6 @@ MonoBehaviour:
     _currentValue: 3
     CanBeHigherThanBase: 0
     CanBeNegative: 0
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 3a57a94c59090034e86a82000c3fdda8, type: 2}
   Category: 0

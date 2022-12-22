@@ -23,28 +23,16 @@ namespace Penwyn.Game
         [Header("Scriptable Data")]
         public Category Category;
 
-
-
         public virtual CardData Clone()
         {
             CardData clone = Instantiate(this);
+            clone.Actions.Clear();
             for (int i = 0; i < this.Actions.Count; i++)
             {
                 clone.Actions.Add(Instantiate(this.Actions[i]));
             }
             return clone;
         }
-
-        public bool NeedTarget()
-        {
-            for (int i = 0; i < Actions.Count; i++)
-            {
-                if(Actions[i].Range == ActionRange.CHOSEN_UNIT)
-                    return true;
-            }
-            return false;
-        }
-
         
         public string GetDescription()
         {

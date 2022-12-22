@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2843908445822498751}
   - component: {fileID: 2843908445822498736}
   - component: {fileID: 2843908445822498737}
+  - component: {fileID: 5311454029149663839}
   m_Layer: 0
   m_Name: DeckManager
   m_TagString: GameController
@@ -77,9 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96fc1f872935c2499ab90141615d302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionXOffset: 3
-  PositionYOffset: 0.325
-  RotateOffset: 4
+  PositionXOffset: 26
+  PositionYOffset: 0
+  RotateOffset: 0
   HoverSpeed: 0.25
   HoverScale: 1.1
   NearbyCardPushCount: 3
@@ -110,4 +111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc93cbcf72ab574a92de05350ac334d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragTime: 0
+  DragTime: 0.5
+--- !u!114 &5311454029149663839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2843908445822498740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e032e70518a0b394eb187bbd3d595683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -33,6 +33,7 @@ namespace Penwyn.Game
         {
             CardHandAnimationController.Instance.DisableFunctions();
             _currentCard = card;
+            MoveChosenCardToCenterOfHand();
             ProtagonistEventList.Instance.CardChosen.RaiseEvent(_currentCard);
         }
 
@@ -46,9 +47,10 @@ namespace Penwyn.Game
                 CursorManager.Instance.ResetCursor();
                 _currentCard.transform.DOKill();
                 _currentCard.transform.SetParent(DeckManager.Instance.HandPile.transform);
+                _currentCard = null;
+
                 CardHandAnimationController.Instance.EnableFunctions();
                 CardHandAnimationController.Instance.UpdateCardsTransform();
-                _currentCard = null;
                 ProtagonistEventList.Instance.ReleaseCard.RaiseEvent();
             }
         }
@@ -158,16 +160,14 @@ namespace Penwyn.Game
 
         public void EnableFunctions()
         {
-            CardEventList.Instance.PointerBeginDrag.OnEventRaised += AcceptClick;
             CardEventList.Instance.PointerSelect.OnEventRaised += AcceptClick;
-            ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised += MoveChosenCardToCenterOfHand;
+            //ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised += MoveChosenCardToCenterOfHand;
         }
 
         public void DisableFunctions()
         {
-            CardEventList.Instance.PointerBeginDrag.OnEventRaised -= AcceptClick;
             CardEventList.Instance.PointerSelect.OnEventRaised -= AcceptClick;
-            ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised -= MoveChosenCardToCenterOfHand;
+            //ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised -= MoveChosenCardToCenterOfHand;
         }
 
 

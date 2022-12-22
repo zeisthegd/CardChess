@@ -11,7 +11,7 @@ namespace Penwyn.Game
     /// <summary>
     /// Responsible for card selection, usage and target finding.
     /// </summary>
-    public class CardPlayer : SingletonMonoBehaviour<CardPlayer>
+    public class CardSelector : SingletonMonoBehaviour<CardSelector>
     {
         private List<Piece> _targetList = new List<Piece>();
         private Card _chosenCard = null;
@@ -36,7 +36,7 @@ namespace Penwyn.Game
                     _chosenCard.Use(_targetList);
                     CursorManager.Instance.ResetCursor();
                     UntargetAll();
-                    Play(_chosenCard);
+
                     _canPlay = false;
                     _chosenCard = null;
                     CardHandAnimationController.Instance.EnableFunctions();
@@ -48,18 +48,16 @@ namespace Penwyn.Game
                 }
             }
         }
-        public void Play(Card card)
-        {
-
-        }
-
         /// <summary>
         /// Choose the card to play.
         /// </summary>
         public void Choose(Card card)
         {
             _chosenCard = card;
+            GetComponent<CardActionHandler>().GenerateActionQueue(_chosenCard);
+            GetComponent<CardActionHandler>().StartNextAction();
         }
+
 
         /// <summary>
         /// Cancel the chosen card.
@@ -100,24 +98,6 @@ namespace Penwyn.Game
         }
 
         /// <summary>
-        /// Target an enemy, add it to the list, show the target UI.
-        /// </summary>
-        public void TargetEnemy(Piece piece)
-        {
-        }
-
-        /// <summary>
-        /// Untarget all enemies.
-        /// </summary>
-        public void UntargetEnemy(Piece piece)
-        {
-            if (_chosenCard != null)
-            {
-                UntargetAll();
-            }
-        }
-
-        /// <summary>
         /// Untarget and clear the _targetList.
         /// </summary>
         private void UntargetAll()
@@ -125,22 +105,6 @@ namespace Penwyn.Game
             foreach (Piece target in _targetList)
                 Untarget(target);
             _targetList.Clear();
-        }
-
-        /// <summary>
-        /// Target a player.
-        /// </summary>
-        public void Target(Piece player)
-        {
-            if (_chosenCard != null)
-            {
-                if (!_targetList.Contains(player))
-                {
-                    _targetList.Add(player);
-                    //player.GetView().TargetingUI.Target();
-                }
-                _canPlay = true;
-            }
         }
 
         /// <summary>
@@ -157,7 +121,6 @@ namespace Penwyn.Game
 
         void ConnectEvents()
         {
-            InputReader.Instance.OnChooseCancelled += PlayChosenCard;
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised += Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised += CancelCard;
@@ -169,7 +132,6 @@ namespace Penwyn.Game
 
         void DisonnectEvents()
         {
-            InputReader.Instance.OnChooseCancelled -= PlayChosenCard;
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised -= Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised -= CancelCard;
