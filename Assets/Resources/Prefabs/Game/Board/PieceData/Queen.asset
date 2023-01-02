@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf6c4cae47e5ea44abdded464100a5a3, type: 3}
   m_Name: Queen
   m_EditorClassIdentifier: 
+  WhiteSprite: {fileID: -1584758307, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  BlackSprite: {fileID: -1859487051, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}

@@ -42,8 +42,8 @@ namespace Penwyn.Game
 
         public void CreatePVP()
         {
-            MainPlayer = CreateAPlayer();
-            OtherPlayer = CreateAPlayer();
+            MainPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? Faction.WHITE : Faction.BLACK);
+            OtherPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? Faction.BLACK : Faction.WHITE);
         }
 
         public void CreatePVE()
@@ -56,10 +56,10 @@ namespace Penwyn.Game
 
         }
 
-        public Duelist CreateAPlayer()
+        public Duelist CreateAPlayer(Faction faction = Faction.WHITE)
         {
             Duelist duelist = Instantiate(DuelistPrefab);
-            duelist.Data = DefaultData.Clone();
+            duelist.Load(DefaultData.Clone(), faction);
             return duelist;
         }
 

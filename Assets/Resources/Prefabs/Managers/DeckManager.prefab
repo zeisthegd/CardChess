@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96fc1f872935c2499ab90141615d302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionXOffset: 26
-  PositionYOffset: 0
-  RotateOffset: 0
+  PositionXOffset: 75
+  PositionYOffset: 6
+  RotateOffset: 4
   HoverSpeed: 0.25
   HoverScale: 1.1
   NearbyCardPushCount: 3

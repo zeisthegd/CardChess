@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Penwyn.Tools;
+
 namespace Penwyn.Game
 {
     public class SquareView : MonoBehaviour
@@ -21,7 +23,9 @@ namespace Penwyn.Game
         public void SetData(Square square)
         {
             this._square = square;
-            ClearSquare();
+            if (Randomizer.RandomBetween(0, 1) == 0)
+                SetWhite();
+            else SetBlack();
         }
 
         public void SetColor()
@@ -56,6 +60,7 @@ namespace Penwyn.Game
 
         public void OnMouseSelect()
         {
+            Debug.Log("On Mouse Select");
             SquareEventList.Instance.SquareSelected.RaiseEvent(this._square);
         }
     }

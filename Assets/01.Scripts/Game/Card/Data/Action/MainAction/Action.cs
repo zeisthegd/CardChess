@@ -11,12 +11,12 @@ namespace Penwyn.Game
         public ActionRange Range;
         public IntValue ActionValue;
         [TextArea] public string Description;
-        
+
         public virtual void Act() { }
-        public virtual void ActOnSquare(Square square) { }
-        public virtual void ActOnPiece(Piece piece) { }
-        public virtual void ActOnManySquares(List<Square> squares) { }
-        public virtual void ActOnManyPieces(List<Piece> pieces) { }
+        public virtual void ActOnSquare(Square square, Faction faction) { }
+        public virtual void ActOnPiece(Piece piece, Faction faction) { }
+        public virtual void ActOnManySquares(List<Square> squares, Faction faction) { }
+        public virtual void ActOnManyPieces(List<Piece> pieces, Faction faction) { }
 
         public abstract string GetDescription();
         public abstract DisplayInfo GetInfo();

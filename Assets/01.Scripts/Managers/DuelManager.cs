@@ -22,12 +22,27 @@ namespace Penwyn.Game
         private PhotonView photonView;
 
         private StateMachine<Phase> _phaseMachine;
+        private Faction _currentFactionTurn = Faction.WHITE;
 
         private void Awake()
         {
             photonView = GetComponent<PhotonView>();
             _phaseMachine = new StateMachine<Phase>(Phase.NOT_STARTED);
         }
+
+
+        public void EndTurn()
+        {
+            photonView.RPC(nameof(RPC_EndTurn), RpcTarget.All, new object { });
+        }
+
+        [PunRPC]
+        public void RPC_EndTurn()
+        {
+            _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
+            Announcer.Instance.Announce($"Hey {_currentFactionTurn.ToString()}, you move.");
+        }
+
 
         public void CreateBoardView()
         {
@@ -42,12 +57,12 @@ namespace Penwyn.Game
 
         public BoardView BoardView { get => _boardView; }
         public StateMachine<Phase> PhaseMachine { get => _phaseMachine; }
+        public Faction CurrentFactionTurn { get => _currentFactionTurn; }
+
+        public bool IsMainPlayerTurn => _currentFactionTurn == PlayerManager.Instance.MainPlayer.Faction;
+        public bool IsOtherPlayerTurn => _currentFactionTurn == PlayerManager.Instance.OtherPlayer.Faction;
     }
 
-    public enum Turn
-    {
-        BLACK, WHITE
-    }
 
     public enum Phase
     {
@@ -57,6 +72,12 @@ namespace Penwyn.Game
         END,
         CHOOSE_PIECE,
         CHOOSE_SQUARE
+    }
+
+
+    public enum Faction
+    {
+        BLACK, WHITE
     }
 }
 

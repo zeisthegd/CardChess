@@ -81,7 +81,7 @@ namespace Penwyn.Game
             yield return new WaitForSeconds(1);
             DeckManager.DrawCardsAtTurnStart();
             _gameState = GameState.Started;
-
+            Announcer.Instance.Announce($"Hey WHITE, you move.");
             GameEventList.Instance.CombatStart.RaiseEvent();
         }
 

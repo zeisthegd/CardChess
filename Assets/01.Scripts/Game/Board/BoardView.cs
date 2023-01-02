@@ -7,6 +7,8 @@ using Photon.Pun;
 
 using NaughtyAttributes;
 
+using Penwyn.Tools;
+
 namespace Penwyn.Game
 {
     public class BoardView : MonoBehaviourPun
@@ -53,34 +55,34 @@ namespace Penwyn.Game
             }
         }
 
-        public void RPC_CreatePiece(PieceIndex index, int rank, int file)
+        public void CreatePiece(PieceIndex index, int rank, int file, Faction userFaction)
         {
-            photonView.RPC(nameof(CreatePiece), RpcTarget.All, new object[] { index, rank, file });
+            photonView.RPC(nameof(RPC_CreatePiece), RpcTarget.All, new object[] { index, rank, file, userFaction });
         }
 
         [PunRPC]
-        public void CreatePiece(PieceIndex index, int rank, int file)
+        public void RPC_CreatePiece(PieceIndex index, int rank, int file, Faction faction)
         {
             Piece newPiece = Instantiate(PiecePrefab);
             switch (index)
             {
                 case PieceIndex.P:
-                    newPiece.Load(Pawn);
+                    newPiece.Load(Pawn, faction);
                     break;
                 case PieceIndex.N:
-                    newPiece.Load(Knight);
+                    newPiece.Load(Knight, faction);
                     break;
                 case PieceIndex.B:
-                    newPiece.Load(Bishop);
+                    newPiece.Load(Bishop, faction);
                     break;
                 case PieceIndex.R:
-                    newPiece.Load(Rook);
+                    newPiece.Load(Rook, faction);
                     break;
                 case PieceIndex.Q:
-                    newPiece.Load(Queen);
+                    newPiece.Load(Queen, faction);
                     break;
                 case PieceIndex.K:
-                    newPiece.Load(King);
+                    newPiece.Load(King, faction);
                     break;
                 default:
                     break;

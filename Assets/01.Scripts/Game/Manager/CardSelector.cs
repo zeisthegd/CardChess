@@ -53,9 +53,27 @@ namespace Penwyn.Game
         /// </summary>
         public void Choose(Card card)
         {
-            _chosenCard = card;
-            GetComponent<CardActionHandler>().GenerateActionQueue(_chosenCard);
-            GetComponent<CardActionHandler>().StartNextAction();
+            if (_chosenCard != null)
+            {
+                CancelCard();
+            }
+            if (DuelManager.Instance.IsMainPlayerTurn)
+            {
+                if (card.EnoughEnergy)
+                {
+                    _chosenCard = card;
+                    GetComponent<CardActionHandler>().GenerateActionQueue(_chosenCard);
+                    GetComponent<CardActionHandler>().StartNextAction();
+                }
+                else
+                {
+                    Announcer.Instance.Announce("No Energy, SADGE.");
+                }
+            }
+            else
+            {
+                Announcer.Instance.Announce("It is not your turn, Dummy.");
+            }
         }
 
 

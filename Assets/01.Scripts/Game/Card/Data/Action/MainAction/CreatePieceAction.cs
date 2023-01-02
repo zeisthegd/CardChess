@@ -6,15 +6,15 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    [CreateAssetMenu(menuName ="Game/Card/Action/Create Piece")]
+    [CreateAssetMenu(menuName = "Game/Card/Action/Create Piece")]
     public class CreatePieceAction : Action
     {
         public PieceIndex PieceToCreate;
 
-        public override void ActOnSquare(Square square)
+        public override void ActOnSquare(Square square, Faction faction)
         {
-            base.ActOnSquare(square);
-            DuelManager.Instance.BoardView.RPC_CreatePiece(PieceToCreate, square.Rank, square.File);
+            base.ActOnSquare(square,faction);
+            DuelManager.Instance.BoardView.CreatePiece(PieceToCreate, square.Rank, square.File,faction);
         }
 
         public override string GetDescription()

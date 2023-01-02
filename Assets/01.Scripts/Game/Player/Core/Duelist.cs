@@ -6,12 +6,20 @@ namespace Penwyn.Game
 {
     public class Duelist : MonoBehaviour
     {
-        public DuelistData Data;
+        private DuelistData _data;
+        private Faction _faction;
+
+        public void Load(DuelistData data, Faction faction)
+        {
+            this._data = data;
+            _faction = faction;
+        }
 
         public virtual void CardUsed(Card card)
         {
-            Data.Energy.CurrentValue -= card.Data.Cost.CurrentValue;
+            _data.Energy.CurrentValue -= card.Data.Cost.CurrentValue;
         }
+
 
         public void ConnectEvents()
         {
@@ -22,7 +30,9 @@ namespace Penwyn.Game
         {
             CardEventList.Instance.CardUsed.OnEventRaised -= CardUsed;
         }
-
+        
+        public Faction Faction { get => _faction; }
+        public DuelistData Data { get => _data; }
     }
 
 }

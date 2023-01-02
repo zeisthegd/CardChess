@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216a6284add2c2048845eb2a1db20056, type: 3}
   m_Name: Rook
   m_EditorClassIdentifier: 
+  WhiteSprite: {fileID: -1345250021, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  BlackSprite: {fileID: 76197830, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}

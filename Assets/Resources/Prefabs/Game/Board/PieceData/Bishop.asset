@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d302db860e26ca45b84bd315f68f3b9, type: 3}
   m_Name: Bishop
   m_EditorClassIdentifier: 
+  WhiteSprite: {fileID: -2087385731, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  BlackSprite: {fileID: 2034405256, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}

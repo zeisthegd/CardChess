@@ -13,9 +13,11 @@ namespace Penwyn.Game
         private Action _currentAction;
 
         private Queue<Action> _actionQueue;
+        private Card _currentCard;
 
         public void GenerateActionQueue(Card card)
         {
+            _currentCard = card;
             _actionQueue = new Queue<Action>();
             foreach (Action action in card.Data.Actions)
             {
@@ -73,13 +75,14 @@ namespace Penwyn.Game
 
         public void EndAction(Action action)
         {
+            Debug.Log("EndAction");
             switch (action.Range)
             {
                 case ActionRange.CHOOSE_SQUARE:
                     DuelManager.Instance.PhaseMachine.Change(Phase.ACTION);
                     if (_chosenSquare != null)
                     {
-                        action.ActOnSquare(_chosenSquare);
+                        action.ActOnSquare(_chosenSquare, _currentCard.Owner.Faction);
                         Debug.Log($"EndSelected: {_chosenSquare.ToString()}");
                     }
                     SquareEventList.Instance.SquareSelected.OnEventRaised -= OnSquareSelected;
