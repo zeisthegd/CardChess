@@ -36,7 +36,7 @@ namespace Penwyn.Game
         public static GameManager Instance;
         public event UnityAction GameStarted;
         protected GameState _gameState;
-        protected GameMode _mode = GameMode.PVP;
+        public GameMode _mode = GameMode.PVP;
 
 
         void Awake()
@@ -71,11 +71,15 @@ namespace Penwyn.Game
         public IEnumerator StartGameCoroutine()
         {
             _gameState = GameState.BoardLoading;
+            PlayerManager.CreatePlayers(_mode);
+
             DuelManager.FindBoardView();
+            DuelManager.SetBoardViewMode();
             DuelManager.BoardView.SpawnBoardSquares();
+            DuelManager.BoardView.SpawnKings();
 
             yield return new WaitForSeconds(1);
-            PlayerManager.CreatePlayers(_mode);
+
             DeckManager.InitializeCards();
 
             yield return new WaitForSeconds(1);

@@ -16,7 +16,7 @@ public class NetworkEventHandler : MonoBehaviourPunCallbacks
     {
         base.OnConnectedToMaster();
         Debug.Log($"Connected: <color=green>{PhotonNetwork.NickName}</color>");
-        SceneManager.Instance.LoadLobbyScene();
+        NetworkEventList.Instance.MasterConnected.RaiseEvent();
     }
 
     public override void OnJoinedRoom()
@@ -24,6 +24,7 @@ public class NetworkEventHandler : MonoBehaviourPunCallbacks
         base.OnJoinedRoom();
         Debug.Log($"Joined Room: <color=green>{PhotonNetwork.CurrentRoom.Name}</color>");
         SceneManager.Instance.LoadRoomScene();
+        NetworkEventList.Instance.RoomJoined.RaiseEvent();
     }
 
     public override void OnLeftLobby()

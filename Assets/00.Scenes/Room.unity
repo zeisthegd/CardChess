@@ -765,11 +765,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 640
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_ReferenceResolution.y
-      value: 320
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
+      propertyPath: m_ReferencePixelsPerUnit
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7098604530881303000, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_Pivot.x
@@ -929,7 +933,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.22745098, g: 0.77254903, b: 0.6181046, a: 1}
+  m_BackGroundColor: {r: 0.6039216, g: 0.6039216, b: 0.5921569, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -946,7 +950,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1006,11 +1010,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 64
-  m_RefResolutionX: 1280
-  m_RefResolutionY: 720
+  m_AssetsPPU: 16
+  m_RefResolutionX: 480
+  m_RefResolutionY: 270
   m_CropFrame: 0
-  m_GridSnapping: 0
+  m_GridSnapping: 2
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0

@@ -23,19 +23,27 @@ namespace Penwyn.Game
         public void SetData(Square square)
         {
             this._square = square;
-            if (Randomizer.RandomBetween(0, 1) == 0)
-                SetWhite();
-            else SetBlack();
+            _square.Faction = Faction.NONE;
+            SetColor();
+            gameObject.name = $"Square[{Square.GetName(this._square.Rank, this._square.File)}]";
         }
 
         public void SetColor()
         {
-            if (_square.File % 2 != 0 && _square.Rank % 2 != 0 || _square.File % 2 == 0 && _square.Rank % 2 == 0)//Black if rank and file are both odd or even.
+            switch (_square.Faction)
             {
-                _spriteRender.sprite = BlackSprite;
+                case Faction.WHITE:
+                    SetWhite();
+                    break;
+                case Faction.BLACK:
+                    SetBlack();
+                    break;
+                case Faction.NONE:
+                    ClearSquare();
+                    break;
+                default:
+                    break;
             }
-            else
-                _spriteRender.sprite = WhiteSprite;
         }
 
         public void SetBlack()

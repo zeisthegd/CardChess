@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acae237038604b04aad372a6052dfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmptySprite: {fileID: 541721492, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
-  WhiteSprite: {fileID: 341869382, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
-  BlackSprite: {fileID: -883353738, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
+  EmptySprite: {fileID: 2036081850, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
+  WhiteSprite: {fileID: -648495304, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
+  BlackSprite: {fileID: 1677985321, guid: 71c0e6b4a2dea7345adc8fe14376dc6b, type: 3}
 --- !u!212 &3918522097253564818
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,9 +99,9 @@ SpriteRenderer:
   m_Size: {x: 4, y: 4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &2068329010524533394
 BoxCollider2D:
   m_ObjectHideFlags: 0

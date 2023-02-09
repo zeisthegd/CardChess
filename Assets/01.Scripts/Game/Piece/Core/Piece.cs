@@ -8,7 +8,8 @@ namespace Penwyn.Game
     {
         private SpriteRenderer _sprRenderer;
         private PieceData _data;
-        private Faction _currentFaction = Faction.WHITE;
+        private Faction _faction = Faction.WHITE;
+
 
         private void Awake()
         {
@@ -17,10 +18,14 @@ namespace Penwyn.Game
 
         public void Load(PieceData data, Faction faction = Faction.WHITE)
         {
+            Debug.Log(data.name);
             this._data = data;
-            _currentFaction = faction;
-            this._sprRenderer.sprite = _currentFaction == Faction.WHITE ? _data.WhiteSprite : _data.BlackSprite;
+            _faction = faction;
+            this._sprRenderer.sprite = _faction == Faction.WHITE ? _data.WhiteSprite : _data.BlackSprite;
         }
+
+        public PieceData Data { get => _data; }
+        public Faction Faction { get => _faction; }
     }
 
     public enum PieceIndex

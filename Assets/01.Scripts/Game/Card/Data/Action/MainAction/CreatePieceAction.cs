@@ -13,8 +13,8 @@ namespace Penwyn.Game
 
         public override void ActOnSquare(Square square, Faction faction)
         {
-            base.ActOnSquare(square,faction);
-            DuelManager.Instance.BoardView.CreatePiece(PieceToCreate, square.Rank, square.File,faction);
+            base.ActOnSquare(square, faction);
+            DuelManager.Instance.BoardView.CreatePiece(PieceToCreate, square.File, square.Rank, faction);
         }
 
         public override string GetDescription()

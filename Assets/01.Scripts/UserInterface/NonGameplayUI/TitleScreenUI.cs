@@ -12,22 +12,40 @@ using Penwyn.Tools;
 
 public class TitleScreenUI : MonoBehaviourPunCallbacks
 {
-    [SerializeField] TMP_InputField nickNameTxt;
-    [SerializeField] bool randomNickname;
-    [SerializeField] bool autoConnect;
+    public TMP_InputField NickNameTxt;
+    public StartMenu StartMenu;
+    public bool RandomNickname;
+    public bool AutoConnect;
+
+    public override void OnEnable()
+    {
+        NetworkEventList.Instance.MasterConnected.OnEventRaised += OnMasterConnected;
+    }
 
     void Start()
     {
-        if (randomNickname)
-            nickNameTxt.text = Randomizer.RandomString(4);
-        if (randomNickname && autoConnect)
+        if (RandomNickname)
+            NickNameTxt.text = Randomizer.RandomString(4);
+        if (RandomNickname && AutoConnect)
             TryConnect();
     }
 
     public void TryConnect()
     {
-        NetworkManager.Instance.NetworkSettings.NickName = nickNameTxt.text;
+        NetworkManager.Instance.NetworkSettings.NickName = NickNameTxt.text;
         NetworkManager.Instance.Connect();
+    }
+
+    private void OnMasterConnected()
+    {
+        gameObject.SetActive(false);
+        StartMenu.gameObject.SetActive(true);
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        NetworkEventList.Instance.MasterConnected.OnEventRaised -= OnMasterConnected;
     }
 
 

@@ -22,6 +22,9 @@ namespace Penwyn.Game
         public Duelist MainPlayer;
         public Duelist OtherPlayer;
 
+        public Faction MasterClientDefaultFaction = Faction.WHITE;
+        public Faction OtherClientDefaultFaction = Faction.BLACK;
+
         public DuelistData DefaultData;
 
         public void CreatePlayers(GameMode mode)
@@ -42,13 +45,14 @@ namespace Penwyn.Game
 
         public void CreatePVP()
         {
-            MainPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? Faction.WHITE : Faction.BLACK);
-            OtherPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? Faction.BLACK : Faction.WHITE);
+            MainPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? MasterClientDefaultFaction : OtherClientDefaultFaction);
+            OtherPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? OtherClientDefaultFaction : MasterClientDefaultFaction);
         }
 
         public void CreatePVE()
         {
-
+            MainPlayer = CreateAPlayer(MasterClientDefaultFaction);
+            OtherPlayer = CreateAPlayer(OtherClientDefaultFaction);
         }
 
         public void CreateAIvAI()

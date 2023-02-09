@@ -8,7 +8,7 @@ namespace Penwyn.Game
     {
         public Sprite WhiteSprite;
         public Sprite BlackSprite;
-        
-        public abstract List<Square> FindLegalMoves();
+
+        public abstract List<Square> FindLegalMoves(Square pieceSquare, Square[,] board, Faction faction);
     }
 }

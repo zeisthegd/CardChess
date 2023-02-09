@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PiecePrefab: {fileID: 2027879401296996482, guid: 8dc3ebc8ce78b8b4eb2f59489d9cc137, type: 3}
   SquareViewPrefab: {fileID: 3113928448367709275, guid: 78fb44c8e037e1244949a1a7a08df658, type: 3}
+  ViewMode: 0
   Pawn: {fileID: 11400000, guid: 05b18c70fdb0369478388bcbeff6cfdc, type: 2}
   Knight: {fileID: 11400000, guid: 226b8da308b4c7940a5de9b7e2191217, type: 2}
   Bishop: {fileID: 11400000, guid: 971a04f8044c0d8478813b9940e02313, type: 2}

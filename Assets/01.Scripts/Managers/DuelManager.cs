@@ -55,6 +55,11 @@ namespace Penwyn.Game
             _boardView = FindObjectOfType<BoardView>();
         }
 
+        public void SetBoardViewMode()
+        {
+            _boardView.ViewMode = PlayerManager.Instance.MainPlayer.Faction == Faction.WHITE ? BoardViewMode.WHITE : BoardViewMode.BLACK;
+        }
+
         public BoardView BoardView { get => _boardView; }
         public StateMachine<Phase> PhaseMachine { get => _phaseMachine; }
         public Faction CurrentFactionTurn { get => _currentFactionTurn; }
@@ -77,7 +82,7 @@ namespace Penwyn.Game
 
     public enum Faction
     {
-        BLACK, WHITE
+        BLACK, WHITE, NONE
     }
 }
 
