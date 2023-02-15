@@ -24,31 +24,6 @@ namespace Penwyn.Game
         }
 
         /// <summary>
-        /// Play the chosen card.
-        /// Print description for now.
-        /// </summary>
-        public void PlayChosenCard()
-        {
-            if (_chosenCard != null)//&& have target
-            {
-                if (_chosenCard.EnoughEnergy)
-                {
-                    _chosenCard.Use(_targetList);
-                    CursorManager.Instance.ResetCursor();
-                    UntargetAll();
-
-                    _canPlay = false;
-                    _chosenCard = null;
-                    CardHandAnimationController.Instance.EnableFunctions();
-                    CardHandAnimationController.Instance.UpdateCardsTransform();
-                }
-                else
-                {
-                    CardPlayingAnimationManager.Instance.CancelClick();
-                }
-            }
-        }
-        /// <summary>
         /// Choose the card to play.
         /// </summary>
         public void Choose(Card card)
@@ -62,12 +37,13 @@ namespace Penwyn.Game
                 if (card.EnoughEnergy)
                 {
                     _chosenCard = card;
-                    GetComponent<CardActionHandler>().GenerateActionQueue(_chosenCard);
-                    GetComponent<CardActionHandler>().StartNextAction();
+                    CardActionHandler.Instance.GenerateActionQueue(_chosenCard);
+                    CardActionHandler.Instance.StartNextAction();
+                    CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
                 }
                 else
                 {
-                    Announcer.Instance.Announce("No Energy, SADGE.");
+                    Announcer.Instance.Announce("No Energy.");
                 }
             }
             else
@@ -75,6 +51,27 @@ namespace Penwyn.Game
                 Announcer.Instance.Announce("It is not your turn, Dummy.");
             }
         }
+
+        /// <summary>
+        /// Play the chosen card.
+        /// Print description for now.
+        /// </summary>
+        public void ChosenCardDonePlaying(Card card)
+        {
+            if (card != null)//&& have target
+            {
+                CursorManager.Instance.ResetCursor();
+                UntargetAll();
+                DeckManager.Instance.Discard(card);
+                card.Owner.Data.Energy.SetCurrentValue(card.Owner.Data.Energy.CurrentValue - card.Data.Cost.CurrentValue);
+
+                _canPlay = false;
+                _chosenCard = null;
+                CardHandAnimationController.Instance.EnableFunctions();
+                CardHandAnimationController.Instance.UpdateCardsTransform();
+            }
+        }
+
 
 
         /// <summary>
@@ -86,6 +83,8 @@ namespace Penwyn.Game
                 UntargetAll();
             _chosenCard = null;
             _canPlay = false;
+            CardActionHandler.Instance.EndCurrentAction(false);
+            CardPlayingAnimationManager.Instance.CancelClick();
         }
 
         /// <summary>

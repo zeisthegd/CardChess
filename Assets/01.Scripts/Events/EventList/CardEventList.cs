@@ -10,6 +10,7 @@ namespace Penwyn.Game
         public CardEventChannel CardDrawn;
         public CardEventChannel CardUsed;
         public CardEventChannel CardDiscarded;
+        public CardEventChannel CardDonePlaying;
 
         [Header("Game Object")]
         public CardEventChannel PointerEnter;
@@ -30,6 +31,7 @@ namespace Penwyn.Game
             CardDrawn = new CardEventChannel();
             CardUsed = new CardEventChannel();
             CardDiscarded = new CardEventChannel();
+            CardDonePlaying = new CardEventChannel();
 
             PointerEnter = new CardEventChannel();
             PointerExit = new CardEventChannel();

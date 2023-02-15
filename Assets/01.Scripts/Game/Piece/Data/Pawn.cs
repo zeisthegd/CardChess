@@ -20,7 +20,7 @@ namespace Penwyn.Game
 
                 if (square.IsInGrid && board[square.Rank, square.File] != null)
                 {
-                    Debug.Log(Square.GetName(square.Rank, square.File));
+                    //Debug.Log(Square.GetName(square.Rank, square.File));
                     pawnMoves.Add(board[square.Rank, square.File]);
                 }
             }

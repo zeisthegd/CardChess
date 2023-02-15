@@ -18,7 +18,7 @@ namespace Penwyn.Game
                     Square square = new Square(i + pieceSquare.Rank, j + pieceSquare.File);//Checking Square
                     if (square.IsInGrid && board[square.Rank, square.File] != null && (Mathf.Abs(i) == Mathf.Abs(j)))
                     {
-                        Debug.Log(Square.GetName(square.Rank, square.File));
+                        // Debug.Log(Square.GetName(square.Rank, square.File));
                         bishopMoves.Add(board[square.Rank, square.File]);
                     }
                 }

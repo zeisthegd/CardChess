@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 namespace Penwyn.Game
 {
-    public class Card : MonoBehaviour
+    public class Card : MonoBehaviour, IPointerClickHandler
     {
         [Header("Data")]
         public CardData Data;
@@ -24,7 +24,7 @@ namespace Penwyn.Game
         public RectTransform InfoPanel;
         public EventTrigger EventTrigger;
         private Duelist _owner;
- 
+
 
         public virtual void Use(List<Piece> targetList)
         {
@@ -96,9 +96,10 @@ namespace Penwyn.Game
             CardEventList.Instance.PointerExit.RaiseEvent(this);
         }
 
-        public void OnMouseSelect()
+        public void OnPointerClick(PointerEventData data)
         {
-            CardEventList.Instance.PointerSelect.RaiseEvent(this);
+            if (data.button == PointerEventData.InputButton.Left)
+                CardEventList.Instance.PointerSelect.RaiseEvent(this);
         }
 
         public void OnMouseDragging()

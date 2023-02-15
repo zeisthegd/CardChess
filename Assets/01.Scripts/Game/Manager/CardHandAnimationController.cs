@@ -25,6 +25,7 @@ namespace Penwyn.Game
         public Transform Hand;
 
         private float _scaleToHand = 1;
+        private bool _enabledFunctions = true;
 
         void OnEnable()
         {
@@ -83,7 +84,7 @@ namespace Penwyn.Game
         private void Hover(Card card)
         {
             //Debug.Log("Hover: " + DeckManager.Instance.HandPile.Cards.Contains(card));
-            if (!ChosenCardZoneOccupied() && !DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
+            if (_enabledFunctions && !ChosenCardZoneOccupied() && !DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
             {
                 var localPos = IndexToLocalPosition(DeckManager.Instance.HandPile.GetCardIndex(card));
                 Vector3 destination = new Vector3(localPos.x, 0, localPos.z);
@@ -104,19 +105,16 @@ namespace Penwyn.Game
         /// </summary>
         private void MoveNearbyCardAside(Card card)
         {
-            if (true)
+            int index = DeckManager.Instance.HandPile.GetCardIndex(card);
+            for (int i = 1; i <= NearbyCardPushCount; i++)
             {
-                int index = DeckManager.Instance.HandPile.GetCardIndex(card);
-                for (int i = 1; i <= NearbyCardPushCount; i++)
+                if (index + i < DeckManager.Instance.HandPile.Count)
                 {
-                    if (index + i < DeckManager.Instance.HandPile.Count)
-                    {
-                        DeckManager.Instance.HandPile.GetCard(index + i).transform.DOLocalMoveX(IndexToLocalPosition(index + i).x + PushOffsetX / i, 0.25F);
-                    }
-                    if (index - i >= 0)
-                    {
-                        DeckManager.Instance.HandPile.GetCard(index - i).transform.DOLocalMoveX(IndexToLocalPosition(index - i).x - PushOffsetX / i, 0.25F);
-                    }
+                    DeckManager.Instance.HandPile.GetCard(index + i).transform.DOLocalMoveX(IndexToLocalPosition(index + i).x + PushOffsetX / i, 0.25F);
+                }
+                if (index - i >= 0)
+                {
+                    DeckManager.Instance.HandPile.GetCard(index - i).transform.DOLocalMoveX(IndexToLocalPosition(index - i).x - PushOffsetX / i, 0.25F);
                 }
             }
         }
@@ -127,8 +125,7 @@ namespace Penwyn.Game
         private void Exit(Card card)
         {
             //Debug.Log("Exit: " + DeckManager.Instance.HandPile.Cards.Contains(card));
-
-            if (!DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
+            if (_enabledFunctions && !DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
             {
                 card.transform.DOKill();
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
@@ -183,6 +180,9 @@ namespace Penwyn.Game
             GameEventList.Instance.CombatStart.OnEventRaised += EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised += DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised += DisableFunctions;
+            CardEventList.Instance.PointerEnter.OnEventRaised += Hover;
+            CardEventList.Instance.PointerExit.OnEventRaised += Exit;
+
         }
 
         public void DisconnectEvents()
@@ -190,18 +190,19 @@ namespace Penwyn.Game
             GameEventList.Instance.CombatStart.OnEventRaised -= EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised -= DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised -= DisableFunctions;
+            CardEventList.Instance.PointerEnter.OnEventRaised -= Hover;
+            CardEventList.Instance.PointerExit.OnEventRaised -= Exit;
+
         }
 
         public void EnableFunctions()
         {
-            CardEventList.Instance.PointerEnter.OnEventRaised += Hover;
-            CardEventList.Instance.PointerExit.OnEventRaised += Exit;
+            _enabledFunctions = true;
         }
 
         public void DisableFunctions()
         {
-            CardEventList.Instance.PointerEnter.OnEventRaised -= Hover;
-            CardEventList.Instance.PointerExit.OnEventRaised -= Exit;
+            _enabledFunctions = false;
         }
 
         private void OnDisable()

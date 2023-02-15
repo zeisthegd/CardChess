@@ -15,26 +15,27 @@ namespace Penwyn.Game
         public float DragTime;
         private Sequence _mainSequence;
         private Card _currentCard;
-
+        private bool _enabledFunctions = true;
         void OnEnable()
         {
             ConnectEvents();
         }
-
-        void Update()
-        {
-            //Drag(_currentCard);
-        }
-
         /// <summary>
         /// When mouse left is clicked, take the pressed card for dragging.
         /// </summary>
         public void AcceptClick(Card card)
         {
-            CardHandAnimationController.Instance.DisableFunctions();
-            _currentCard = card;
-            MoveChosenCardToCenterOfHand();
-            ProtagonistEventList.Instance.CardChosen.RaiseEvent(_currentCard);
+            if (_enabledFunctions)
+            {
+                if (_currentCard != null)
+                {
+                    CancelClick();
+                }
+                CardHandAnimationController.Instance.DisableFunctions();
+                _currentCard = card;
+                MoveChosenCardToCenterOfHand();
+                ProtagonistEventList.Instance.CardChosen.RaiseEvent(_currentCard);
+            }
         }
 
         /// <summary>
@@ -148,6 +149,8 @@ namespace Penwyn.Game
             GameEventList.Instance.CombatStart.OnEventRaised += EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised += DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised += DisableFunctions;
+            CardEventList.Instance.PointerSelect.OnEventRaised += AcceptClick;
+
         }
 
         public void DisconnectEvents()
@@ -156,18 +159,17 @@ namespace Penwyn.Game
             GameEventList.Instance.CombatStart.OnEventRaised -= EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised -= DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised -= DisableFunctions;
+            CardEventList.Instance.PointerSelect.OnEventRaised -= AcceptClick;
         }
 
         public void EnableFunctions()
         {
-            CardEventList.Instance.PointerSelect.OnEventRaised += AcceptClick;
-            //ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised += MoveChosenCardToCenterOfHand;
+            _enabledFunctions = true;
         }
 
         public void DisableFunctions()
         {
-            CardEventList.Instance.PointerSelect.OnEventRaised -= AcceptClick;
-            //ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised -= MoveChosenCardToCenterOfHand;
+            _enabledFunctions = false;
         }
 
 

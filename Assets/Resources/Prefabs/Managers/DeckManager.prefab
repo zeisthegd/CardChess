@@ -61,9 +61,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
   - {fileID: 11400000, guid: c808a98d7adc1984abc15d963b78d232, type: 2}
   - {fileID: 11400000, guid: a7531f64528f0a94da385a28ba165212, type: 2}
+  - {fileID: 11400000, guid: bc254394d8d06074b96c8dc80e9b03b6, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: c808a98d7adc1984abc15d963b78d232, type: 2}
+  - {fileID: 11400000, guid: a7531f64528f0a94da385a28ba165212, type: 2}
+  - {fileID: 11400000, guid: 12290299f25f93c418be0b7610e2a755, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
   StartAmount:
-    _baseValue: 3
-    _currentValue: 3
+    _baseValue: 7
+    _currentValue: 7
     CanBeHigherThanBase: 1
     CanBeNegative: 0
 --- !u!114 &2843908445822498751

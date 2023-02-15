@@ -74,7 +74,7 @@ namespace Penwyn.Game
             }
             else
             {
-                Announcer.Instance.Announce("There's already some one in this spot, chief.");
+                Announcer.Instance.Announce("Square Is Occupied By A Piece.");
             }
         }
 

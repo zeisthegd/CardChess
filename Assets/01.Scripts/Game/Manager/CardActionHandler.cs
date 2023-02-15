@@ -6,7 +6,7 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    public class CardActionHandler : MonoBehaviour
+    public class CardActionHandler : SingletonMonoBehaviour<CardActionHandler>
     {
         private Square _chosenSquare;
         private Piece _chosenPiece;
@@ -35,9 +35,17 @@ namespace Penwyn.Game
             if (_currentAction != null)
                 StartAction(_currentAction);
             else
+            {
+                CardEventList.Instance.CardDonePlaying.RaiseEvent(_currentCard);
                 Debug.Log("No more action.");
+
+            }
         }
 
+        /// <summary>
+        /// Start an action, announce needed information on the UI.
+        /// Set the event trigger to OnSquareSelected.
+        /// </summary>
         public void StartAction(Action action)
         {
             switch (action.Range)
@@ -66,6 +74,11 @@ namespace Penwyn.Game
             }
         }
 
+        /// <summary>
+        /// On a square is chosen use the chosen Action on that square and end it. 
+        /// After that, start the next action.
+        /// </summary>
+        /// <param name="selSquare"></param>
         private void OnSquareSelected(Square selSquare)
         {
             _chosenSquare = selSquare;
@@ -73,26 +86,41 @@ namespace Penwyn.Game
             EndAction(_currentAction);
         }
 
-        public void EndAction(Action action)
+        /// <summary>
+        /// End the current action
+        /// </summary>
+        /// <param name="startNextAction">Start next action on the queue if wanted.</param>
+        public void EndCurrentAction(bool startNextAction)
+        {
+            if (_currentAction != null)
+                EndAction(_currentAction, startNextAction);
+        }
+
+        /// <summary>
+        /// End the input action.
+        /// Unlisten the OnSquareSelected event.
+        /// </summary>
+        /// <param name="action">Action to end</param>
+        /// <param name="startNextAction">Start next action on the queue if wanted.</param>
+        public void EndAction(Action action, bool startNextAction = true)
         {
             Debug.Log("EndAction");
             switch (action.Range)
             {
                 case ActionRange.CHOOSE_SQUARE:
+                    SquareEventList.Instance.SquareSelected.OnEventRaised -= OnSquareSelected;
                     DuelManager.Instance.PhaseMachine.Change(Phase.ACTION);
                     if (_chosenSquare != null)
                     {
                         action.ActOnSquare(_chosenSquare, _currentCard.Owner.Faction);
                         Debug.Log($"EndSelected: {_chosenSquare.ToString()}");
                     }
-                    SquareEventList.Instance.SquareSelected.OnEventRaised -= OnSquareSelected;
+                    Debug.Log("Ends choosing square.");
                     break;
 
                 case ActionRange.CHOOSE_PIECE:
-                    DuelManager.Instance.PhaseMachine.Change(Phase.ACTION);
-                    if (_chosenSquare.Piece != null)
-                        Debug.Log($"EndSelected: {_chosenSquare.ToString()}");
                     SquareEventList.Instance.SquareSelected.OnEventRaised -= OnSquareSelected;
+                    DuelManager.Instance.PhaseMachine.Change(Phase.ACTION);
                     break;
 
                 case ActionRange.CHOOSE_MULTIPLE_SQUARES:
@@ -104,7 +132,8 @@ namespace Penwyn.Game
                 default:
                     break;
             }
-            StartNextAction();
+            if (startNextAction)
+                StartNextAction();
         }
     }
 }

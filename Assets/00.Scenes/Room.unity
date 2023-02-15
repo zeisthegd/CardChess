@@ -202,58 +202,6 @@ PrefabInstance:
       propertyPath: DiscardPileBtn
       value: 
       objectReference: {fileID: 1538929840}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: bc254394d8d06074b96c8dc80e9b03b6, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[6]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[7]
-      value: 
-      objectReference: {fileID: 11400000, guid: c808a98d7adc1984abc15d963b78d232, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[8]
-      value: 
-      objectReference: {fileID: 11400000, guid: a7531f64528f0a94da385a28ba165212, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[9]
-      value: 
-      objectReference: {fileID: 11400000, guid: 12290299f25f93c418be0b7610e2a755, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[10]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[12]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[13]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: Deck.Array.data[14]
-      value: 
-      objectReference: {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: StartAmount._baseValue
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2843908445822498750, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
-      propertyPath: StartAmount._currentValue
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 2843908445822498751, guid: b2a227e0389bc044cbf6c025dc120134, type: 3}
       propertyPath: Hand
       value: 
@@ -501,6 +449,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6967600654566911291, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967600654566911291, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967600654566911291, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1903658823723204750, guid: 1c4d5504474c8cd4491a1ea997dba1da, type: 3}
+    - target: {fileID: 6967600654566911291, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6967600654602574990, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -763,18 +727,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomUI
       objectReference: {fileID: 0}
-    - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 480
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 270
-      objectReference: {fileID: 0}
-    - target: {fileID: 7098604530881302998, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
-      propertyPath: m_ReferencePixelsPerUnit
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 7098604530881303000, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -877,7 +829,7 @@ GameObject:
   - component: {fileID: 2048233315}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,15 +894,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0007320644
     y: 0
-    width: 1
+    width: 0.9985359
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 12
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
