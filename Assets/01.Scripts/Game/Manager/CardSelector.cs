@@ -67,8 +67,19 @@ namespace Penwyn.Game
 
                 _canPlay = false;
                 _chosenCard = null;
+
                 CardHandAnimationController.Instance.EnableFunctions();
                 CardHandAnimationController.Instance.UpdateCardsTransform();
+
+                EndTurnIfCardIsDeployCat(card);
+            }
+        }
+
+        private void EndTurnIfCardIsDeployCat(Card card)
+        {
+            if (card.Data.Category == Category.PIECE)
+            {
+                DuelManager.Instance.EndTurn();
             }
         }
 

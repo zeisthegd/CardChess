@@ -33,7 +33,10 @@ namespace Penwyn.Game
 
         public void EndTurn()
         {
-            photonView.RPC(nameof(RPC_EndTurn), RpcTarget.All, new object { });
+            if (IsMainPlayerTurn)//If the player using this client initiate the end turn function.
+            {
+                photonView.RPC(nameof(RPC_EndTurn), RpcTarget.All);
+            }
         }
 
         [PunRPC]

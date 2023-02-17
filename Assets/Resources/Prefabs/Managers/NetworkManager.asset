@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a411629daf82146b5ec0e546423158, type: 3}
+  m_Name: NetworkManager
+  m_EditorClassIdentifier: 
+  NetworkSettings: {fileID: 11400000, guid: e58fdf12641cd744fb631daf4db732d5, type: 2}

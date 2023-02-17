@@ -8,20 +8,18 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    [CreateAssetMenu(menuName ="Game/CardData",fileName ="Card")]
+    [CreateAssetMenu(menuName = "Game/CardData", fileName = "Card")]
     public class CardData : ScriptableObject
     {
-        [Header("Graphics")]
-        public Sprite Avatar;
-
         [Header("Data")]
         public string Name;
+        public Category Category;
         public IntValue Cost;
         public List<Action> Actions;
 
+        [Header("Graphics")]
+        public Sprite Avatar;
 
-        [Header("Scriptable Data")]
-        public Category Category;
 
         public virtual CardData Clone()
         {
@@ -33,7 +31,7 @@ namespace Penwyn.Game
             }
             return clone;
         }
-        
+
         public string GetDescription()
         {
             string des = "";

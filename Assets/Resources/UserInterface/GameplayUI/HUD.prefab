@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.14, y: 0.02999878}
+  m_AnchoredPosition: {x: 0.77, y: -0.87}
   m_SizeDelta: {x: 16, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1922496924804751291
@@ -66,19 +66,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '20
-
-'
+  m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99a553a015387554db3836fccf3d3d79, type: 2}
+  m_sharedMaterial: {fileID: -141938794688049034, guid: 99a553a015387554db3836fccf3d3d79, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4290301125
-  m_fontColor: {r: 0.77254903, g: 0.8, b: 0.72156864, a: 1}
+    rgba: 4283774019
+  m_fontColor: {r: 0.2627451, g: 0.20392157, b: 0.33333334, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -95,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7
-  m_fontSizeBase: 7
+  m_fontSize: 19.05
+  m_fontSizeBase: 19.05
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -174,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 221.19995, y: 35.09999}
-  m_SizeDelta: {x: 16, y: 16}
+  m_SizeDelta: {x: 24, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1922496924895078857
 CanvasRenderer:
@@ -197,15 +195,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7647059, g: 0.53333336, b: 0.5647059, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 648a942e4e3ed67448bfc021a530ad0d, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d1ab80393e2b5574eb123cbd1caf43e2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -590,6 +588,7 @@ GameObject:
   - component: {fileID: 6967600654602574989}
   - component: {fileID: 6967600654602574988}
   - component: {fileID: 6967600654602574991}
+  - component: {fileID: 1538929844}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -682,6 +681,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1538929844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967600654602574990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc6badadca7b084abea8c73b4f6361f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndTurnButton: {fileID: 6967600654566911291}
 --- !u!1 &6967600655763928607
 GameObject:
   m_ObjectHideFlags: 0
