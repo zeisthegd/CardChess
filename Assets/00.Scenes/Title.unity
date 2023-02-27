@@ -2014,11 +2014,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354399854}
-  - component: {fileID: 1354399853}
+  - component: {fileID: 1354399857}
   - component: {fileID: 1354399858}
   - component: {fileID: 1354399855}
+  - component: {fileID: 1354399853}
   - component: {fileID: 1354399856}
-  - component: {fileID: 1354399857}
   - component: {fileID: 1354399859}
   m_Layer: 0
   m_Name: GameManager
@@ -2046,8 +2046,6 @@ MonoBehaviour:
   InputManager: {fileID: 11400000, guid: eec8c28d7b387b04a8f105261617e4ad, type: 2}
   AudioPlayer: {fileID: 0}
   DuelManager: {fileID: 1354399859}
-  LevelManager: {fileID: 0}
-  DeckManager: {fileID: 0}
   MatchSettings: {fileID: 0}
   Mode: 1
 --- !u!4 &1354399854
@@ -2141,6 +2139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoardViewPrefabPath: Prefabs/Game/Board/BoardView
   BoardPosition: {fileID: 0}
+  MasterDMPrefab: {fileID: 3622996009530709248, guid: 1121edca2f1171d449010583a243e9a3, type: 3}
+  GuestDMPrefab: {fileID: 645394219747040062, guid: 455f6993f2e95744fbae6d7d05ed3446, type: 3}
 --- !u!1 &1390088264
 GameObject:
   m_ObjectHideFlags: 0

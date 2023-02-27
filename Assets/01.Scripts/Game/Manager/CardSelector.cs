@@ -11,15 +11,16 @@ namespace Penwyn.Game
     /// <summary>
     /// Responsible for card selection, usage and target finding.
     /// </summary>
-    public class CardSelector : SingletonMonoBehaviour<CardSelector>
+    public class CardSelector : MonoBehaviour
     {
         private List<Piece> _targetList = new List<Piece>();
         private Card _chosenCard = null;
         private bool _canPlay = false;
-
+        private DeckManager _deckManager;
 
         void OnEnable()
         {
+            _deckManager = GetComponent<DeckManager>();
             ConnectEvents();
         }
 
@@ -37,8 +38,8 @@ namespace Penwyn.Game
                 if (card.EnoughEnergy)
                 {
                     _chosenCard = card;
-                    CardActionHandler.Instance.GenerateActionQueue(_chosenCard);
-                    CardActionHandler.Instance.StartNextAction();
+                    _deckManager.CardActionHandler.GenerateActionQueue(_chosenCard);
+                    _deckManager.CardActionHandler.StartNextAction();
                     CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
                 }
                 else
@@ -62,14 +63,14 @@ namespace Penwyn.Game
             {
                 CursorManager.Instance.ResetCursor();
                 UntargetAll();
-                DeckManager.Instance.Discard(card);
+                _deckManager.Discard(card);
                 card.Owner.Data.Energy.SetCurrentValue(card.Owner.Data.Energy.CurrentValue - card.Data.Cost.CurrentValue);
 
                 _canPlay = false;
                 _chosenCard = null;
 
-                CardHandAnimationController.Instance.EnableFunctions();
-                CardHandAnimationController.Instance.UpdateCardsTransform();
+                _deckManager.CardHandAnimationController.EnableFunctions();
+                _deckManager.CardHandAnimationController.UpdateCardsTransform();
 
                 EndTurnIfCardIsDeployCat(card);
             }
@@ -94,8 +95,8 @@ namespace Penwyn.Game
                 UntargetAll();
             _chosenCard = null;
             _canPlay = false;
-            CardActionHandler.Instance.EndCurrentAction(false);
-            CardPlayingAnimationManager.Instance.CancelClick();
+            _deckManager.CardActionHandler.EndCurrentAction(false);
+            _deckManager.CardPlayingAnimationManager.CancelClick();
         }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace Penwyn.Game
             if (cardChosen)
             {
                 if (!_chosenCard.EnoughEnergy)
-                    CardPlayingAnimationManager.Instance.CancelClick();
+                    _deckManager.CardPlayingAnimationManager.CancelClick();
             }
             bool targetChosen = _targetList.Count > 0;
             _canPlay = cardChosen && targetChosen;

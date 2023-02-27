@@ -101,6 +101,7 @@ MonoBehaviour:
   PositionXOffset: 75
   PositionYOffset: 0
   RotateOffset: 0
+  LeftToRight: 1
   HoverSpeed: 0.25
   HoverScale: 1.1
   NearbyCardPushCount: 3

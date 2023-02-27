@@ -51,8 +51,8 @@ namespace Penwyn.Game
         {
             _isOpened = true;
             View.SetActive(_isOpened);
-            CardHandAnimationController.Instance.DisableFunctions();
-            CardPlayingAnimationManager.Instance.DisableFunctions();
+            //CardHandAnimationController.Instance.DisableFunctions();
+            //CardPlayingAnimationManager.Instance.DisableFunctions();
             ConnectEvents();
             foreach (Card card in _pile.Cards)
             {
@@ -74,8 +74,8 @@ namespace Penwyn.Game
         {
             _isOpened = false;
             View.SetActive(_isOpened);
-            CardHandAnimationController.Instance.EnableFunctions();
-            CardPlayingAnimationManager.Instance.EnableFunctions();
+            //CardHandAnimationController.Instance.EnableFunctions();
+            //CardPlayingAnimationManager.Instance.EnableFunctions();
             DisconnectEvents();
             foreach (Card clone in clones)
             {

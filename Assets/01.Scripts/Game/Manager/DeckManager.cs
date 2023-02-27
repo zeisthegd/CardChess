@@ -8,7 +8,7 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    public class DeckManager : SingletonMonoBehaviour<DeckManager>
+    public class DeckManager : MonoBehaviour
     {
         [Header("Card Prefabs")]
         public Card CardPrefab;
@@ -27,9 +27,21 @@ namespace Penwyn.Game
         public List<CardData> Deck;
         public IntValue StartAmount;
 
+
+        private CardHandAnimationController _cardHandAnimationController;
+        private CardPlayingAnimationManager _cardPlayingAnimationManager;
+        private CardSelector _cardSelector;
+        private CardActionHandler _cardActionHandler;
+
+
+
         void OnEnable()
         {
             ConnectEvents();
+            _cardHandAnimationController = GetComponent<CardHandAnimationController>();
+            _cardPlayingAnimationManager = GetComponent<CardPlayingAnimationManager>();
+            _cardSelector = GetComponent<CardSelector>();
+            _cardActionHandler = GetComponent<CardActionHandler>();
         }
 
         /// <summary>
@@ -52,7 +64,7 @@ namespace Penwyn.Game
             var card = CreateCard(data);
             pile.Add(card);
             if (playAnimation)
-                CardPlayingAnimationManager.Instance.PlayAddCard(card, pile.PositionInCanvas, pile != HandPile);
+                _cardPlayingAnimationManager.PlayAddCard(card, pile.PositionInCanvas, pile != HandPile);
             card.Owner = owner;
             return card;
         }
@@ -131,7 +143,7 @@ namespace Penwyn.Game
                     break;
                 }
             }
-            CardHandAnimationController.Instance.UpdateCardsTransform();
+            _cardHandAnimationController.UpdateCardsTransform();
         }
 
         /// <summary>
@@ -148,7 +160,7 @@ namespace Penwyn.Game
             card.gameObject.SetActive(true);
             card.transform.position = DrawPileBtn.position;
             card.DisplayCard(card.Data);
-            CardHandAnimationController.Instance.MoveToPosition(card, HandPile.GetCardIndex(card));
+            _cardHandAnimationController.MoveToPosition(card, HandPile.GetCardIndex(card));
             CardEventList.Instance.CardDrawn.RaiseEvent(card);
         }
 
@@ -174,8 +186,8 @@ namespace Penwyn.Game
             DiscardPile.Add(card);
             card.transform.SetParent(DiscardPile.transform);
 
-            CardPlayingAnimationManager.Instance.PlayDiscardAnimation(card);
-            CardHandAnimationController.Instance.UpdateCardsTransform();
+            _cardPlayingAnimationManager.PlayDiscardAnimation(card);
+            _cardHandAnimationController.UpdateCardsTransform();
 
             CardEventList.Instance.CardDiscarded.RaiseEvent(card);
         }
@@ -193,8 +205,8 @@ namespace Penwyn.Game
                 DrawPile.Add(card);
                 DiscardPile.Remove(card);
 
-                CardPlayingAnimationManager.Instance.PlayShuffleAnimation(card);
-                CardHandAnimationController.Instance.UpdateCardsTransform();
+                _cardPlayingAnimationManager.PlayShuffleAnimation(card);
+                _cardHandAnimationController.UpdateCardsTransform();
             }
             if (DiscardPile.Count > 0)
                 ReshuffleCards();
@@ -223,6 +235,11 @@ namespace Penwyn.Game
         {
             DisonnectEvents();
         }
+
+        public CardHandAnimationController CardHandAnimationController { get => _cardHandAnimationController; }
+        public CardPlayingAnimationManager CardPlayingAnimationManager { get => _cardPlayingAnimationManager; }
+        public CardSelector CardSelector { get => _cardSelector; }
+        public CardActionHandler CardActionHandler { get => _cardActionHandler; }
     }
 
 }

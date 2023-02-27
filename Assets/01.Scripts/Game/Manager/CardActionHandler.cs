@@ -6,7 +6,7 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    public class CardActionHandler : SingletonMonoBehaviour<CardActionHandler>
+    public class CardActionHandler : MonoBehaviour
     {
         private Square _chosenSquare;
         private Piece _chosenPiece;

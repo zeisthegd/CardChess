@@ -8,12 +8,13 @@ using NaughtyAttributes;
 using Penwyn.Tools;
 namespace Penwyn.Game
 {
-    public class CardHandAnimationController : SingletonMonoBehaviour<CardHandAnimationController>
+    public class CardHandAnimationController : MonoBehaviour
     {
         [Header("Offsets")]
         public float PositionXOffset;
         public float PositionYOffset;
         public float RotateOffset;
+        public bool LeftToRight = true;
 
         [Header("Hover")]
         public float HoverSpeed;
@@ -26,9 +27,11 @@ namespace Penwyn.Game
 
         private float _scaleToHand = 1;
         private bool _enabledFunctions = true;
+        private DeckManager _deckManager;
 
         void OnEnable()
         {
+            _deckManager = GetComponent<DeckManager>();
             ConnectEvents();
         }
 
@@ -38,9 +41,9 @@ namespace Penwyn.Game
         [Button]
         public void UpdateCardsTransform()
         {
-            for (int i = 0; i < DeckManager.Instance.HandPile.Count; i++)
+            for (int i = 0; i < _deckManager.HandPile.Count; i++)
             {
-                Card card = DeckManager.Instance.HandPile.GetCard(i);
+                Card card = _deckManager.HandPile.GetCard(i);
                 card.gameObject.SetActive(true);
                 Rescale(card);
                 MoveToPosition(card, i);
@@ -54,7 +57,7 @@ namespace Penwyn.Game
         /// </summary>
         public void Rescale(Card card)
         {
-            _scaleToHand = 6 / DeckManager.Instance.HandPile.Count;
+            _scaleToHand = 6 / _deckManager.HandPile.Count;
             _scaleToHand = Mathf.Clamp(_scaleToHand, 0, 1);
             card.transform.DOScale(Vector3.one * _scaleToHand, HoverSpeed);
         }
@@ -83,10 +86,10 @@ namespace Penwyn.Game
         /// </summary>
         private void Hover(Card card)
         {
-            //Debug.Log("Hover: " + DeckManager.Instance.HandPile.Cards.Contains(card));
-            if (_enabledFunctions && !ChosenCardZoneOccupied() && !DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
+            //Debug.Log("Hover: " + _deckManager.HandPile.Cards.Contains(card));
+            if (_enabledFunctions && !ChosenCardZoneOccupied() && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card))
             {
-                var localPos = IndexToLocalPosition(DeckManager.Instance.HandPile.GetCardIndex(card));
+                var localPos = IndexToLocalPosition(_deckManager.HandPile.GetCardIndex(card));
                 Vector3 destination = new Vector3(localPos.x, 0, localPos.z);
 
                 card.transform.DOKill();
@@ -105,16 +108,16 @@ namespace Penwyn.Game
         /// </summary>
         private void MoveNearbyCardAside(Card card)
         {
-            int index = DeckManager.Instance.HandPile.GetCardIndex(card);
+            int index = _deckManager.HandPile.GetCardIndex(card);
             for (int i = 1; i <= NearbyCardPushCount; i++)
             {
-                if (index + i < DeckManager.Instance.HandPile.Count)
+                if (index + i < _deckManager.HandPile.Count)
                 {
-                    DeckManager.Instance.HandPile.GetCard(index + i).transform.DOLocalMoveX(IndexToLocalPosition(index + i).x + PushOffsetX / i, 0.25F);
+                    _deckManager.HandPile.GetCard(index + i).transform.DOLocalMoveX(IndexToLocalPosition(index + i).x + PushOffsetX / i, 0.25F);
                 }
                 if (index - i >= 0)
                 {
-                    DeckManager.Instance.HandPile.GetCard(index - i).transform.DOLocalMoveX(IndexToLocalPosition(index - i).x - PushOffsetX / i, 0.25F);
+                    _deckManager.HandPile.GetCard(index - i).transform.DOLocalMoveX(IndexToLocalPosition(index - i).x - PushOffsetX / i, 0.25F);
                 }
             }
         }
@@ -124,14 +127,14 @@ namespace Penwyn.Game
         /// </summary>
         private void Exit(Card card)
         {
-            //Debug.Log("Exit: " + DeckManager.Instance.HandPile.Cards.Contains(card));
-            if (_enabledFunctions && !DeckManager.Instance.IsDiscarded(card) && DeckManager.Instance.HandPile.Cards.Contains(card))
+            //Debug.Log("Exit: " + _deckManager.HandPile.Cards.Contains(card));
+            if (_enabledFunctions && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card))
             {
                 card.transform.DOKill();
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
 
                 card.transform.DOLocalMove(destination, HoverSpeed);
-                card.transform.SetParent(DeckManager.Instance.HandPile.transform);
+                card.transform.SetParent(_deckManager.HandPile.transform);
 
                 UpdateCardsTransform();
             }
@@ -147,10 +150,10 @@ namespace Penwyn.Game
 
         public void ReorderCards()
         {
-            for (int i = 0; i < DeckManager.Instance.HandPile.Count; i++)
+            for (int i = 0; i < _deckManager.HandPile.Count; i++)
             {
-                DeckManager.Instance.HandPile.GetCard(i).transform.SetSiblingIndex(i);
-                DeckManager.Instance.HandPile.GetCard(i).SetCanvasOrder(i);
+                _deckManager.HandPile.GetCard(i).transform.SetSiblingIndex(i);
+                _deckManager.HandPile.GetCard(i).SetCanvasOrder(i);
             }
         }
 
@@ -159,9 +162,9 @@ namespace Penwyn.Game
         /// </summary>
         private Vector3 IndexToLocalPosition(int index)
         {
-            float difference = (float)index - DeckManager.Instance.HandPile.HalfCount;
-            Vector3 handLocalPos = DeckManager.Instance.HandPile.transform.localPosition;
-            Vector3 localPos = new Vector3(handLocalPos.x + (difference * PositionXOffset * _scaleToHand), -(Mathf.Abs((difference * PositionYOffset))), 0);
+            float difference = LeftToRight ? (float)index - 0 : -(index);//Increase from left to right
+            Vector3 handLocalPos = _deckManager.HandPile.GetComponent<RectTransform>().anchoredPosition;
+            Vector3 localPos = new Vector3((difference * PositionXOffset * _scaleToHand), -(Mathf.Abs((difference * PositionYOffset))), 0);
             return localPos;
         }
 
@@ -170,7 +173,7 @@ namespace Penwyn.Game
         /// </summary>
         private Vector3 IndexToLocalRotation(int index)
         {
-            float difference = (float)index - DeckManager.Instance.HandPile.HalfCount;
+            float difference = (float)index - _deckManager.HandPile.HalfCount;
             Vector3 localRotation = new Vector3(Vector3.zero.x, Vector3.zero.y, Vector3.zero.z + (-difference * RotateOffset));
             return localRotation;
         }

@@ -28,8 +28,6 @@ namespace Penwyn.Game
 
         public AudioPlayer AudioPlayer;
         public DuelManager DuelManager;
-        public LevelManager LevelManager;
-        public DeckManager DeckManager;
 
         [Expandable] public MatchSettings MatchSettings;
 
@@ -84,19 +82,14 @@ namespace Penwyn.Game
 
             PlayerManager.CreatePlayers(Mode);
 
-            DuelManager.FindBoardView();
-            DuelManager.SetBoardViewMode();
-            DuelManager.BoardView.SpawnBoardSquares();
-            DuelManager.BoardView.SpawnKings();
+            DuelManager.Instance.SetUpBoard();
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25F);
 
-            DeckManager.InitializeCards();
+            StartCoroutine(DuelManager.CreateDecks());
 
-            yield return new WaitForSeconds(1);
-            DeckManager.DrawCardsAtTurnStart();
             _gameState = GameState.Started;
-            Announcer.Instance.Announce($"Hey WHITE, you move.");
+            Announcer.Instance.Announce($"GAME START!.");
             GameEventList.Instance.MatchStarted.RaiseEvent();
         }
 
@@ -116,7 +109,6 @@ namespace Penwyn.Game
         public virtual void OnRoomSceneLoaded()
         {
             _gameState = GameState.GettingReady;
-            DeckManager = FindObjectOfType<DeckManager>();
             if (PhotonNetwork.IsMasterClient)
                 DuelManager.CreateBoardView();
 

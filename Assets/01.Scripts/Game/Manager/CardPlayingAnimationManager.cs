@@ -10,14 +10,16 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    public class CardPlayingAnimationManager : SingletonMonoBehaviour<CardPlayingAnimationManager>
+    public class CardPlayingAnimationManager : MonoBehaviour
     {
         public float DragTime;
         private Sequence _mainSequence;
         private Card _currentCard;
         private bool _enabledFunctions = true;
+        private DeckManager _deckManager;
         void OnEnable()
         {
+            _deckManager = GetComponent<DeckManager>();
             ConnectEvents();
         }
         /// <summary>
@@ -31,7 +33,7 @@ namespace Penwyn.Game
                 {
                     CancelClick();
                 }
-                CardHandAnimationController.Instance.DisableFunctions();
+                _deckManager.CardHandAnimationController.DisableFunctions();
                 _currentCard = card;
                 MoveChosenCardToCenterOfHand();
                 ProtagonistEventList.Instance.CardChosen.RaiseEvent(_currentCard);
@@ -43,15 +45,15 @@ namespace Penwyn.Game
         /// </summary>
         public void CancelClick()
         {
-            if (_currentCard != null && !DeckManager.Instance.IsDiscarded(_currentCard))// && CombatManager.Instance.CombatStarted)
+            if (_currentCard != null && !_deckManager.IsDiscarded(_currentCard))// && CombatManager.Instance.CombatStarted)
             {
                 CursorManager.Instance.ResetCursor();
                 _currentCard.transform.DOKill();
-                _currentCard.transform.SetParent(DeckManager.Instance.HandPile.transform);
+                _currentCard.transform.SetParent(_deckManager.HandPile.transform);
                 _currentCard = null;
 
-                CardHandAnimationController.Instance.EnableFunctions();
-                CardHandAnimationController.Instance.UpdateCardsTransform();
+                _deckManager.CardHandAnimationController.EnableFunctions();
+                _deckManager.CardHandAnimationController.UpdateCardsTransform();
                 ProtagonistEventList.Instance.ReleaseCard.RaiseEvent();
             }
         }
@@ -66,7 +68,7 @@ namespace Penwyn.Game
                 card.gameObject.SetActive(true);
                 card.DOKill();
                 _currentCard = null;
-                PlayAddCard(card, DeckManager.Instance.DiscardPileBtn, true);
+                PlayAddCard(card, _deckManager.DiscardPileBtn, true);
             }
         }
 
@@ -75,7 +77,7 @@ namespace Penwyn.Game
         /// </summary>
         public void PlayShuffleAnimation(Card card)
         {
-            PlayAddCard(card, DeckManager.Instance.DrawPileBtn, true);
+            PlayAddCard(card, _deckManager.DrawPileBtn, true);
         }
 
         /// <summary>
@@ -98,8 +100,8 @@ namespace Penwyn.Game
                 addCardSqn = DisableAfterAdd(addCardSqn, card.transform, disableAfterAdd);
                 addCardSqn.onComplete += () =>
                 {
-                    CardHandAnimationController.Instance.UpdateCardsTransform();
-                    CardHandAnimationController.Instance.EnableFunctions();
+                    _deckManager.CardHandAnimationController.UpdateCardsTransform();
+                    _deckManager.CardHandAnimationController.EnableFunctions();
                 };
             }
         }
@@ -129,7 +131,7 @@ namespace Penwyn.Game
             {
                 Card chosenCard = _currentCard.GetComponent<Card>();
                 chosenCard.transform.DOKill();
-                Transform chosenCardZone = CardHandAnimationController.Instance.ChosenCardZone;
+                Transform chosenCardZone = _deckManager.CardHandAnimationController.ChosenCardZone;
                 chosenCard.transform.SetParent(chosenCardZone);
                 chosenCard.transform.DOMove(chosenCardZone.position, DragTime * 2);
             }

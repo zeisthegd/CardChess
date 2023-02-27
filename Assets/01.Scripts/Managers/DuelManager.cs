@@ -18,11 +18,19 @@ namespace Penwyn.Game
     {
         public string BoardViewPrefabPath;
         public Transform BoardPosition;
+
+        [Header("Decks")]
+        public DeckManager MasterDMPrefab;
+        public DeckManager GuestDMPrefab;
+
         private BoardView _boardView;
         private PhotonView photonView;
 
         private StateMachine<Phase> _phaseMachine;
         private Faction _currentFactionTurn = Faction.WHITE;
+
+        private DeckManager _masterDM;
+        private DeckManager _guestDM;
 
 
         //In-game params
@@ -35,6 +43,27 @@ namespace Penwyn.Game
             _phaseMachine = new StateMachine<Phase>(Phase.NOT_STARTED);
 
             _isGuestReady = false;
+        }
+
+        public IEnumerator CreateDecks()
+        {
+            _masterDM = Instantiate(MasterDMPrefab, transform.position, Quaternion.identity, this.transform);
+            _guestDM = Instantiate(GuestDMPrefab, transform.position, Quaternion.identity, this.transform);
+
+            _masterDM.InitializeCards();
+            _guestDM.InitializeCards();
+
+            yield return new WaitForSeconds(1);
+            _masterDM.DrawCardsAtTurnStart();
+            _guestDM.DrawCardsAtTurnStart();
+        }
+
+        public void SetUpBoard()
+        {
+            FindBoardView();
+            SetBoardViewMode();
+            BoardView.SpawnBoardSquares();
+            BoardView.SpawnKings();
         }
 
 
