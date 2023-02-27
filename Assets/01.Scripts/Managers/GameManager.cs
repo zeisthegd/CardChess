@@ -36,7 +36,7 @@ namespace Penwyn.Game
         public static GameManager Instance;
         public event UnityAction GameStarted;
         protected GameState _gameState;
-        public GameMode _mode = GameMode.PVP;
+        public GameMode Mode = GameMode.PVP;
 
 
         void Awake()
@@ -49,17 +49,24 @@ namespace Penwyn.Game
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoad;
         }
 
-        public virtual void RPC_StartGame()
+        public virtual void StartGame()
         {
-            photonView.RPC(nameof(StartGame), RpcTarget.All);
+            photonView.RPC(nameof(RPC_StartGame), RpcTarget.All);
         }
 
 
         [PunRPC]
-        public virtual void StartGame()
+        public virtual void RPC_StartGame()
         {
-            StartCoroutine(StartGameCoroutine());
-            GameStarted?.Invoke();
+            if (CanStartGame)
+            {
+                StartCoroutine(StartGameCoroutine());
+            }
+            else
+            {
+                Debug.Log("One of the players is not READY!");
+                Announcer.Instance.Announce("One of the players is not READY!");
+            }
         }
 
 
@@ -71,7 +78,11 @@ namespace Penwyn.Game
         public IEnumerator StartGameCoroutine()
         {
             _gameState = GameState.BoardLoading;
-            PlayerManager.CreatePlayers(_mode);
+
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            PhotonNetwork.CurrentRoom.IsVisible = false;
+
+            PlayerManager.CreatePlayers(Mode);
 
             DuelManager.FindBoardView();
             DuelManager.SetBoardViewMode();
@@ -86,7 +97,7 @@ namespace Penwyn.Game
             DeckManager.DrawCardsAtTurnStart();
             _gameState = GameState.Started;
             Announcer.Instance.Announce($"Hey WHITE, you move.");
-            GameEventList.Instance.CombatStart.RaiseEvent();
+            GameEventList.Instance.MatchStarted.RaiseEvent();
         }
 
         void CheckSingleton()
@@ -108,6 +119,7 @@ namespace Penwyn.Game
             DeckManager = FindObjectOfType<DeckManager>();
             if (PhotonNetwork.IsMasterClient)
                 DuelManager.CreateBoardView();
+
         }
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -119,7 +131,7 @@ namespace Penwyn.Game
         }
 
         public GameState State => _gameState;
-
+        public bool CanStartGame => DuelManager.IsGuestReady || Mode == GameMode.PVE || Mode == GameMode.AIvAI;
     }
 
     public enum GameState

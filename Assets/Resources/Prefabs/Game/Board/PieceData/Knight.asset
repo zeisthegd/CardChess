@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc632805e622854da28bdf9677f892c, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
-  WhiteSprite: {fileID: 1340682161, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
-  BlackSprite: {fileID: -145623067, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  WhiteSprite: {fileID: 1996581819, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  BlackSprite: {fileID: 373942456, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}

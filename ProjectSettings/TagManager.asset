@@ -8,6 +8,7 @@ TagManager:
   - Weapon
   - UserInterface
   - BoardPosition
+  - HUD
   layers:
   - Default
   - TransparentFX
@@ -15,13 +16,13 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Weapon
-  - Enemies
-  - Projectiles
-  - Platforms
-  - Coins
-  - PostProcessing
+  - Board
+  - Piece
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -48,13 +49,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Environment
+  - name: Board
     uniqueID: 1224311037
     locked: 0
-  - name: Enemies
+  - name: Pieces
     uniqueID: 1199880971
     locked: 0
-  - name: Character
+  - name: Card
     uniqueID: 1870870223
     locked: 0
   - name: Projectiles

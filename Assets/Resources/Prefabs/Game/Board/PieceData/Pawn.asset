@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4d9ade11f0a044a905b15e519afb9f, type: 3}
   m_Name: Pawn
   m_EditorClassIdentifier: 
-  WhiteSprite: {fileID: -671295321, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
-  BlackSprite: {fileID: 1757304974, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  WhiteSprite: {fileID: -1908231345, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  BlackSprite: {fileID: 761412196, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}

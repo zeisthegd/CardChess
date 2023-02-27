@@ -16,35 +16,34 @@ namespace Penwyn.UI
 {
     public class RoomUI : MonoBehaviour
     {
-        [SerializeField] TMP_Text passcodeTxt;
-        [SerializeField] Button openSettingsBtn;
-        [SerializeField] Button startMatchBtn;
+        public TMP_Text PasscodeTxt;
+        public Button OpenSettingsBtn;
+        public Button StartMatchBtn;
+        public Button ReadyButton;
 
-        [Header("Teams")]
-        public List<TMP_Text> FirstTeamList;
-        public List<TMP_Text> SecondTeamList;
         [Header("Score")]
-        public TMP_Text FirstTeamScore;
-        public TMP_Text SecondTeamScore;
+        public TMP_Text HostTeamScore;
+        public TMP_Text GuestTeamScore;
         [Header("Turns")]
         public TMP_Text TurnTextPrefab;
         public TMP_Text CurrentTurn;
         public Transform Container;
 
-        void Awake()
-        {
-            PhotonTeamsManager.PlayerJoinedTeam += ShowTeams;
-        }
-
         void Start()
         {
             if (PhotonNetwork.InRoom)
-                passcodeTxt.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["Passcode"];
+                PasscodeTxt.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["Passcode"];
 
             if (!PhotonNetwork.IsMasterClient)
             {
-                openSettingsBtn.gameObject.SetActive(false);
-                startMatchBtn.gameObject.SetActive(false);
+                OpenSettingsBtn.gameObject.SetActive(false);
+                StartMatchBtn.gameObject.SetActive(false);
+                ReadyButton.gameObject.SetActive(true);
+                SetUpReadyButton();
+            }
+            else
+            {
+                ReadyButton.gameObject.SetActive(false);
             }
         }
 
@@ -52,11 +51,12 @@ namespace Penwyn.UI
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                PhotonNetwork.CurrentRoom.IsVisible = false;
-                GameManager.Instance.RPC_StartGame();
-                openSettingsBtn.gameObject.SetActive(false);
-                startMatchBtn.gameObject.SetActive(false);
+                GameManager.Instance.StartGame();
+                if (GameManager.Instance.CanStartGame)
+                {
+                    OpenSettingsBtn.gameObject.SetActive(false);
+                    StartMatchBtn.gameObject.SetActive(false);
+                }
             }
         }
 
@@ -65,38 +65,29 @@ namespace Penwyn.UI
             this.gameObject.SetActive(false);
         }
 
-        public virtual void ShowTeams(Photon.Realtime.Player player, PhotonTeam teamJoined)
+        public virtual void SetUpReadyButton()
         {
-            Debug.Log("Show teams!");
-            Photon.Realtime.Player[] team;
-            PhotonTeamsManager.Instance.TryGetTeamMembers(1, out team);
-            for (int i = 0; i < team.Length; i++)
-            {
-                FirstTeamList[i].SetText(team[i].NickName + "");
-            }
-            PhotonTeamsManager.Instance.TryGetTeamMembers(2, out team);
-            for (int i = 0; i < team.Length; i++)
-            {
-                SecondTeamList[i].SetText(team[i].NickName + "");
-            }
+            ReadyButton.GetComponentInChildren<TMP_Text>().text = DuelManager.Instance.IsGuestReady ? "UNREADY!" : "READY!";
         }
 
-        public virtual void ShowScore()
+        public virtual void ReadyButtonClicked()
         {
+            if (DuelManager.Instance.IsGuestReady)
+                DuelManager.Instance.UnreadyGuest();
+            else
+                DuelManager.Instance.GetGuestReady();
+            SetUpReadyButton();
         }
 
-        public virtual void ShowTurns()
-        {
-        }
 
         void OnEnable()
         {
-            GameEventList.Instance.CombatStart.OnEventRaised += OnGameStarted;
+            GameEventList.Instance.MatchStarted.OnEventRaised += OnGameStarted;
         }
 
         void OnDisable()
         {
-            GameEventList.Instance.CombatStart.OnEventRaised -= OnGameStarted;
+            GameEventList.Instance.MatchStarted.OnEventRaised -= OnGameStarted;
         }
     }
 

@@ -177,7 +177,7 @@ namespace Penwyn.Game
 
         public void ConnectEvents()
         {
-            GameEventList.Instance.CombatStart.OnEventRaised += EnableFunctions;
+            GameEventList.Instance.MatchStarted.OnEventRaised += EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised += DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised += DisableFunctions;
             CardEventList.Instance.PointerEnter.OnEventRaised += Hover;
@@ -187,7 +187,7 @@ namespace Penwyn.Game
 
         public void DisconnectEvents()
         {
-            GameEventList.Instance.CombatStart.OnEventRaised -= EnableFunctions;
+            GameEventList.Instance.MatchStarted.OnEventRaised -= EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised -= DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised -= DisableFunctions;
             CardEventList.Instance.PointerEnter.OnEventRaised -= Hover;

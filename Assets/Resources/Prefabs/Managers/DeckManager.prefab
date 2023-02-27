@@ -71,9 +71,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
   - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
   - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
+  - {fileID: 11400000, guid: 87df21bfe6bf0304497cbb6d13192f85, type: 2}
   StartAmount:
-    _baseValue: 7
-    _currentValue: 7
+    _baseValue: 20
+    _currentValue: 20
     CanBeHigherThanBase: 1
     CanBeNegative: 0
 --- !u!114 &2843908445822498751
@@ -89,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionXOffset: 75
-  PositionYOffset: 6
-  RotateOffset: 4
+  PositionYOffset: 0
+  RotateOffset: 0
   HoverSpeed: 0.25
   HoverScale: 1.1
   NearbyCardPushCount: 3

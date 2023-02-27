@@ -6,7 +6,7 @@ namespace Penwyn.Game
 {
     public class GameEventList
     {
-        public VoidEventChannel CombatStart;
+        public VoidEventChannel MatchStarted;
         public VoidEventChannel ProtagonistWon;
         public VoidEventChannel ProtagonistLost;
         public VoidEventChannel NodeEntered;
@@ -16,7 +16,7 @@ namespace Penwyn.Game
 
         public GameEventList()
         {
-            CombatStart = new VoidEventChannel();
+            MatchStarted = new VoidEventChannel();
             ProtagonistWon = new VoidEventChannel();
             ProtagonistLost = new VoidEventChannel();
             NodeEntered = new VoidEventChannel();

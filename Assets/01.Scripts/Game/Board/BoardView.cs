@@ -135,7 +135,7 @@ namespace Penwyn.Game
 
             if (ViewMode == BoardViewMode.BLACK)
             {
-                return this.transform.position + new Vector3(4 - file, 4 - rank);
+                return this.transform.position + new Vector3(3 - file, 3 - rank);
             }
             return Vector3.zero;
         }

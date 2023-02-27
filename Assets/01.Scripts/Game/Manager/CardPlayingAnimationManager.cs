@@ -146,7 +146,7 @@ namespace Penwyn.Game
         public void ConnectEvents()
         {
             InputReader.Instance.OnCancelStarted += CancelClick;
-            GameEventList.Instance.CombatStart.OnEventRaised += EnableFunctions;
+            GameEventList.Instance.MatchStarted.OnEventRaised += EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised += DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised += DisableFunctions;
             CardEventList.Instance.PointerSelect.OnEventRaised += AcceptClick;
@@ -156,7 +156,7 @@ namespace Penwyn.Game
         public void DisconnectEvents()
         {
             InputReader.Instance.OnCancelStarted -= CancelClick;
-            GameEventList.Instance.CombatStart.OnEventRaised -= EnableFunctions;
+            GameEventList.Instance.MatchStarted.OnEventRaised -= EnableFunctions;
             GameEventList.Instance.ProtagonistWon.OnEventRaised -= DisableFunctions;
             GameEventList.Instance.ProtagonistLost.OnEventRaised -= DisableFunctions;
             CardEventList.Instance.PointerSelect.OnEventRaised -= AcceptClick;

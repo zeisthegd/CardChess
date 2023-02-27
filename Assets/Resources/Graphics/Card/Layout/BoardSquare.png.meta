@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -145,17 +145,17 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90c21e4ff52257342b90ace28e4334fb
-      internalID: -648495304
+      spriteID: 16b256b8a97f86643bf79aa7b9fff741
+      internalID: 642344131
       vertices: []
       indices: 
       edges: []
@@ -164,19 +164,19 @@ TextureImporter:
       name: BoardSquare_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 24
         y: 0
-        width: 16
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9e82fc83d4a6d94097e35cfe6f5f4fe
-      internalID: 1677985321
+      spriteID: 34c4715790827d14b8535118c9b39aff
+      internalID: 1314783205
       vertices: []
       indices: 
       edges: []
@@ -185,19 +185,40 @@ TextureImporter:
       name: BoardSquare_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 16
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6}
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b1988912556fbd428c02ca7c56a9297
-      internalID: 2036081850
+      spriteID: 3e13a90440494ce47936b67d7b3718f6
+      internalID: 736767943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoardSquare_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f463d603d6118fc47951e621a0037fd2
+      internalID: -250802425
       vertices: []
       indices: 
       edges: []
@@ -205,7 +226,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3f89e210c73270a48ba93bdef3a68143
+    spriteID: c12aebfdcc1d3b84287c908f63f4c9b5
     internalID: 0
     vertices: []
     indices: 
@@ -213,9 +234,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BoardSquare_1: 1677985321
-      BoardSquare_0: -648495304
-      BoardSquare_2: 2036081850
+      BoardSquare_1: 1314783205
+      BoardSquare_0: 642344131
+      BoardSquare_2: 736767943
+      BoardSquare_3: -250802425
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

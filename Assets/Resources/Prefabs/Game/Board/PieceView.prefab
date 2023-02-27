@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5857275018655807549}
   - component: {fileID: 2027879401296996482}
   - component: {fileID: -2786626226660528160}
+  - component: {fileID: 6602954478019318744}
   m_Layer: 0
   m_Name: PieceView
   m_TagString: Untagged
@@ -86,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 1870870223
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -671295321, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
+  m_Sprite: {fileID: -1908231345, guid: b644b54c135744e4ea5ff49255eb4564, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,3 +98,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6602954478019318744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603183218823198732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56adcbd4a1b80e042b905d02333fc95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalOffset: {x: 0.05, y: -0.05, z: 0}
+  ShadowColor: {r: 0, g: 0, b: 0, a: 0.5019608}

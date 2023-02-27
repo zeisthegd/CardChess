@@ -24,10 +24,17 @@ namespace Penwyn.Game
         private StateMachine<Phase> _phaseMachine;
         private Faction _currentFactionTurn = Faction.WHITE;
 
+
+        //In-game params
+        private bool _isGuestReady = false;
+
+
         private void Awake()
         {
             photonView = GetComponent<PhotonView>();
             _phaseMachine = new StateMachine<Phase>(Phase.NOT_STARTED);
+
+            _isGuestReady = false;
         }
 
 
@@ -44,6 +51,38 @@ namespace Penwyn.Game
         {
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
             Announcer.Instance.Announce($"Hey {_currentFactionTurn.ToString()}, you move.");
+        }
+
+        /// <summary>
+        /// Ready guest player ready. Networked.
+        /// </summary>
+        public void GetGuestReady()
+        {
+            if (PhotonNetwork.IsMasterClient == false)
+            {
+                Debug.Log(GameManager.Instance.Mode);
+                photonView.RPC(nameof(RPC_GetGuestReady), RpcTarget.All);
+            }
+        }
+
+        [PunRPC]
+        private void RPC_GetGuestReady()
+        {
+            _isGuestReady = true;
+        }
+
+        /// <summary>
+        /// Unready guest player. Networked.
+        /// </summary>
+        public void UnreadyGuest()
+        {
+            photonView.RPC(nameof(RPC_UnreadyGuest), RpcTarget.All);
+        }
+
+        [PunRPC]
+        private void RPC_UnreadyGuest()
+        {
+            _isGuestReady = false;
         }
 
 
@@ -69,6 +108,8 @@ namespace Penwyn.Game
 
         public bool IsMainPlayerTurn => _currentFactionTurn == PlayerManager.Instance.MainPlayer.Faction;
         public bool IsOtherPlayerTurn => _currentFactionTurn == PlayerManager.Instance.OtherPlayer.Faction;
+
+        public bool IsGuestReady { get => _isGuestReady; }
     }
 
 
