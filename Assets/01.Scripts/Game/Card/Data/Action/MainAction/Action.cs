@@ -4,6 +4,8 @@ using UnityEngine;
 
 using Penwyn.Tools;
 
+using NaughtyAttributes;
+
 namespace Penwyn.Game
 {
     public abstract class Action : ScriptableObject
@@ -11,6 +13,9 @@ namespace Penwyn.Game
         public ActionRange Range;
         public IntValue ActionValue;
         [TextArea] public string Description;
+
+        [ReadOnly][SerializeField] protected bool _requiredChosenSquareSameColor = false;
+        [ReadOnly][SerializeField] protected bool _requiredChosenPieceSameColor = false;
 
         public virtual void Act() { }
         public virtual void ActOnSquare(Square square, Faction faction) { }

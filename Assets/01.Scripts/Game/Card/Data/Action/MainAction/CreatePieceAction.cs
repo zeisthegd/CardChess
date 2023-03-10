@@ -11,6 +11,12 @@ namespace Penwyn.Game
     {
         public PieceIndex PieceToCreate;
 
+        private void OnEnable()
+        {
+            _requiredChosenSquareSameColor = true;
+            _requiredChosenPieceSameColor = false;
+        }
+
         public override void ActOnSquare(Square square, Faction faction)
         {
             base.ActOnSquare(square, faction);

@@ -50,8 +50,8 @@ namespace Penwyn.Game
             _masterDM = Instantiate(MasterDMPrefab, transform.position, Quaternion.identity, this.transform);
             _guestDM = Instantiate(GuestDMPrefab, transform.position, Quaternion.identity, this.transform);
 
-            _masterDM.InitializeCards();
-            _guestDM.InitializeCards();
+            _masterDM.InitializeCards(PlayerManager.Instance.MainPlayer);
+            _guestDM.InitializeCards(PlayerManager.Instance.OtherPlayer);
 
             yield return new WaitForSeconds(1);
             _masterDM.DrawCardsAtTurnStart();
@@ -139,6 +139,8 @@ namespace Penwyn.Game
         public bool IsOtherPlayerTurn => _currentFactionTurn == PlayerManager.Instance.OtherPlayer.Faction;
 
         public bool IsGuestReady { get => _isGuestReady; }
+        public DeckManager MasterDM { get => _masterDM; }
+        public DeckManager GuestDM { get => _guestDM; }
     }
 
 

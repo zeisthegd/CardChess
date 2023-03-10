@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 0
   ActionValue:
-    _baseValue: 1
-    _currentValue: 1
+    _baseValue: 0
+    _currentValue: 0
     CanBeHigherThanBase: 0
     CanBeNegative: 0
   Description: Create a pawn.

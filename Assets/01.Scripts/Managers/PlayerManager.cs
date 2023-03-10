@@ -19,8 +19,8 @@ namespace Penwyn.Game
     {
         public Duelist DuelistPrefab;
 
-        public Duelist MainPlayer;
-        public Duelist OtherPlayer;
+        public Duelist MainPlayer;//Player of this current client/device.
+        public Duelist OtherPlayer;//Player of the other client/device.
 
         public Faction MasterClientDefaultFaction = Faction.WHITE;
         public Faction OtherClientDefaultFaction = Faction.BLACK;

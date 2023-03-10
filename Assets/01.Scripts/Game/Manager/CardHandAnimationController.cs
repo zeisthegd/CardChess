@@ -82,12 +82,13 @@ namespace Penwyn.Game
         }
 
         /// <summary>
-        /// Move the card up when it is hovered.
+        /// Play the hover animation if the card is on the handpile of this deck.
+        /// And if there's no other card currently being hovered.
         /// </summary>
         private void Hover(Card card)
         {
             //Debug.Log("Hover: " + _deckManager.HandPile.Cards.Contains(card));
-            if (_enabledFunctions && !ChosenCardZoneOccupied() && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card))
+            if (CanHover(card))
             {
                 var localPos = IndexToLocalPosition(_deckManager.HandPile.GetCardIndex(card));
                 Vector3 destination = new Vector3(localPos.x, 0, localPos.z);
@@ -128,7 +129,7 @@ namespace Penwyn.Game
         private void Exit(Card card)
         {
             //Debug.Log("Exit: " + _deckManager.HandPile.Cards.Contains(card));
-            if (_enabledFunctions && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card))
+            if (CanExit(card))
             {
                 card.transform.DOKill();
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
@@ -178,6 +179,26 @@ namespace Penwyn.Game
             return localRotation;
         }
 
+        /// <summary>
+        /// Check if mouse can hover above this card.
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
+        private bool CanHover(Card card)
+        {
+            return _enabledFunctions && !ChosenCardZoneOccupied() && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card);
+        }
+
+        /// <summary>
+        /// Check if mouse can exit hover state of this card.
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
+        private bool CanExit(Card card)
+        {
+            return _enabledFunctions && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card);
+        }
+
         public void ConnectEvents()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised += EnableFunctions;
@@ -200,11 +221,14 @@ namespace Penwyn.Game
 
         public void EnableFunctions()
         {
+            Debug.Log(gameObject.name + ": EnableFunctions");
             _enabledFunctions = true;
         }
 
         public void DisableFunctions()
         {
+            Debug.Log(gameObject.name + ": DisableFunctions");
+
             _enabledFunctions = false;
         }
 

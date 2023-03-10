@@ -32,7 +32,7 @@ namespace Penwyn.Game
         private CardPlayingAnimationManager _cardPlayingAnimationManager;
         private CardSelector _cardSelector;
         private CardActionHandler _cardActionHandler;
-
+        private Duelist _owner;
 
 
         void OnEnable()
@@ -47,11 +47,11 @@ namespace Penwyn.Game
         /// <summary>
         /// Create all card gameObjects
         /// </summary>
-        public void InitializeCards()
+        public void InitializeCards(Duelist owner)
         {
             foreach (CardData data in Deck)
             {
-                AllCards.Add(AddNewCard(DrawPile, data, PlayerManager.Instance.MainPlayer));
+                AllCards.Add(AddNewCard(DrawPile, data, owner));
             }
             AllCards.View.UpdateCount(AllCards.Cards[0]);
         }
@@ -66,6 +66,7 @@ namespace Penwyn.Game
             if (playAnimation)
                 _cardPlayingAnimationManager.PlayAddCard(card, pile.PositionInCanvas, pile != HandPile);
             card.Owner = owner;
+            card.ChangeColor();
             return card;
         }
 
@@ -220,6 +221,16 @@ namespace Penwyn.Game
             return DiscardPile.Cards.Contains(card);
         }
 
+        /// <summary>
+        /// Check if the input card is from this deck.
+        /// </summary>
+        /// <param name="card">Input card</param>
+        /// <returns></returns>
+        public bool HasCardInDeck(Card card)
+        {
+            return AllCards.Cards.Contains(card);
+        }
+
         void ConnectEvents()
         {
             GameEventList.Instance.ProtagonistWon.OnEventRaised += AllCardsToDrawPile;
@@ -240,6 +251,7 @@ namespace Penwyn.Game
         public CardPlayingAnimationManager CardPlayingAnimationManager { get => _cardPlayingAnimationManager; }
         public CardSelector CardSelector { get => _cardSelector; }
         public CardActionHandler CardActionHandler { get => _cardActionHandler; }
+        public Duelist Owner { get => _owner; }
     }
 
 }

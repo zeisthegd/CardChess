@@ -13,12 +13,14 @@ namespace Penwyn.Game
         public CardData Data;
 
         [Header("UI")]
-        public Image Background;
+        public Image Frame;
+        public Image BackViewFrame;
         public Image CardAvatar;
+        public Sprite WhiteFrameSprite;
+        public Sprite BlackFrameSprite;
 
         [Header("Text")]
         public TMP_Text NameTxt;
-        public TMP_Text CostTxt;
 
         [Header("Info")]
         public RectTransform InfoPanel;
@@ -42,19 +44,25 @@ namespace Penwyn.Game
             CardAvatar.sprite = data.Avatar;
             NameTxt?.SetText(data.Name);
             gameObject.name = data.Name + "_UI";
-            CostTxt?.SetText(data.Cost.GetCurrentValueText());
         }
 
-        public virtual void ShowInfo(bool isShown = true)
+        public virtual void ChangeColor()
         {
-            NameTxt.enabled = isShown;
-            CostTxt.enabled = isShown;
+            if (Frame == null || WhiteFrameSprite == null || BlackFrameSprite == null)
+                return;
+            switch (_owner.Faction)
+            {
+                case Faction.WHITE:
+                    Frame.sprite = WhiteFrameSprite;
+                    break;
+                case Faction.BLACK:
+                    Frame.sprite = BlackFrameSprite;
+                    break;
+            }
         }
 
-        public void EnergyCheck()
+        public virtual void ShowInfo()
         {
-            if (CostTxt != null)
-                CostTxt.color = EnoughEnergy ? Color.white : Color.red;
         }
 
 
@@ -65,7 +73,6 @@ namespace Penwyn.Game
 
         private void OnEnable()
         {
-            ShowInfo(false);
             ConnectEvents();
         }
         private void OnDisable()
@@ -76,23 +83,22 @@ namespace Penwyn.Game
 
         protected virtual void ConnectEvents()
         {
-            ProtagonistEventList.Instance.EnergyAltered.OnEventRaised += EnergyCheck;
         }
 
         protected virtual void DisconnectEvents()
         {
-            ProtagonistEventList.Instance.EnergyAltered.OnEventRaised -= EnergyCheck;
+
         }
 
         public void OnMouseEnter()
         {
-            ShowInfo(true);
+            ShowInfo();
             CardEventList.Instance.PointerEnter.RaiseEvent(this);
         }
 
         public void OnMouseExit()
         {
-            ShowInfo(false);
+            ShowInfo();
             CardEventList.Instance.PointerExit.RaiseEvent(this);
         }
 

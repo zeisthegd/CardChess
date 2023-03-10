@@ -22,12 +22,13 @@ namespace Penwyn.Game
             _deckManager = GetComponent<DeckManager>();
             ConnectEvents();
         }
+
         /// <summary>
         /// When mouse left is clicked, take the pressed card for dragging.
         /// </summary>
         public void AcceptClick(Card card)
         {
-            if (_enabledFunctions)
+            if (_enabledFunctions && _deckManager.HasCardInDeck(card))
             {
                 if (_currentCard != null)
                 {
@@ -35,7 +36,6 @@ namespace Penwyn.Game
                 }
                 _deckManager.CardHandAnimationController.DisableFunctions();
                 _currentCard = card;
-                MoveChosenCardToCenterOfHand();
                 ProtagonistEventList.Instance.CardChosen.RaiseEvent(_currentCard);
             }
         }
@@ -120,23 +120,6 @@ namespace Penwyn.Game
             return sequence;
         }
 
-
-
-        /// <summary>
-        /// If the card need to have a target to be used, move it to the center of the hand to make finding target easier.
-        /// </summary>
-        private void MoveChosenCardToCenterOfHand()
-        {
-            if (_currentCard != null)
-            {
-                Card chosenCard = _currentCard.GetComponent<Card>();
-                chosenCard.transform.DOKill();
-                Transform chosenCardZone = _deckManager.CardHandAnimationController.ChosenCardZone;
-                chosenCard.transform.SetParent(chosenCardZone);
-                chosenCard.transform.DOMove(chosenCardZone.position, DragTime * 2);
-            }
-        }
-
         private Sequence DisableAfterAdd(Sequence sequence, Transform transform, bool disable)
         {
             if (disable)
@@ -173,7 +156,6 @@ namespace Penwyn.Game
         {
             _enabledFunctions = false;
         }
-
 
         void OnDisable()
         {

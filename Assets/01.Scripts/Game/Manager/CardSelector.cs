@@ -29,27 +29,36 @@ namespace Penwyn.Game
         /// </summary>
         public void Choose(Card card)
         {
-            if (_chosenCard != null)
-            {
+            if (_chosenCard != null)//Cancel currenly chosen card.
                 CancelCard();
+            if (DuelManager.Instance.GuestDM == this._deckManager)
+            {
+                if (this._deckManager.HasCardInDeck(card))
+                    Announcer.Instance.Announce("That's your opponent's card");
+                return;
             }
             if (DuelManager.Instance.IsMainPlayerTurn)
             {
-                if (card.EnoughEnergy)
-                {
-                    _chosenCard = card;
-                    _deckManager.CardActionHandler.GenerateActionQueue(_chosenCard);
-                    _deckManager.CardActionHandler.StartNextAction();
-                    CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
-                }
-                else
-                {
-                    Announcer.Instance.Announce("No Energy.");
-                }
+                InitiateCardChosenSequence(card);
             }
             else
             {
                 Announcer.Instance.Announce("It is not your turn, Dummy.");
+            }
+        }
+
+        private void InitiateCardChosenSequence(Card card)
+        {
+            if (card.EnoughEnergy)
+            {
+                _chosenCard = card;
+                _deckManager.CardActionHandler.GenerateActionQueue(_chosenCard);
+                _deckManager.CardActionHandler.StartNextAction();
+                CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
+            }
+            else
+            {
+                Announcer.Instance.Announce("No Energy.");
             }
         }
 
@@ -78,10 +87,7 @@ namespace Penwyn.Game
 
         private void EndTurnIfCardIsDeployCat(Card card)
         {
-            if (card.Data.Category == Category.PIECE)
-            {
-                DuelManager.Instance.EndTurn();
-            }
+            DuelManager.Instance.EndTurn();
         }
 
 
@@ -97,33 +103,6 @@ namespace Penwyn.Game
             _canPlay = false;
             _deckManager.CardActionHandler.EndCurrentAction(false);
             _deckManager.CardPlayingAnimationManager.CancelClick();
-        }
-
-        /// <summary>
-        /// If the card need target, the gamer has to choose one, else the target is the protagonist.
-        /// </summary>
-        public void MouseEnteredPlayZone()
-        {
-            bool cardChosen = _chosenCard != null;
-            if (cardChosen)
-            {
-                if (!_chosenCard.EnoughEnergy)
-                    _deckManager.CardPlayingAnimationManager.CancelClick();
-            }
-            bool targetChosen = _targetList.Count > 0;
-            _canPlay = cardChosen && targetChosen;
-        }
-
-        /// <summary>
-        /// Revoke the ability to play the card.
-        /// </summary>
-        public void MouseExitedPlayZone()
-        {
-            if (_chosenCard == null)
-            {
-                UntargetAll();
-                _canPlay = false;
-            }
         }
 
         /// <summary>
@@ -154,9 +133,6 @@ namespace Penwyn.Game
             ProtagonistEventList.Instance.CardChosen.OnEventRaised += Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised += CancelCard;
 
-            ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised += MouseEnteredPlayZone;
-            ProtagonistEventList.Instance.MouseExitedPlayZone.OnEventRaised += MouseExitedPlayZone;
-
         }
 
         void DisonnectEvents()
@@ -164,9 +140,6 @@ namespace Penwyn.Game
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised -= Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised -= CancelCard;
-
-            ProtagonistEventList.Instance.MouseEnteredPlayZone.OnEventRaised -= MouseEnteredPlayZone;
-            ProtagonistEventList.Instance.MouseExitedPlayZone.OnEventRaised -= MouseExitedPlayZone;
 
         }
         public Card ChosenCard { get => _chosenCard; }

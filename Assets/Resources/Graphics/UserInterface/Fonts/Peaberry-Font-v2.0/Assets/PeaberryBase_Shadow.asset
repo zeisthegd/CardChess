@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: PeaberryBase_Shadow
   m_EditorClassIdentifier: 
-  hashCode: -1149702830
+  hashCode: 1690688902
   material: {fileID: 2625259176956474026}
-  materialHashCode: -1670979278
+  materialHashCode: -1601134234
   m_Version: 1.1.0
   m_SourceFontFileGUID: 342a7fed68ba5654dad2470041f5a3ac
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 342a7fed68ba5654dad2470041f5a3ac, type: 3}
@@ -2467,7 +2467,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Peaberry-Base Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -2543,8 +2543,8 @@ Material:
     - _TextureHeight: 512
     - _TextureWidth: 512
     - _UnderlayDilate: 0
-    - _UnderlayOffsetX: 0
-    - _UnderlayOffsetY: 0
+    - _UnderlayOffsetX: 0.69
+    - _UnderlayOffsetY: -1
     - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
@@ -2560,5 +2560,5 @@ Material:
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+    - _UnderlayColor: {r: 0.21960784, g: 0.4392157, b: 0.5019608, a: 1}
   m_BuildTextureStacks: []
