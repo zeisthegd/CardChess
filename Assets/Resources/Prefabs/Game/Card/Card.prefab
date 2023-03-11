@@ -32,7 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6622467173745289526}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 4, y: -4}
+  m_EffectColor: {r: 0.2627451, g: 0.20392157, b: 0.33333334, a: 1}
+  m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &4657779929326512646
 GameObject:
@@ -258,8 +258,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3215468855146789259}
   - {fileID: 1967772620530101261}
+  - {fileID: 3215468855146789259}
   - {fileID: 839529910990098326}
   m_Father: {fileID: 1214154417061503765}
   m_RootOrder: 0
@@ -390,7 +390,6 @@ MonoBehaviour:
   WhiteFrameSprite: {fileID: -2036828754, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
   BlackFrameSprite: {fileID: -664904211, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
   NameTxt: {fileID: 89466101529881276}
-  CostTxt: {fileID: 0}
   InfoPanel: {fileID: 0}
   EventTrigger: {fileID: -486251920260344101}
 --- !u!114 &-486251920260344101
@@ -548,7 +547,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6622467173745289526}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -583,7 +582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 493124013, guid: 4c4d3a5e042e18c419dd6f2f643caa6c, type: 3}
+  m_Sprite: {fileID: 495812433, guid: f5ce40d3f080809489ce8dc35808b3c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

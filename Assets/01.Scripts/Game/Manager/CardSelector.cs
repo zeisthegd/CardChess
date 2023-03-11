@@ -51,10 +51,10 @@ namespace Penwyn.Game
         {
             if (card.EnoughEnergy)
             {
+                CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
                 _chosenCard = card;
                 _deckManager.CardActionHandler.GenerateActionQueue(_chosenCard);
                 _deckManager.CardActionHandler.StartNextAction();
-                CardEventList.Instance.CardDonePlaying.OnEventRaised += ChosenCardDonePlaying;
             }
             else
             {
@@ -68,6 +68,7 @@ namespace Penwyn.Game
         /// </summary>
         public void ChosenCardDonePlaying(Card card)
         {
+            Debug.Log("ChosenCardDonePlaying");
             if (card != null)//&& have target
             {
                 CursorManager.Instance.ResetCursor();

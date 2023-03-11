@@ -151,10 +151,12 @@ namespace Penwyn.Game
 
         public void ReorderCards()
         {
+            int order = 0;
             for (int i = 0; i < _deckManager.HandPile.Count; i++)
             {
-                _deckManager.HandPile.GetCard(i).transform.SetSiblingIndex(i);
-                _deckManager.HandPile.GetCard(i).SetCanvasOrder(i);
+                order = LeftToRight ? i : _deckManager.HandPile.Count - i - 1;
+                _deckManager.HandPile.GetCard(i).transform.SetSiblingIndex(order);
+                _deckManager.HandPile.GetCard(i).SetCanvasOrder(order);
             }
         }
 
@@ -221,14 +223,11 @@ namespace Penwyn.Game
 
         public void EnableFunctions()
         {
-            Debug.Log(gameObject.name + ": EnableFunctions");
             _enabledFunctions = true;
         }
 
         public void DisableFunctions()
         {
-            Debug.Log(gameObject.name + ": DisableFunctions");
-
             _enabledFunctions = false;
         }
 

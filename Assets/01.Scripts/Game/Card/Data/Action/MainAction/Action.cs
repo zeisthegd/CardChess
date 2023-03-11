@@ -42,7 +42,8 @@ namespace Penwyn.Game
         CHOOSE_SQUARE,
         CHOOSE_MULTIPLE_SQUARES,
         CHOOSE_PIECE,
-        CHOOSE_MULTIPLE_PIECES
+        CHOOSE_MULTIPLE_PIECES,
+        AUTO
     }
 }
 

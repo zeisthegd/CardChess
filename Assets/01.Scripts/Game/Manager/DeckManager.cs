@@ -6,9 +6,11 @@ using UnityEngine.Events;
 
 using Penwyn.Tools;
 
+using Photon.Pun;
+
 namespace Penwyn.Game
 {
-    public class DeckManager : MonoBehaviour
+    public class DeckManager : MonoBehaviourPun
     {
         [Header("Card Prefabs")]
         public Card CardPrefab;

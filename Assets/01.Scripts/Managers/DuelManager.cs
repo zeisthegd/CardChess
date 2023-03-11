@@ -60,6 +60,7 @@ namespace Penwyn.Game
 
         public void SetUpBoard()
         {
+            Debug.Log("SpawnBoardSquares");
             FindBoardView();
             SetBoardViewMode();
             BoardView.SpawnBoardSquares();

@@ -52,8 +52,8 @@ namespace Penwyn.Game
             return _cards.IndexOf(card);
         }
 
-        public float Count { get => _cards.Count; }
-        public float HalfCount { get => (float)((_cards.Count - 1) / 2F); }
+        public int Count { get => _cards.Count; }
+        public float HalfCount { get => (((float)_cards.Count - 1) / 2F); }
 
         public List<Card> Cards { get => _cards; }
 

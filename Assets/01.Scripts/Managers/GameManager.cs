@@ -32,7 +32,6 @@ namespace Penwyn.Game
         [Expandable] public MatchSettings MatchSettings;
 
         public static GameManager Instance;
-        public event UnityAction GameStarted;
         protected GameState _gameState;
         public GameMode Mode = GameMode.PVP;
 
@@ -123,7 +122,7 @@ namespace Penwyn.Game
         }
 
         public GameState State => _gameState;
-        public bool CanStartGame => DuelManager.IsGuestReady || Mode == GameMode.PVE || Mode == GameMode.AIvAI;
+        public bool CanStartGame => DuelManager.IsGuestReady || Mode == GameMode.PVE || Mode == GameMode.PVP;
     }
 
     public enum GameState

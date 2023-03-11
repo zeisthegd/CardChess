@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b25623a167606674fa636db8100e0166, type: 3}
-  m_Name: BishopCard
+  m_Name: Draw2
   m_EditorClassIdentifier: 
-  Name: Deploy Bishop
-  Category: 0
+  Name: Draw Two Cards
+  Category: 1
   Cost:
-    _baseValue: 4
-    _currentValue: 4
+    _baseValue: 0
+    _currentValue: 0
     CanBeHigherThanBase: 0
     CanBeNegative: 0
   Actions:
-  - {fileID: 11400000, guid: 199ba2d643f874442bd851b9e7e4a303, type: 2}
-  Avatar: {fileID: -1606503105, guid: f5ce40d3f080809489ce8dc35808b3c6, type: 3}
+  - {fileID: 11400000, guid: 35273742659ec5e468a37b901cb72884, type: 2}
+  Avatar: {fileID: -512590726, guid: f5ce40d3f080809489ce8dc35808b3c6, type: 3}

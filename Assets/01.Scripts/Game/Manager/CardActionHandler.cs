@@ -38,7 +38,6 @@ namespace Penwyn.Game
             {
                 CardEventList.Instance.CardDonePlaying.RaiseEvent(_currentCard);
                 Debug.Log("No more action.");
-
             }
         }
 
@@ -53,13 +52,11 @@ namespace Penwyn.Game
                 case ActionRange.CHOOSE_SQUARE:
                     DuelManager.Instance.PhaseMachine.Change(Phase.CHOOSE_SQUARE);
                     Announcer.Instance.Announce("Please choose a square");
-                    Debug.Log("Changed to choose square.");
                     SquareEventList.Instance.SquareSelected.OnEventRaised += OnSquareSelected;
                     break;
 
                 case ActionRange.CHOOSE_PIECE:
                     Announcer.Instance.Announce("Please choose a piece");
-                    Debug.Log("Changed to choose piece.");
                     SquareEventList.Instance.SquareSelected.OnEventRaised += OnSquareSelected;
                     break;
 
@@ -67,6 +64,10 @@ namespace Penwyn.Game
                     break;
 
                 case ActionRange.CHOOSE_MULTIPLE_PIECES:
+                    break;
+                case ActionRange.AUTO:
+                    action.Act();
+                    EndAction(_currentAction);
                     break;
 
                 default:
@@ -113,13 +114,15 @@ namespace Penwyn.Game
                     if (_chosenSquare != null)
                     {
                         action.ActOnSquare(_chosenSquare, _currentCard.Owner.Faction);
-                        Debug.Log($"EndSelected: {_chosenSquare.ToString()}");
                     }
-                    Debug.Log("Ends choosing square.");
                     break;
 
                 case ActionRange.CHOOSE_PIECE:
                     SquareEventList.Instance.SquareSelected.OnEventRaised -= OnSquareSelected;
+                    if (_chosenPiece != null)
+                    {
+                        action.ActOnSquare(_chosenSquare, _currentCard.Owner.Faction);
+                    }
                     DuelManager.Instance.PhaseMachine.Change(Phase.ACTION);
                     break;
 
@@ -128,7 +131,6 @@ namespace Penwyn.Game
 
                 case ActionRange.CHOOSE_MULTIPLE_PIECES:
                     break;
-
                 default:
                     break;
             }

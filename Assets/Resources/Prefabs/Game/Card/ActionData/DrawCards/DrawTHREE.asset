@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b25623a167606674fa636db8100e0166, type: 3}
-  m_Name: PawnCard
+  m_Script: {fileID: 11500000, guid: ee14c6e057d18314fb620f4a8eaa28ff, type: 3}
+  m_Name: DrawTHREE
   m_EditorClassIdentifier: 
-  Name: Deploy Pawn
-  Category: 0
-  Cost:
-    _baseValue: 1
-    _currentValue: 1
+  Range: 4
+  ActionValue:
+    _baseValue: 3
+    _currentValue: 3
     CanBeHigherThanBase: 0
     CanBeNegative: 0
-  Actions:
-  - {fileID: 11400000, guid: 15aa671c6be8c6c4cbea03a39c067bea, type: 2}
-  Avatar: {fileID: 495812433, guid: f5ce40d3f080809489ce8dc35808b3c6, type: 3}
+  Description: 
+  _requiredChosenSquareSameColor: 0
+  _requiredChosenPieceSameColor: 0
