@@ -758,7 +758,7 @@ SortingGroup:
   m_GameObject: {fileID: 7770937539032533861}
   m_Enabled: 1
   m_SortingLayerID: 1691881987
-  m_SortingLayer: 6
+  m_SortingLayer: 4
   m_SortingOrder: 3
 --- !u!223 &7770937539032533881
 Canvas:
@@ -1173,6 +1173,7 @@ MonoBehaviour:
     _currentValue: 5
     CanBeHigherThanBase: 1
     CanBeNegative: 0
+  CardAnimationCommunicatorPath: Prefabs/Game/Board/CardAnimationCommunicator
 --- !u!114 &4633630032918182891
 MonoBehaviour:
   m_ObjectHideFlags: 0

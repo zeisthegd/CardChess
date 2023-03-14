@@ -52,6 +52,8 @@ MonoBehaviour:
   - RPC_GetGuestReady
   - RPC_StartGame
   - RPC_UnreadyGuest
+  - RPC_ExitHover
+  - RPC_Hover
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefaultTheme
   m_EditorClassIdentifier: 
   WhiteFront: {fileID: -2036828754, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
-  BlackFront: {fileID: -664904211, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
-  WhiteHighlight: {fileID: 0}
-  BlackHighlight: {fileID: 0}
-  WhiteBack: {fileID: -41578194, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
-  BlackBack: {fileID: 648026241, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  WhiteHighlight: {fileID: -41578194, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  WhiteBack: {fileID: -664904211, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  BlackFront: {fileID: 648026241, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  BlackHighlight: {fileID: -1769314847, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  BlackBack: {fileID: 1197265707, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}

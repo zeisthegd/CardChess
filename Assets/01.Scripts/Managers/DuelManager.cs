@@ -57,17 +57,17 @@ namespace Penwyn.Game
             _masterDM.DrawCardsAtTurnStart();
             _guestDM.DrawCardsAtTurnStart();
             _guestDM.FlipAllCardsToBack();
+
+            _masterDM.CreateCardAnimationCommunicator();
         }
 
         public void SetUpBoard()
         {
-            Debug.Log("SpawnBoardSquares");
             FindBoardView();
             SetBoardViewMode();
             BoardView.SpawnBoardSquares();
             BoardView.SpawnKings();
         }
-
 
         public void EndTurn()
         {

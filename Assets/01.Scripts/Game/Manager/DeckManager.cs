@@ -28,12 +28,15 @@ namespace Penwyn.Game
         [Header("Settings")]
         public List<CardData> Deck;
         public IntValue StartAmount;
+        [Header("Animation Networking")]
+        public string CardAnimationCommunicatorPath;
 
 
         private CardHandAnimationController _cardHandAnimationController;
         private CardPlayingAnimationManager _cardPlayingAnimationManager;
         private CardSelector _cardSelector;
         private CardActionHandler _cardActionHandler;
+        private CardAnimationCommunicator _cardAnimationCommunicator;
         private Duelist _owner;
 
 
@@ -241,6 +244,11 @@ namespace Penwyn.Game
             }
         }
 
+        public void CreateCardAnimationCommunicator()
+        {
+            _cardAnimationCommunicator = PhotonNetwork.Instantiate(CardAnimationCommunicatorPath, transform.position, Quaternion.identity).GetComponent<CardAnimationCommunicator>();
+        }
+
         void ConnectEvents()
         {
             GameEventList.Instance.ProtagonistWon.OnEventRaised += AllCardsToDrawPile;
@@ -262,6 +270,7 @@ namespace Penwyn.Game
         public CardSelector CardSelector { get => _cardSelector; }
         public CardActionHandler CardActionHandler { get => _cardActionHandler; }
         public Duelist Owner { get => _owner; }
+        public CardAnimationCommunicator CardAnimationCommunicator { get => _cardAnimationCommunicator; }
     }
 
 }

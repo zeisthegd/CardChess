@@ -85,11 +85,14 @@ namespace Penwyn.Game
         /// Play the hover animation if the card is on the handpile of this deck.
         /// And if there's no other card currently being hovered.
         /// </summary>
-        private void Hover(Card card)
+        public void Hover(Card card)
         {
             //Debug.Log("Hover: " + _deckManager.HandPile.Cards.Contains(card));
             if (CanHover(card))
             {
+                if (_deckManager.CardAnimationCommunicator != null)
+                    _deckManager.CardAnimationCommunicator.Hover(card);
+
                 var localPos = IndexToLocalPosition(_deckManager.HandPile.GetCardIndex(card));
                 Vector3 destination = new Vector3(localPos.x, 0, localPos.z);
 
@@ -109,7 +112,7 @@ namespace Penwyn.Game
         /// <summary>
         /// When a card is hovered above, push the nearby cards away from it a little bit.
         /// </summary>
-        private void MoveNearbyCardAside(Card card)
+        public void MoveNearbyCardAside(Card card)
         {
             int index = _deckManager.HandPile.GetCardIndex(card);
             for (int i = 1; i <= NearbyCardPushCount; i++)
@@ -128,11 +131,14 @@ namespace Penwyn.Game
         /// <summary>
         /// Move the card down when it is unhovered.
         /// </summary>
-        private void Exit(Card card)
+        public void Exit(Card card)
         {
             //Debug.Log("Exit: " + _deckManager.HandPile.Cards.Contains(card));
             if (CanExit(card))
             {
+                if (_deckManager.CardAnimationCommunicator != null)
+                    _deckManager.CardAnimationCommunicator.ExitHover(card);
+
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
 
                 card.ShowNormal();
@@ -189,8 +195,15 @@ namespace Penwyn.Game
         /// </summary>
         /// <param name="card"></param>
         /// <returns></returns>
-        private bool CanHover(Card card)
+        public bool CanHover(Card card)
         {
+            Debug.Log(_enabledFunctions);
+
+            Debug.Log(!ChosenCardZoneOccupied());
+
+            Debug.Log(!_deckManager.IsDiscarded(card));
+            Debug.Log(_deckManager.HandPile.Cards.Contains(card));
+
             return _enabledFunctions && !ChosenCardZoneOccupied() && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card);
         }
 
@@ -199,7 +212,7 @@ namespace Penwyn.Game
         /// </summary>
         /// <param name="card"></param>
         /// <returns></returns>
-        private bool CanExit(Card card)
+        public bool CanExit(Card card)
         {
             return _enabledFunctions && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card);
         }
