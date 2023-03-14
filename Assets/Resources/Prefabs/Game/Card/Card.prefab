@@ -387,8 +387,7 @@ MonoBehaviour:
   Frame: {fileID: 5501200644757254804}
   BackViewFrame: {fileID: 0}
   CardAvatar: {fileID: 2781278008108312485}
-  WhiteFrameSprite: {fileID: -2036828754, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
-  BlackFrameSprite: {fileID: -664904211, guid: 25c8ab3768a27d547ad1c0b75e2b3599, type: 3}
+  Theme: {fileID: 11400000, guid: 9b9b30ee39dae6f47ad964027b9d1741, type: 2}
   NameTxt: {fileID: 89466101529881276}
   InfoPanel: {fileID: 0}
   EventTrigger: {fileID: -486251920260344101}
@@ -509,7 +508,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0

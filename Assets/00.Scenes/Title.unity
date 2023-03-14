@@ -2070,7 +2070,7 @@ MonoBehaviour:
   AudioPlayer: {fileID: 0}
   DuelManager: {fileID: 1354399859}
   MatchSettings: {fileID: 0}
-  Mode: 1
+  Mode: 0
 --- !u!4 &1354399854
 Transform:
   m_ObjectHideFlags: 0

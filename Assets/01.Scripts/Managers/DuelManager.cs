@@ -56,6 +56,7 @@ namespace Penwyn.Game
             yield return new WaitForSeconds(1);
             _masterDM.DrawCardsAtTurnStart();
             _guestDM.DrawCardsAtTurnStart();
+            _guestDM.FlipAllCardsToBack();
         }
 
         public void SetUpBoard()

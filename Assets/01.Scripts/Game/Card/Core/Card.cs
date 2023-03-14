@@ -16,8 +16,9 @@ namespace Penwyn.Game
         public Image Frame;
         public Image BackViewFrame;
         public Image CardAvatar;
-        public Sprite WhiteFrameSprite;
-        public Sprite BlackFrameSprite;
+
+        [Header("Graphics")]
+        public CardTheme Theme;
 
         [Header("Text")]
         public TMP_Text NameTxt;
@@ -48,21 +49,45 @@ namespace Penwyn.Game
 
         public virtual void ChangeColor()
         {
-            if (Frame == null || WhiteFrameSprite == null || BlackFrameSprite == null)
+            if (Frame == null || Theme.WhiteFront == null || Theme.BlackFront == null)
+            {
+                Debug.Log("Null Pointer Exception: CardSprite");
                 return;
+            }
             switch (_owner.Faction)
             {
                 case Faction.WHITE:
-                    Frame.sprite = WhiteFrameSprite;
+                    Frame.sprite = Theme.WhiteFront;
                     break;
                 case Faction.BLACK:
-                    Frame.sprite = BlackFrameSprite;
+                    Frame.sprite = Theme.BlackFront;
                     break;
             }
         }
 
-        public virtual void ShowInfo()
+        public void ShowBack()
         {
+            if (Frame == null || Theme.WhiteFront == null || Theme.BlackBack == null)
+            {
+                Debug.Log("Null Pointer Exception: CardSprite");
+                return;
+            }
+            SetInfoVisibility(false);
+            switch (_owner.Faction)
+            {
+                case Faction.WHITE:
+                    Frame.sprite = Theme.WhiteBack;
+                    break;
+                case Faction.BLACK:
+                    Frame.sprite = Theme.BlackBack;
+                    break;
+            }
+        }
+
+        public virtual void SetInfoVisibility(bool show)
+        {
+            CardAvatar.gameObject.SetActive(show);
+            NameTxt.gameObject.SetActive(show);
         }
 
 
@@ -92,13 +117,11 @@ namespace Penwyn.Game
 
         public void OnMouseEnter()
         {
-            ShowInfo();
             CardEventList.Instance.PointerEnter.RaiseEvent(this);
         }
 
         public void OnMouseExit()
         {
-            ShowInfo();
             CardEventList.Instance.PointerExit.RaiseEvent(this);
         }
 

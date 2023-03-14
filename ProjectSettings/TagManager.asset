@@ -58,12 +58,9 @@ TagManager:
   - name: Card
     uniqueID: 1870870223
     locked: 0
-  - name: Projectiles
-    uniqueID: 544071701
-    locked: 0
-  - name: Paricles
-    uniqueID: 26423307
-    locked: 0
   - name: UI
     uniqueID: 1691881987
+    locked: 0
+  - name: AnnounceUI
+    uniqueID: 3136432201
     locked: 0

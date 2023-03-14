@@ -233,6 +233,14 @@ namespace Penwyn.Game
             return AllCards.Cards.Contains(card);
         }
 
+        public void FlipAllCardsToBack()
+        {
+            foreach (Card card in AllCards.Cards)
+            {
+                card.ShowBack();
+            }
+        }
+
         void ConnectEvents()
         {
             GameEventList.Instance.ProtagonistWon.OnEventRaised += AllCardsToDrawPile;

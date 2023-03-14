@@ -45,7 +45,7 @@ namespace Penwyn.Game
         /// </summary>
         public void CancelClick()
         {
-            if (_currentCard != null && !_deckManager.IsDiscarded(_currentCard))// && CombatManager.Instance.CombatStarted)
+            if (_currentCard != null && !_deckManager.IsDiscarded(_currentCard))
             {
                 CursorManager.Instance.ResetCursor();
                 _currentCard.transform.DOKill();
@@ -112,11 +112,16 @@ namespace Penwyn.Game
         public Sequence PlayCardToCenterOfScreen(Card card)
         {
             Vector3 screenCenter = new Vector3(Screen.width / 2F, Screen.height / 2F, transform.position.z);
+
             screenCenter = Camera.main.ScreenToWorldPoint(screenCenter);
+
+
             Sequence sequence = DOTween.Sequence();
-            sequence.Append(card.transform.DOMove(screenCenter, DragTime));
-            sequence.Append(card.transform.DOMove(screenCenter, DragTime));
-            sequence.Append(card.transform.DORotate(Vector3.zero, DragTime));
+            RectTransform cardRect = card.GetComponent<RectTransform>();
+            cardRect.SetParent(_deckManager.transform);
+            sequence.Append(cardRect.DOLocalMove(screenCenter, DragTime));
+            sequence.Append(cardRect.DOLocalMove(screenCenter, DragTime));
+            sequence.Append(cardRect.DORotate(Vector3.zero, DragTime));
             return sequence;
         }
 

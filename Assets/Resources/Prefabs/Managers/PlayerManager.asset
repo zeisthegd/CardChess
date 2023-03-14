@@ -15,6 +15,5 @@ MonoBehaviour:
   DuelistPrefab: {fileID: 1903658823723204751, guid: 1c4d5504474c8cd4491a1ea997dba1da, type: 3}
   MainPlayer: {fileID: 0}
   OtherPlayer: {fileID: 0}
-  MasterClientDefaultFaction: 1
-  OtherClientDefaultFaction: 0
+  HostFaction: 0
   DefaultData: {fileID: 11400000, guid: 98f44477f43329b47ac49a0009ce7a5a, type: 2}

@@ -22,8 +22,7 @@ namespace Penwyn.Game
         public Duelist MainPlayer;//Player of this current client/device.
         public Duelist OtherPlayer;//Player of the other client/device.
 
-        public Faction MasterClientDefaultFaction = Faction.WHITE;
-        public Faction OtherClientDefaultFaction = Faction.BLACK;
+        public Faction HostFaction = Faction.WHITE;
 
         public DuelistData DefaultData;
 
@@ -45,14 +44,14 @@ namespace Penwyn.Game
 
         public void CreatePVP()
         {
-            MainPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? MasterClientDefaultFaction : OtherClientDefaultFaction);
-            OtherPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? OtherClientDefaultFaction : MasterClientDefaultFaction);
+            MainPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? HostFaction : GetOppositeFactionOfHost());
+            OtherPlayer = CreateAPlayer(PhotonNetwork.IsMasterClient ? GetOppositeFactionOfHost() : HostFaction);
         }
 
         public void CreatePVE()
         {
-            MainPlayer = CreateAPlayer(MasterClientDefaultFaction);
-            OtherPlayer = CreateAPlayer(OtherClientDefaultFaction);
+            MainPlayer = CreateAPlayer(HostFaction);
+            OtherPlayer = CreateAPlayer(GetOppositeFactionOfHost());
         }
 
         public void CreateAIvAI()
@@ -70,6 +69,11 @@ namespace Penwyn.Game
         public void CreateAnAIPlayer()
         {
 
+        }
+
+        public Faction GetOppositeFactionOfHost()
+        {
+            return HostFaction == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
         }
     }
 }

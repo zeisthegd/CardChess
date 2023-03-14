@@ -82,9 +82,12 @@ namespace Penwyn.Game
         /// <param name="selSquare"></param>
         private void OnSquareSelected(Square selSquare)
         {
-            _chosenSquare = selSquare;
-            _chosenPiece = selSquare.Piece != null ? selSquare.Piece : null;
-            EndAction(_currentAction);
+            if (SquareMetActionRequirements(selSquare))
+            {
+                _chosenSquare = selSquare;
+                _chosenPiece = selSquare.Piece != null ? selSquare.Piece : null;
+                EndAction(_currentAction);
+            }
         }
 
         /// <summary>
@@ -136,6 +139,63 @@ namespace Penwyn.Game
             }
             if (startNextAction)
                 StartNextAction();
+        }
+
+        /// <summary>
+        /// Check if the square met the requirements of the action. Ex. Same color as the faction...
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        private bool SquareMetActionRequirements(Square square)
+        {
+            if (_currentAction.RequiredChosenSquareSameColor && square == null)
+            {
+                Announcer.Instance.Announce("Please choose a square");
+                return false;
+            }
+            if (_currentAction.RequiredChosenPieceSameColor && square.Piece == null)
+            {
+                Announcer.Instance.Announce("Please choose a piece");
+                return false;
+            }
+            if (SquareChosenIsOwnerFaction(square) == false)
+            {
+                Debug.Log(_currentAction.RequiredChosenSquareSameColor);
+                Debug.Log(square.Faction);
+                Debug.Log(_currentCard.Owner.Faction);
+                Announcer.Instance.Announce($"Please choose a {_currentCard.Owner.Faction} square");
+                return false;
+            }
+            if (PieceChosenIsOwnerFaction(square.Piece) == false)
+            {
+                Announcer.Instance.Announce($"Please choose a {_currentCard.Owner.Faction} piece");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Returns true if chosen square of same color is not required. Or required and square is of the same color as the user of the action.
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        private bool SquareChosenIsOwnerFaction(Square square)
+        {
+            if (_currentAction.RequiredChosenSquareSameColor && square == null)
+                return false;
+            return _currentAction.RequiredChosenSquareSameColor == false || (_currentAction.RequiredChosenSquareSameColor && (square.Faction == _currentCard.Owner.Faction));
+        }
+
+        /// <summary>
+        /// Returns true if chosen piece of same color is not required. Or required and piece is of the same color as the user of the action.
+        /// </summary>
+        /// <param name="square"></param>
+        /// <returns></returns>
+        private bool PieceChosenIsOwnerFaction(Piece piece)
+        {
+            if (_currentAction.RequiredChosenPieceSameColor && piece == null)
+                return false;
+            return _currentAction.RequiredChosenPieceSameColor == false || (_currentAction.RequiredChosenPieceSameColor && (piece.Faction == _currentCard.Owner.Faction));
         }
     }
 }

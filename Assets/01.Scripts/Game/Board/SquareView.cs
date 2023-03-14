@@ -68,7 +68,6 @@ namespace Penwyn.Game
 
         public void OnMouseSelect()
         {
-            Debug.Log("On Mouse Select");
             SquareEventList.Instance.SquareSelected.RaiseEvent(this._square);
         }
     }

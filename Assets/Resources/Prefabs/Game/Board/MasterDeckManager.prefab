@@ -757,8 +757,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7770937539032533861}
   m_Enabled: 1
-  m_SortingLayerID: 1805513099
-  m_SortingLayer: -1
+  m_SortingLayerID: 1691881987
+  m_SortingLayer: 6
   m_SortingOrder: 3
 --- !u!223 &7770937539032533881
 Canvas:
@@ -774,7 +774,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
@@ -1168,14 +1168,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a7531f64528f0a94da385a28ba165212, type: 2}
   - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
   - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
-  - {fileID: 11400000, guid: a46f5fdb61ff10f49a27cc820e8ac07e, type: 2}
   StartAmount:
     _baseValue: 5
     _currentValue: 5
@@ -1197,7 +1189,6 @@ MonoBehaviour:
   PositionYOffset: 0
   RotateOffset: 0
   LeftToRight: 0
-  ReverseOrder: 0
   HoverSpeed: 0.25
   HoverScale: 1.1
   NearbyCardPushCount: 3
@@ -1228,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc93cbcf72ab574a92de05350ac334d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DragTime: 1
+  DragTime: 0.25
 --- !u!114 &879877005919893834
 MonoBehaviour:
   m_ObjectHideFlags: 0

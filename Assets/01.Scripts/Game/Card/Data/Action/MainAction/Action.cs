@@ -17,6 +17,8 @@ namespace Penwyn.Game
         [ReadOnly][SerializeField] protected bool _requiredChosenSquareSameColor = false;
         [ReadOnly][SerializeField] protected bool _requiredChosenPieceSameColor = false;
 
+
+
         public virtual void Act() { }
         public virtual void ActOnSquare(Square square, Faction faction) { }
         public virtual void ActOnPiece(Piece piece, Faction faction) { }
@@ -35,6 +37,8 @@ namespace Penwyn.Game
         {
             ActionValue.Reset();
         }
+        public bool RequiredChosenSquareSameColor { get => _requiredChosenSquareSameColor; }
+        public bool RequiredChosenPieceSameColor { get => _requiredChosenPieceSameColor; }
     }
 
     public enum ActionRange
@@ -45,6 +49,8 @@ namespace Penwyn.Game
         CHOOSE_MULTIPLE_PIECES,
         AUTO
     }
+
+
 }
 
 
