@@ -223,6 +223,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CardFrame_4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 90
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a180066ab536fc4ca2bf042a37917ab
+      internalID: -1769314847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CardFrame_5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 90
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cbd3daaa25ec974ab6d0fe5b0a0d95d
+      internalID: 1197265707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -235,6 +277,8 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       CardFrame_2: -664904211
+      CardFrame_4: -1769314847
+      CardFrame_5: 1197265707
       CardFrame_0: -2036828754
       CardFrame_3: 648026241
       CardFrame_1: -41578194

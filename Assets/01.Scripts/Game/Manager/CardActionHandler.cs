@@ -47,6 +47,7 @@ namespace Penwyn.Game
         /// </summary>
         public void StartAction(Action action)
         {
+            _currentAction.StartAction(_currentCard.Owner.Faction);
             switch (action.Range)
             {
                 case ActionRange.CHOOSE_SQUARE:

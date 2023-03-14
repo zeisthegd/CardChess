@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquareHighlighter : MonoBehaviour
+namespace Penwyn.Game
 {
-    // Start is called before the first frame update
-    void Start()
+    public class SquareHighlighter : MonoBehaviour
     {
-        
-    }
+        public ObjectPooler HighlighterPooler;
+        private BoardView _boardView;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            _boardView = GetComponent<BoardView>();
+        }
+
+        public void Highlight(List<SquareView> squareViewList)
+        {
+            UnhighlightAll();
+            foreach (SquareView squareView in squareViewList)
+            {
+                Highlight(squareView);
+            }
+        }
+
+        public void Highlight(SquareView squareView)
+        {
+            var obj = HighlighterPooler.PullOneObject();
+            obj.transform.position = squareView.transform.position;
+            obj.gameObject.SetActive(true);
+        }
+
+        public void UnhighlightAll()
+        {
+            HighlighterPooler.DisableAllPooledObjects();
+        }
+
     }
 }
+

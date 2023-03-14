@@ -93,9 +93,11 @@ namespace Penwyn.Game
                 var localPos = IndexToLocalPosition(_deckManager.HandPile.GetCardIndex(card));
                 Vector3 destination = new Vector3(localPos.x, 0, localPos.z);
 
-                card.transform.DOKill();
                 card.transform.SetParent(ChosenCardZone);
-                card.SetCanvasOrder(9999);
+                card.SetCanvasOrder(100);
+                card.ShowHighlight();
+
+                card.transform.DOKill();
                 card.transform.DOScale(Vector3.one * HoverScale, HoverSpeed / 2);
                 card.transform.DOLocalMove(destination, HoverSpeed);
                 card.transform.DORotate(Vector3.zero, HoverSpeed);
@@ -131,9 +133,10 @@ namespace Penwyn.Game
             //Debug.Log("Exit: " + _deckManager.HandPile.Cards.Contains(card));
             if (CanExit(card))
             {
-                card.transform.DOKill();
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
 
+                card.ShowNormal();
+                card.transform.DOKill();
                 card.transform.DOLocalMove(destination, HoverSpeed);
                 card.transform.SetParent(_deckManager.HandPile.transform);
 

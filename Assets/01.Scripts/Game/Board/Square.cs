@@ -30,7 +30,7 @@ namespace Penwyn.Game
         /// <value></value>
         public Piece Piece { get => _piece; set => _piece = value; }
         public Faction Faction { get => _faction; set => _faction = value; }
-        public bool IsInGrid => Rank > 0 && File >= 0 && Rank < 8 && File < 8;
+        public bool IsInGrid => Rank >= 0 && File >= 0 && Rank < 8 && File < 8;
 
         public override string ToString()
         {

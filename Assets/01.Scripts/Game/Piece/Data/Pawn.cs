@@ -14,9 +14,9 @@ namespace Penwyn.Game
             {
                 Square square = null;
                 if (faction == Faction.WHITE)
-                    square = new Square(pieceSquare.Rank + 1, i + pieceSquare.File);//Checking Square
+                    square = new Square(pieceSquare.Rank + 1, i + pieceSquare.File);//Move forward for white pawn.
                 else if (faction == Faction.BLACK)
-                    square = new Square(pieceSquare.Rank - 1, i + pieceSquare.File);//Checking Square
+                    square = new Square(pieceSquare.Rank - 1, i + pieceSquare.File);//Move backward for black pawn.
 
                 if (square.IsInGrid && board[square.Rank, square.File] != null)
                 {

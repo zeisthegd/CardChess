@@ -16,6 +16,17 @@ namespace Penwyn.Game
             _requiredChosenSquareSameColor = true;
             _requiredChosenPieceSameColor = false;
         }
+        public override void StartAction(Faction faction)
+        {
+            base.StartAction();
+            DuelManager.Instance.BoardView.PieceDeplCal.DeployPieceActionStarted(PieceToCreate, faction);
+        }
+
+        public override void EndAction()
+        {
+            base.EndAction();
+            DuelManager.Instance.BoardView.PieceDeplCal.DeployPieceActionEnded();
+        }
 
         public override void ActOnSquare(Square square, Faction faction)
         {

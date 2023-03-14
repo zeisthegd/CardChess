@@ -50,7 +50,7 @@ namespace Penwyn.Game
             if (_waitingPool == null)
             {
                 _waitingPool = new GameObject(DefinePoolName());
-                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_waitingPool,  UnityEngine.SceneManagement.SceneManager.GetActiveScene());
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(_waitingPool, UnityEngine.SceneManagement.SceneManager.GetActiveScene());
                 _objectPool = _waitingPool.AddComponent<ObjectPool>();
                 _objectPool.PooledObjects = new List<GameObject>();
                 ApplyNesting();
@@ -139,6 +139,14 @@ namespace Penwyn.Game
         public virtual string DefinePoolName()
         {
             return $"[{this.GetType().ToString()}] +[{ObjectToPool.name}]";
+        }
+
+        public virtual void DisableAllPooledObjects()
+        {
+            foreach (GameObject obj in _objectPool.PooledObjects)
+            {
+                obj.gameObject.SetActive(false);
+            }
         }
 
         public ObjectPool ObjectPool { get => _objectPool; }

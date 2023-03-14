@@ -18,7 +18,9 @@ namespace Penwyn.Game
         [ReadOnly][SerializeField] protected bool _requiredChosenPieceSameColor = false;
 
 
-
+        public virtual void StartAction() { }
+        public virtual void StartAction(Faction faction) { }
+        public virtual void EndAction() { }
         public virtual void Act() { }
         public virtual void ActOnSquare(Square square, Faction faction) { }
         public virtual void ActOnPiece(Piece piece, Faction faction) { }

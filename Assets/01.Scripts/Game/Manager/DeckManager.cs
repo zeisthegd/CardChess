@@ -68,7 +68,7 @@ namespace Penwyn.Game
             if (playAnimation)
                 _cardPlayingAnimationManager.PlayAddCard(card, pile.PositionInCanvas, pile != HandPile);
             card.Owner = owner;
-            card.ChangeColor();
+            card.ShowNormal();
             return card;
         }
 

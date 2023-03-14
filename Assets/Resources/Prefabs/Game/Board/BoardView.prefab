@@ -93,8 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5985146432457902214}
-  - component: {fileID: 5985146432457902209}
   - component: {fileID: -2330045873161756096}
+  - component: {fileID: 5985146432457902209}
+  - component: {fileID: 5879570605060039751}
+  - component: {fileID: 8824911845759535830}
+  - component: {fileID: 9186795409992226874}
+  - component: {fileID: -2067816803136934647}
   m_Layer: 0
   m_Name: BoardView
   m_TagString: Untagged
@@ -118,27 +122,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5985146432457902209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5985146432457902208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11b3dcb260c0e8f49bd29207c5c0f02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PiecePrefab: {fileID: 2027879401296996482, guid: 8dc3ebc8ce78b8b4eb2f59489d9cc137, type: 3}
-  SquareViewPrefab: {fileID: 3113928448367709275, guid: 78fb44c8e037e1244949a1a7a08df658, type: 3}
-  ViewMode: 0
-  Pawn: {fileID: 11400000, guid: 05b18c70fdb0369478388bcbeff6cfdc, type: 2}
-  Knight: {fileID: 11400000, guid: 226b8da308b4c7940a5de9b7e2191217, type: 2}
-  Bishop: {fileID: 11400000, guid: 971a04f8044c0d8478813b9940e02313, type: 2}
-  Rook: {fileID: 11400000, guid: c5160931dbe598547b8d8e903ac5c66d, type: 2}
-  Queen: {fileID: 11400000, guid: fb5103aaf7d2f974ab9d753d4dcc060f, type: 2}
-  King: {fileID: 11400000, guid: ab4bea455f7e7f34fa83b2b5306dff34, type: 2}
 --- !u!114 &-2330045873161756096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +144,81 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &5985146432457902209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985146432457902208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11b3dcb260c0e8f49bd29207c5c0f02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PiecePrefab: {fileID: 2027879401296996482, guid: 8dc3ebc8ce78b8b4eb2f59489d9cc137, type: 3}
+  SquareViewPrefab: {fileID: 3113928448367709275, guid: 78fb44c8e037e1244949a1a7a08df658, type: 3}
+  ViewMode: 0
+  Pawn: {fileID: 11400000, guid: 05b18c70fdb0369478388bcbeff6cfdc, type: 2}
+  Knight: {fileID: 11400000, guid: 226b8da308b4c7940a5de9b7e2191217, type: 2}
+  Bishop: {fileID: 11400000, guid: 971a04f8044c0d8478813b9940e02313, type: 2}
+  Rook: {fileID: 11400000, guid: c5160931dbe598547b8d8e903ac5c66d, type: 2}
+  Queen: {fileID: 11400000, guid: fb5103aaf7d2f974ab9d753d4dcc060f, type: 2}
+  King: {fileID: 11400000, guid: ab4bea455f7e7f34fa83b2b5306dff34, type: 2}
+--- !u!114 &5879570605060039751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985146432457902208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf21fae70d244946b964b8ece5be126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8824911845759535830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985146432457902208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7d4d4777d870c47b6bdc18b87b3711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HighlighterPooler: {fileID: -2067816803136934647}
+--- !u!114 &9186795409992226874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985146432457902208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815d79577647bbd4b96dfdc8a8c95be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PooledObjects: []
+--- !u!114 &-2067816803136934647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985146432457902208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1d1861112919447b8e0672fd0e515a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectToPool: {fileID: 3113928448367709274, guid: 827beb4f688abb34383fae504dec9f62, type: 3}
+  Size: 21
+  UseSharedInstance: 1
+  InitAtStart: 1
+  EnableObjectsAtStart: 0
+  NestPoolBelowThis: 1
+  NestObjectsInPool: 1

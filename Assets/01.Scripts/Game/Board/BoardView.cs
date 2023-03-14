@@ -25,17 +25,21 @@ namespace Penwyn.Game
         public King King;
 
         private Square[,] _board;
-        private SquareView[,] _boardView;
+        private SquareView[,] _squareViewArray;
+        private PieceDeployingCalculator _pieceDeplCal;
+        private SquareHighlighter _squareHighlighter;
+
 
         private void OnEnable()
         {
+            GetComponents();
             InitBoardCoordinate();
         }
 
         public void InitBoardCoordinate()
         {
             _board = new Square[8, 8];
-            _boardView = new SquareView[8, 8];
+            _squareViewArray = new SquareView[8, 8];
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -54,7 +58,7 @@ namespace Penwyn.Game
                     SquareView newSqV = Instantiate(SquareViewPrefab, this.transform.position, Quaternion.identity, this.transform);
                     newSqV.SetData(_board[i, j]);
                     newSqV.transform.position = ArrayPosToWorldPos(i, j);
-                    _boardView[i, j] = newSqV;
+                    _squareViewArray[i, j] = newSqV;
                 }
             }
         }
@@ -82,33 +86,35 @@ namespace Penwyn.Game
         public void RPC_CreatePiece(PieceIndex index, int file, int rank, Faction faction)
         {
             Piece newPiece = Instantiate(PiecePrefab);
-            switch (index)
-            {
-                case PieceIndex.P:
-                    newPiece.Load(Pawn, faction);
-                    break;
-                case PieceIndex.N:
-                    newPiece.Load(Knight, faction);
-                    break;
-                case PieceIndex.B:
-                    newPiece.Load(Bishop, faction);
-                    break;
-                case PieceIndex.R:
-                    newPiece.Load(Rook, faction);
-                    break;
-                case PieceIndex.Q:
-                    newPiece.Load(Queen, faction);
-                    break;
-                case PieceIndex.K:
-                    newPiece.Load(King, faction);
-                    break;
-                default:
-                    break;
-            }
+            newPiece.Load(GetPieceDataFromIndex(index), faction);
+
             newPiece.transform.position = ArrayPosToWorldPos(_board[file, rank]);
             _board[file, rank].Piece = newPiece;
             OccupySquares(newPiece, _board[file, rank]);
             Debug.Log("Create: " + Square.GetName(rank, file));
+        }
+
+        public PieceData GetPieceDataFromIndex(PieceIndex index)
+        {
+            switch (index)
+            {
+                case PieceIndex.P:
+                    return Pawn;
+                case PieceIndex.N:
+                    return Knight;
+                case PieceIndex.B:
+                    return Bishop;
+                case PieceIndex.R:
+                    return Rook;
+                case PieceIndex.Q:
+                    return Queen;
+                case PieceIndex.K:
+                    return King;
+                default:
+                    break;
+            }
+            Debug.LogWarning("Piece index not found: " + index);
+            return null;
         }
 
         private void OccupySquares(Piece piece, Square pieceSquare)
@@ -117,7 +123,7 @@ namespace Penwyn.Game
             foreach (Square square in legalMoves)
             {
                 square.Faction = piece.Faction;
-                _boardView[square.File, square.Rank].SetColor();
+                _squareViewArray[square.File, square.Rank].SetColor();
             }
         }
 
@@ -139,6 +145,27 @@ namespace Penwyn.Game
             }
             return Vector3.zero;
         }
+
+        private void GetComponents()
+        {
+            _pieceDeplCal = GetComponent<PieceDeployingCalculator>();
+            _squareHighlighter = GetComponent<SquareHighlighter>();
+        }
+
+        public List<SquareView> GetSquareViewsFromSquareList(List<Square> squares)
+        {
+            List<SquareView> squareViews = new List<SquareView>();
+            foreach (Square square in squares)
+            {
+                squareViews.Add(_squareViewArray[square.File, square.Rank]);
+            }
+            return squareViews;
+        }
+
+        public PieceDeployingCalculator PieceDeplCal { get => _pieceDeplCal; }
+        public SquareHighlighter SquareHighlighter { get => _squareHighlighter; }
+        public Square[,] Board { get => _board; }
+        public SquareView[,] SquareViewArray { get => _squareViewArray; }
     }
 
     public enum BoardViewMode

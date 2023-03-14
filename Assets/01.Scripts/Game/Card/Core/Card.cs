@@ -47,22 +47,21 @@ namespace Penwyn.Game
             gameObject.name = data.Name + "_UI";
         }
 
-        public virtual void ChangeColor()
+        public virtual void ShowNormal()
         {
             if (Frame == null || Theme.WhiteFront == null || Theme.BlackFront == null)
             {
                 Debug.Log("Null Pointer Exception: CardSprite");
                 return;
             }
-            switch (_owner.Faction)
-            {
-                case Faction.WHITE:
-                    Frame.sprite = Theme.WhiteFront;
-                    break;
-                case Faction.BLACK:
-                    Frame.sprite = Theme.BlackFront;
-                    break;
-            }
+            Frame.sprite = Theme.GetFrontSprite(_owner.Faction);
+
+        }
+
+        public void ShowHighlight()
+        {
+            Frame.sprite = Theme.GetHighlightSprite(_owner.Faction);
+
         }
 
         public void ShowBack()
@@ -73,15 +72,8 @@ namespace Penwyn.Game
                 return;
             }
             SetInfoVisibility(false);
-            switch (_owner.Faction)
-            {
-                case Faction.WHITE:
-                    Frame.sprite = Theme.WhiteBack;
-                    break;
-                case Faction.BLACK:
-                    Frame.sprite = Theme.BlackBack;
-                    break;
-            }
+            Frame.sprite = Theme.GetBackSprite(_owner.Faction);
+
         }
 
         public virtual void SetInfoVisibility(bool show)
