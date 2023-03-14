@@ -53,6 +53,9 @@ namespace Penwyn.Game
             _masterDM.InitializeCards(PlayerManager.Instance.MainPlayer);
             _guestDM.InitializeCards(PlayerManager.Instance.OtherPlayer);
 
+            _masterDM.EnergyTracker.ConnectEvents();
+            _guestDM.EnergyTracker.ConnectEvents();
+
             yield return new WaitForSeconds(1);
             _masterDM.DrawCardsAtTurnStart();
             _guestDM.DrawCardsAtTurnStart();
@@ -81,7 +84,20 @@ namespace Penwyn.Game
         public void RPC_EndTurn()
         {
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
-            Announcer.Instance.Announce($"Hey {_currentFactionTurn.ToString()}, you move.");
+            IncreaseTurnStartEnergy();
+            Announcer.Instance.Announce($"{_currentFactionTurn.ToString()} to move.");
+        }
+
+        private void IncreaseTurnStartEnergy()
+        {
+            if (PlayerManager.Instance.MainPlayer.Faction == _currentFactionTurn)
+            {
+                PlayerManager.Instance.MainPlayer.Data.Energy.CurrentValue += 3;
+            }
+            else
+            {
+                PlayerManager.Instance.OtherPlayer.Data.Energy.CurrentValue += 3;
+            }
         }
 
         /// <summary>

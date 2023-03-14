@@ -11,12 +11,16 @@ namespace Penwyn.Game
     {
         private DeckManager _ownerDM;
 
-        public DeckManager OwnerDM { get => _ownerDM; }
 
         private void Awake()
         {
             FindOwnerDeckManager();
         }
+
+        /// <summary>
+        /// If this object (photonView.IsMine) RPC the Hover function on other clients.
+        /// </summary>
+        /// <param name="card"></param>
         public void Hover(Card card)
         {
             if (photonView.IsMine)
@@ -28,10 +32,13 @@ namespace Penwyn.Game
         [PunRPC]
         private void RPC_Hover(int cardIndex)
         {
-            Debug.Log($"RPC_Hover: " + cardIndex);
             _ownerDM.CardHandAnimationController.Hover(_ownerDM.HandPile.GetCard(cardIndex));
         }
 
+        /// <summary>
+        /// If this object (photonView.IsMine) RPC the ExitHover function on other clients.
+        /// </summary>
+        /// <param name="card"></param>
         public void ExitHover(Card card)
         {
             if (photonView.IsMine)
@@ -43,8 +50,26 @@ namespace Penwyn.Game
         [PunRPC]
         private void RPC_ExitHover(int cardIndex)
         {
-            Debug.Log($"RPC_ExitHover: " + cardIndex);
             _ownerDM.CardHandAnimationController.Exit(_ownerDM.HandPile.GetCard(cardIndex));
+        }
+
+        /// <summary>
+        /// If this object (photonView.IsMine) RPC the ExitHover function on other clients.
+        /// </summary>
+        /// <param name="card"></param>
+        public void Discard(Card card)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC(nameof(RPC_Discard), RpcTarget.Others, _ownerDM.HandPile.GetCardIndex(card));
+            }
+        }
+
+        [PunRPC]
+        private void RPC_Discard(int cardIndex)
+        {
+            Debug.Log(_ownerDM.name + $": {cardIndex}");
+            _ownerDM.Discard(_ownerDM.HandPile.GetCard(cardIndex));
         }
 
         private void FindOwnerDeckManager()
@@ -53,6 +78,7 @@ namespace Penwyn.Game
                 _ownerDM = DuelManager.Instance.MasterDM;
             else _ownerDM = DuelManager.Instance.GuestDM;
         }
+        public DeckManager OwnerDM { get => _ownerDM; }
 
     }
 

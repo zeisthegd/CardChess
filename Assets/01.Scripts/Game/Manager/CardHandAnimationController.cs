@@ -197,13 +197,6 @@ namespace Penwyn.Game
         /// <returns></returns>
         public bool CanHover(Card card)
         {
-            Debug.Log(_enabledFunctions);
-
-            Debug.Log(!ChosenCardZoneOccupied());
-
-            Debug.Log(!_deckManager.IsDiscarded(card));
-            Debug.Log(_deckManager.HandPile.Cards.Contains(card));
-
             return _enabledFunctions && !ChosenCardZoneOccupied() && !_deckManager.IsDiscarded(card) && _deckManager.HandPile.Cards.Contains(card);
         }
 

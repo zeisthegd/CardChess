@@ -65,15 +65,18 @@ namespace Penwyn.Game
 
         public void SpawnKings()
         {
-            CreatePiece(PieceIndex.K, 4, 0, Faction.WHITE);
-            CreatePiece(PieceIndex.K, 4, 7, Faction.BLACK);
+            if (photonView.IsMine)
+            {
+                DeployPiece(PieceIndex.K, 4, 0, Faction.WHITE);
+                DeployPiece(PieceIndex.K, 4, 7, Faction.BLACK);
+            }
         }
 
-        public void CreatePiece(PieceIndex index, int file, int rank, Faction userFaction)
+        public void DeployPiece(PieceIndex index, int file, int rank, Faction userFaction)
         {
             if (_board[file, rank].Piece == null)
             {
-                photonView.RPC(nameof(RPC_CreatePiece), RpcTarget.All, new object[] { index, file, rank, userFaction });
+                photonView.RPC(nameof(RPC_DeployPiece), RpcTarget.All, new object[] { index, file, rank, userFaction });
 
             }
             else
@@ -83,15 +86,12 @@ namespace Penwyn.Game
         }
 
         [PunRPC]
-        public void RPC_CreatePiece(PieceIndex index, int file, int rank, Faction faction)
+        public void RPC_DeployPiece(PieceIndex index, int file, int rank, Faction faction)
         {
-            Piece newPiece = Instantiate(PiecePrefab);
-            newPiece.Load(GetPieceDataFromIndex(index), faction);
-
+            Piece newPiece = CreatePieceObject(index, faction);
             newPiece.transform.position = ArrayPosToWorldPos(_board[file, rank]);
             _board[file, rank].Piece = newPiece;
             OccupySquares(newPiece, _board[file, rank]);
-            Debug.Log("Create: " + Square.GetName(rank, file));
         }
 
         public PieceData GetPieceDataFromIndex(PieceIndex index)
@@ -117,6 +117,13 @@ namespace Penwyn.Game
             return null;
         }
 
+        public Piece CreatePieceObject(PieceIndex index, Faction faction)
+        {
+            Piece newPiece = Instantiate(PiecePrefab);
+            newPiece.Load(GetPieceDataFromIndex(index), faction);
+            return newPiece;
+        }
+
         private void OccupySquares(Piece piece, Square pieceSquare)
         {
             List<Square> legalMoves = piece.Data.FindLegalMoves(pieceSquare, this._board, piece.Faction);
@@ -124,6 +131,19 @@ namespace Penwyn.Game
             {
                 square.Faction = piece.Faction;
                 _squareViewArray[square.File, square.Rank].SetColor();
+            }
+        }
+
+        public void DestroyPieceOnSquare(Square square)
+        {
+            if (square.Piece != null)
+            {
+                Destroy(square.Piece.gameObject);
+                square.Piece = null;
+            }
+            else
+            {
+                Debug.LogWarning($"There's no piece on this square: {square.ToString()}");
             }
         }
 
@@ -160,6 +180,11 @@ namespace Penwyn.Game
                 squareViews.Add(_squareViewArray[square.File, square.Rank]);
             }
             return squareViews;
+        }
+
+        public SquareView GetSquareView(Square square)
+        {
+            return _squareViewArray[square.File, square.Rank];
         }
 
         public PieceDeployingCalculator PieceDeplCal { get => _pieceDeplCal; }

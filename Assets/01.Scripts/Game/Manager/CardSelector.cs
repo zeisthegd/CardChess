@@ -15,7 +15,6 @@ namespace Penwyn.Game
     {
         private List<Piece> _targetList = new List<Piece>();
         private Card _chosenCard = null;
-        private bool _canPlay = false;
         private DeckManager _deckManager;
 
         void OnEnable()
@@ -69,14 +68,13 @@ namespace Penwyn.Game
         public void ChosenCardDonePlaying(Card card)
         {
             Debug.Log("ChosenCardDonePlaying");
-            if (card != null)//&& have target
+            CardEventList.Instance.CardDonePlaying.OnEventRaised -= ChosenCardDonePlaying;
+            if (_chosenCard != null)//&& have target
             {
                 CursorManager.Instance.ResetCursor();
-                UntargetAll();
                 _deckManager.Discard(card);
                 card.Owner.Data.Energy.SetCurrentValue(card.Owner.Data.Energy.CurrentValue - card.Data.Cost.CurrentValue);
 
-                _canPlay = false;
                 _chosenCard = null;
 
                 _deckManager.CardHandAnimationController.EnableFunctions();
@@ -98,34 +96,9 @@ namespace Penwyn.Game
         /// </summary>
         public void CancelCard()
         {
-            if (_targetList != null)
-                UntargetAll();
             _chosenCard = null;
-            _canPlay = false;
             _deckManager.CardActionHandler.EndCurrentAction(false);
             _deckManager.CardPlayingAnimationManager.CancelClick();
-        }
-
-        /// <summary>
-        /// Untarget and clear the _targetList.
-        /// </summary>
-        private void UntargetAll()
-        {
-            foreach (Piece target in _targetList)
-                Untarget(target);
-            _targetList.Clear();
-        }
-
-        /// <summary>
-        /// Release a target.
-        /// </summary>
-        public void Untarget(Piece unit)
-        {
-            if (unit != null)
-            {
-                //unit.GetView().TargetingUI.Exit();
-                _canPlay = false;
-            }
         }
 
         void ConnectEvents()

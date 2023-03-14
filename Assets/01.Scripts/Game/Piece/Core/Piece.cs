@@ -18,7 +18,6 @@ namespace Penwyn.Game
 
         public void Load(PieceData data, Faction faction = Faction.WHITE)
         {
-            Debug.Log(data.name);
             this._data = data;
             _faction = faction;
             this._sprRenderer.sprite = _faction == Faction.WHITE ? _data.WhiteSprite : _data.BlackSprite;

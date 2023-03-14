@@ -54,6 +54,9 @@ MonoBehaviour:
   - RPC_UnreadyGuest
   - RPC_ExitHover
   - RPC_Hover
+  - RPC_Discard
+  - RPC_DeployPiece
+  - RPC_StartNextTurn
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

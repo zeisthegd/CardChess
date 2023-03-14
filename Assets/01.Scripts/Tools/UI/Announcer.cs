@@ -27,8 +27,6 @@ namespace Penwyn.Tools
             }
 
             Canvas rootCanvas = FindObjectOfType<Canvas>().rootCanvas;
-            Debug.Log(rootCanvas.gameObject.activeInHierarchy);
-            Debug.Log(rootCanvas.gameObject.name);
             TMP_Text newAnncText = Instantiate(AnnounceTextPrefab, rootCanvas.transform.position + (Vector3.up * Screen.height * 0.375F), Quaternion.identity, rootCanvas.transform);
 
             announceTxtList.Add(newAnncText);

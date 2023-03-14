@@ -40,6 +40,7 @@ namespace Penwyn.Game
                     CreateAIvAI();
                     break;
             }
+            ResetPlayersEnergy();
         }
 
         public void CreatePVP()
@@ -58,6 +59,13 @@ namespace Penwyn.Game
         {
 
         }
+
+        public void ResetPlayersEnergy()
+        {
+            MainPlayer.Data.Energy.CurrentValue = 3;
+            OtherPlayer.Data.Energy.CurrentValue = 1;
+        }
+
 
         public Duelist CreateAPlayer(Faction faction = Faction.WHITE)
         {

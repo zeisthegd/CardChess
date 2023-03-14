@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Draw Two Cards
   Category: 1
   Cost:
-    _baseValue: 0
-    _currentValue: 0
+    _baseValue: 2
+    _currentValue: 2
     CanBeHigherThanBase: 0
     CanBeNegative: 0
   Actions:

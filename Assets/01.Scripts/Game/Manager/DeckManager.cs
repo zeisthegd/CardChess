@@ -37,6 +37,7 @@ namespace Penwyn.Game
         private CardSelector _cardSelector;
         private CardActionHandler _cardActionHandler;
         private CardAnimationCommunicator _cardAnimationCommunicator;
+        private EnergyTracker _energyTracker;
         private Duelist _owner;
 
 
@@ -47,6 +48,7 @@ namespace Penwyn.Game
             _cardPlayingAnimationManager = GetComponent<CardPlayingAnimationManager>();
             _cardSelector = GetComponent<CardSelector>();
             _cardActionHandler = GetComponent<CardActionHandler>();
+            _energyTracker = GetComponent<EnergyTracker>();
         }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace Penwyn.Game
         /// </summary>
         public void InitializeCards(Duelist owner)
         {
+            _owner = owner;
             foreach (CardData data in Deck)
             {
                 AllCards.Add(AddNewCard(DrawPile, data, owner));
@@ -188,6 +191,9 @@ namespace Penwyn.Game
         /// </summary>
         public void Discard(Card card)
         {
+            if (photonView.IsMine && _cardAnimationCommunicator != null)//Network animation
+                _cardAnimationCommunicator.Discard(card);
+
             HandPile.Remove(card);
             DiscardPile.Add(card);
             card.transform.SetParent(DiscardPile.transform);
@@ -271,6 +277,7 @@ namespace Penwyn.Game
         public CardActionHandler CardActionHandler { get => _cardActionHandler; }
         public Duelist Owner { get => _owner; }
         public CardAnimationCommunicator CardAnimationCommunicator { get => _cardAnimationCommunicator; }
+        public EnergyTracker EnergyTracker { get => _energyTracker; }
     }
 
 }

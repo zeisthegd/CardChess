@@ -15,7 +15,6 @@ namespace Penwyn.UI
     {
 
         public Button EndTurnButton;
-        public TMP_Text EnergyTxt;
 
         protected virtual void OnEnable()
         {

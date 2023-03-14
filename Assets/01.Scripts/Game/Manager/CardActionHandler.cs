@@ -47,7 +47,7 @@ namespace Penwyn.Game
         /// </summary>
         public void StartAction(Action action)
         {
-            _currentAction.StartAction(_currentCard.Owner.Faction);
+            action.StartAction(_currentCard.Owner.Faction);
             switch (action.Range)
             {
                 case ActionRange.CHOOSE_SQUARE:
@@ -109,7 +109,7 @@ namespace Penwyn.Game
         /// <param name="startNextAction">Start next action on the queue if wanted.</param>
         public void EndAction(Action action, bool startNextAction = true)
         {
-            Debug.Log("EndAction");
+            action.EndAction();
             switch (action.Range)
             {
                 case ActionRange.CHOOSE_SQUARE:
