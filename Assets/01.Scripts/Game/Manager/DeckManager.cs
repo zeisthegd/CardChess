@@ -257,12 +257,10 @@ namespace Penwyn.Game
 
         void ConnectEvents()
         {
-            GameEventList.Instance.ProtagonistWon.OnEventRaised += AllCardsToDrawPile;
         }
 
         void DisonnectEvents()
         {
-            GameEventList.Instance.ProtagonistWon.OnEventRaised -= AllCardsToDrawPile;
 
         }
 

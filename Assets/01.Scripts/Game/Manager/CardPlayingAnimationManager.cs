@@ -138,8 +138,6 @@ namespace Penwyn.Game
         {
             InputReader.Instance.OnCancelStarted += CancelClick;
             GameEventList.Instance.MatchStarted.OnEventRaised += EnableFunctions;
-            GameEventList.Instance.ProtagonistWon.OnEventRaised += DisableFunctions;
-            GameEventList.Instance.ProtagonistLost.OnEventRaised += DisableFunctions;
             CardEventList.Instance.PointerSelect.OnEventRaised += AcceptClick;
 
         }
@@ -148,8 +146,6 @@ namespace Penwyn.Game
         {
             InputReader.Instance.OnCancelStarted -= CancelClick;
             GameEventList.Instance.MatchStarted.OnEventRaised -= EnableFunctions;
-            GameEventList.Instance.ProtagonistWon.OnEventRaised -= DisableFunctions;
-            GameEventList.Instance.ProtagonistLost.OnEventRaised -= DisableFunctions;
             CardEventList.Instance.PointerSelect.OnEventRaised -= AcceptClick;
         }
 

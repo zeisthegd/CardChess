@@ -1,0 +1,130 @@
+# Details
+
+Date : 2023-03-17 10:54:11
+
+Directory d:\\Studies\\UnityProjects\\2D\\CardChess\\CardChess\\Assets\\01.Scripts
+
+Total : 115 files,  5131 codes, 321 comments, 1103 blanks, all 6555 lines
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
+
+## Files
+| filename | language | code | comment | blank | total |
+| :--- | :--- | ---: | ---: | ---: | ---: |
+| [Assets/01.Scripts/Events/EventChannel/CardEventChannel.cs](/Assets/01.Scripts/Events/EventChannel/CardEventChannel.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/01.Scripts/Events/EventChannel/DuelistEventChannel.cs](/Assets/01.Scripts/Events/EventChannel/DuelistEventChannel.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/01.Scripts/Events/EventChannel/GameObjectEventChannel.cs](/Assets/01.Scripts/Events/EventChannel/GameObjectEventChannel.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/01.Scripts/Events/EventChannel/SquareEventChannel.cs](/Assets/01.Scripts/Events/EventChannel/SquareEventChannel.cs) | C# | 16 | 0 | 4 | 20 |
+| [Assets/01.Scripts/Events/EventChannel/VoidEventChannel.cs](/Assets/01.Scripts/Events/EventChannel/VoidEventChannel.cs) | C# | 16 | 0 | 3 | 19 |
+| [Assets/01.Scripts/Events/EventList/CardEventList.cs](/Assets/01.Scripts/Events/EventList/CardEventList.cs) | C# | 37 | 0 | 7 | 44 |
+| [Assets/01.Scripts/Events/EventList/GameEventList.cs](/Assets/01.Scripts/Events/EventList/GameEventList.cs) | C# | 23 | 0 | 5 | 28 |
+| [Assets/01.Scripts/Events/EventList/NetworkEventChannel.cs](/Assets/01.Scripts/Events/EventList/NetworkEventChannel.cs) | C# | 17 | 0 | 3 | 20 |
+| [Assets/01.Scripts/Events/EventList/ProtagonistEventList.cs](/Assets/01.Scripts/Events/EventList/ProtagonistEventList.cs) | C# | 43 | 0 | 10 | 53 |
+| [Assets/01.Scripts/Events/EventList/SquareEventList.cs](/Assets/01.Scripts/Events/EventList/SquareEventList.cs) | C# | 17 | 0 | 5 | 22 |
+| [Assets/01.Scripts/Events/EventUtility/EventManager.cs](/Assets/01.Scripts/Events/EventUtility/EventManager.cs) | C# | 17 | 3 | 2 | 22 |
+| [Assets/01.Scripts/Game/Board/BoardView.cs](/Assets/01.Scripts/Game/Board/BoardView.cs) | C# | 175 | 0 | 28 | 203 |
+| [Assets/01.Scripts/Game/Board/PieceDeployingCalculator.cs](/Assets/01.Scripts/Game/Board/PieceDeployingCalculator.cs) | C# | 49 | 5 | 11 | 65 |
+| [Assets/01.Scripts/Game/Board/Square.cs](/Assets/01.Scripts/Game/Board/Square.cs) | C# | 36 | 4 | 9 | 49 |
+| [Assets/01.Scripts/Game/Board/SquareHighlighter.cs](/Assets/01.Scripts/Game/Board/SquareHighlighter.cs) | C# | 33 | 0 | 8 | 41 |
+| [Assets/01.Scripts/Game/Board/SquareView.cs](/Assets/01.Scripts/Game/Board/SquareView.cs) | C# | 63 | 0 | 13 | 76 |
+| [Assets/01.Scripts/Game/Card/Core/Card.cs](/Assets/01.Scripts/Game/Card/Core/Card.cs) | C# | 109 | 0 | 31 | 140 |
+| [Assets/01.Scripts/Game/Card/Core/CardTheme.cs](/Assets/01.Scripts/Game/Card/Core/CardTheme.cs) | C# | 29 | 0 | 8 | 37 |
+| [Assets/01.Scripts/Game/Card/Core/Pile.cs](/Assets/01.Scripts/Game/Card/Core/Pile.cs) | C# | 43 | 9 | 13 | 65 |
+| [Assets/01.Scripts/Game/Card/Core/PileView.cs](/Assets/01.Scripts/Game/Card/Core/PileView.cs) | C# | 112 | 20 | 22 | 154 |
+| [Assets/01.Scripts/Game/Card/Data/Action/MainAction/Action.cs](/Assets/01.Scripts/Game/Card/Data/Action/MainAction/Action.cs) | C# | 44 | 0 | 17 | 61 |
+| [Assets/01.Scripts/Game/Card/Data/Action/MainAction/CreatePieceAction.cs](/Assets/01.Scripts/Game/Card/Data/Action/MainAction/CreatePieceAction.cs) | C# | 40 | 0 | 13 | 53 |
+| [Assets/01.Scripts/Game/Card/Data/Action/MainAction/DrawCardAction.cs](/Assets/01.Scripts/Game/Card/Data/Action/MainAction/DrawCardAction.cs) | C# | 30 | 0 | 11 | 41 |
+| [Assets/01.Scripts/Game/Card/Data/Category/Category.cs](/Assets/01.Scripts/Game/Card/Data/Category/Category.cs) | C# | 11 | 0 | 2 | 13 |
+| [Assets/01.Scripts/Game/Card/Data/Data/CardData.cs](/Assets/01.Scripts/Game/Card/Data/Data/CardData.cs) | C# | 35 | 0 | 8 | 43 |
+| [Assets/01.Scripts/Game/Manager/CardActionHandler.cs](/Assets/01.Scripts/Game/Manager/CardActionHandler.cs) | C# | 148 | 34 | 22 | 204 |
+| [Assets/01.Scripts/Game/Manager/CardAnimationCommunicator.cs](/Assets/01.Scripts/Game/Manager/CardAnimationCommunicator.cs) | C# | 59 | 12 | 16 | 87 |
+| [Assets/01.Scripts/Game/Manager/CardHandAnimationController.cs](/Assets/01.Scripts/Game/Manager/CardHandAnimationController.cs) | C# | 174 | 43 | 34 | 251 |
+| [Assets/01.Scripts/Game/Manager/CardPlayingAnimationManager.cs](/Assets/01.Scripts/Game/Manager/CardPlayingAnimationManager.cs) | C# | 130 | 19 | 28 | 177 |
+| [Assets/01.Scripts/Game/Manager/CardSelector.cs](/Assets/01.Scripts/Game/Manager/CardSelector.cs) | C# | 90 | 13 | 21 | 124 |
+| [Assets/01.Scripts/Game/Manager/DeckManager.cs](/Assets/01.Scripts/Game/Manager/DeckManager.cs) | C# | 199 | 45 | 40 | 284 |
+| [Assets/01.Scripts/Game/Manager/EnergyTracker.cs](/Assets/01.Scripts/Game/Manager/EnergyTracker.cs) | C# | 28 | 0 | 7 | 35 |
+| [Assets/01.Scripts/Game/Piece/Core/Piece.cs](/Assets/01.Scripts/Game/Piece/Core/Piece.cs) | C# | 33 | 0 | 8 | 41 |
+| [Assets/01.Scripts/Game/Piece/Data/Bishop.cs](/Assets/01.Scripts/Game/Piece/Data/Bishop.cs) | C# | 27 | 1 | 3 | 31 |
+| [Assets/01.Scripts/Game/Piece/Data/King.cs](/Assets/01.Scripts/Game/Piece/Data/King.cs) | C# | 26 | 1 | 3 | 30 |
+| [Assets/01.Scripts/Game/Piece/Data/Knight.cs](/Assets/01.Scripts/Game/Piece/Data/Knight.cs) | C# | 27 | 1 | 3 | 31 |
+| [Assets/01.Scripts/Game/Piece/Data/Pawn.cs](/Assets/01.Scripts/Game/Piece/Data/Pawn.cs) | C# | 27 | 1 | 4 | 32 |
+| [Assets/01.Scripts/Game/Piece/Data/PieceData.cs](/Assets/01.Scripts/Game/Piece/Data/PieceData.cs) | C# | 12 | 0 | 2 | 14 |
+| [Assets/01.Scripts/Game/Piece/Data/Queen.cs](/Assets/01.Scripts/Game/Piece/Data/Queen.cs) | C# | 26 | 0 | 3 | 29 |
+| [Assets/01.Scripts/Game/Piece/Data/Rook.cs](/Assets/01.Scripts/Game/Piece/Data/Rook.cs) | C# | 26 | 1 | 4 | 31 |
+| [Assets/01.Scripts/Game/Player/Core/AIOpponent.cs](/Assets/01.Scripts/Game/Player/Core/AIOpponent.cs) | C# | 9 | 0 | 3 | 12 |
+| [Assets/01.Scripts/Game/Player/Core/Duelist.cs](/Assets/01.Scripts/Game/Player/Core/Duelist.cs) | C# | 30 | 0 | 8 | 38 |
+| [Assets/01.Scripts/Game/Player/Core/Player.cs](/Assets/01.Scripts/Game/Player/Core/Player.cs) | C# | 22 | 0 | 6 | 28 |
+| [Assets/01.Scripts/Game/Player/Data/AIOpponentData.cs](/Assets/01.Scripts/Game/Player/Data/AIOpponentData.cs) | C# | 10 | 0 | 3 | 13 |
+| [Assets/01.Scripts/Game/Player/Data/DamageCalculator.cs](/Assets/01.Scripts/Game/Player/Data/DamageCalculator.cs) | C# | 7 | 0 | 3 | 10 |
+| [Assets/01.Scripts/Game/Player/Data/DuelistData.cs](/Assets/01.Scripts/Game/Player/Data/DuelistData.cs) | C# | 28 | 0 | 6 | 34 |
+| [Assets/01.Scripts/Game/Player/Data/PlayerAnimation.cs](/Assets/01.Scripts/Game/Player/Data/PlayerAnimation.cs) | C# | 19 | 0 | 3 | 22 |
+| [Assets/01.Scripts/Game/Player/Data/ProtagonistData.cs](/Assets/01.Scripts/Game/Player/Data/ProtagonistData.cs) | C# | 10 | 0 | 4 | 14 |
+| [Assets/01.Scripts/Managers/AudioPlayer.cs](/Assets/01.Scripts/Managers/AudioPlayer.cs) | C# | 67 | 6 | 16 | 89 |
+| [Assets/01.Scripts/Managers/CameraManager.cs](/Assets/01.Scripts/Managers/CameraManager.cs) | C# | 32 | 6 | 10 | 48 |
+| [Assets/01.Scripts/Managers/CursorManager.cs](/Assets/01.Scripts/Managers/CursorManager.cs) | C# | 65 | 0 | 15 | 80 |
+| [Assets/01.Scripts/Managers/DebugManager.cs](/Assets/01.Scripts/Managers/DebugManager.cs) | C# | 61 | 1 | 11 | 73 |
+| [Assets/01.Scripts/Managers/DuelManager.cs](/Assets/01.Scripts/Managers/DuelManager.cs) | C# | 136 | 7 | 39 | 182 |
+| [Assets/01.Scripts/Managers/GameManager.cs](/Assets/01.Scripts/Managers/GameManager.cs) | C# | 107 | 5 | 31 | 143 |
+| [Assets/01.Scripts/Managers/InputManager.cs](/Assets/01.Scripts/Managers/InputManager.cs) | C# | 25 | 0 | 6 | 31 |
+| [Assets/01.Scripts/Managers/LevelManager.cs](/Assets/01.Scripts/Managers/LevelManager.cs) | C# | 17 | 0 | 6 | 23 |
+| [Assets/01.Scripts/Managers/NetworkManager.cs](/Assets/01.Scripts/Managers/NetworkManager.cs) | C# | 120 | 9 | 21 | 150 |
+| [Assets/01.Scripts/Managers/PlayerManager.cs](/Assets/01.Scripts/Managers/PlayerManager.cs) | C# | 70 | 0 | 19 | 89 |
+| [Assets/01.Scripts/Managers/RespawnManager.cs](/Assets/01.Scripts/Managers/RespawnManager.cs) | C# | 14 | 0 | 3 | 17 |
+| [Assets/01.Scripts/Managers/SceneManager.cs](/Assets/01.Scripts/Managers/SceneManager.cs) | C# | 49 | 0 | 13 | 62 |
+| [Assets/01.Scripts/Managers/TimeManager.cs](/Assets/01.Scripts/Managers/TimeManager.cs) | C# | 47 | 0 | 15 | 62 |
+| [Assets/01.Scripts/Networking/Listings/RoomListing.cs](/Assets/01.Scripts/Networking/Listings/RoomListing.cs) | C# | 35 | 0 | 11 | 46 |
+| [Assets/01.Scripts/Networking/Listings/RoomListingsMenu.cs](/Assets/01.Scripts/Networking/Listings/RoomListingsMenu.cs) | C# | 63 | 10 | 9 | 82 |
+| [Assets/01.Scripts/Networking/Settings/MatchSettings.cs](/Assets/01.Scripts/Networking/Settings/MatchSettings.cs) | C# | 13 | 0 | 3 | 16 |
+| [Assets/01.Scripts/Networking/Settings/NetworkSettings.cs](/Assets/01.Scripts/Networking/Settings/NetworkSettings.cs) | C# | 14 | 0 | 3 | 17 |
+| [Assets/01.Scripts/Networking/Team/TeamData.cs](/Assets/01.Scripts/Networking/Team/TeamData.cs) | C# | 16 | 0 | 2 | 18 |
+| [Assets/01.Scripts/Networking/Utility/NetworkEventHandler.cs](/Assets/01.Scripts/Networking/Utility/NetworkEventHandler.cs) | C# | 52 | 2 | 13 | 67 |
+| [Assets/01.Scripts/StateMachine/StateMachine.cs](/Assets/01.Scripts/StateMachine/StateMachine.cs) | C# | 25 | 0 | 5 | 30 |
+| [Assets/01.Scripts/Tools/Audio/AudioSettings.cs](/Assets/01.Scripts/Tools/Audio/AudioSettings.cs) | C# | 23 | 2 | 6 | 31 |
+| [Assets/01.Scripts/Tools/Behaviours/AutoRotate.cs](/Assets/01.Scripts/Tools/Behaviours/AutoRotate.cs) | C# | 22 | 1 | 5 | 28 |
+| [Assets/01.Scripts/Tools/Behaviours/DoThingsOnTouch.cs](/Assets/01.Scripts/Tools/Behaviours/DoThingsOnTouch.cs) | C# | 22 | 1 | 4 | 27 |
+| [Assets/01.Scripts/Tools/Behaviours/EnableIfObjectMoving.cs](/Assets/01.Scripts/Tools/Behaviours/EnableIfObjectMoving.cs) | C# | 12 | 2 | 5 | 19 |
+| [Assets/01.Scripts/Tools/Extensions/GameObjectExtension.cs](/Assets/01.Scripts/Tools/Extensions/GameObjectExtension.cs) | C# | 24 | 0 | 3 | 27 |
+| [Assets/01.Scripts/Tools/Extensions/ListExtension.cs](/Assets/01.Scripts/Tools/Extensions/ListExtension.cs) | C# | 22 | 0 | 2 | 24 |
+| [Assets/01.Scripts/Tools/Feedbacks/Audio/FeedbackPlaySound.cs](/Assets/01.Scripts/Tools/Feedbacks/Audio/FeedbackPlaySound.cs) | C# | 55 | 0 | 11 | 66 |
+| [Assets/01.Scripts/Tools/Feedbacks/Audio/FeedbackPlaySoundData.cs](/Assets/01.Scripts/Tools/Feedbacks/Audio/FeedbackPlaySoundData.cs) | C# | 13 | 0 | 2 | 15 |
+| [Assets/01.Scripts/Tools/Feedbacks/Cinemachine/FeedbackCameraShakeData.cs](/Assets/01.Scripts/Tools/Feedbacks/Cinemachine/FeedbackCameraShakeData.cs) | C# | 13 | 0 | 2 | 15 |
+| [Assets/01.Scripts/Tools/Feedbacks/Cinemachine/FeedbackScreenShake.cs](/Assets/01.Scripts/Tools/Feedbacks/Cinemachine/FeedbackScreenShake.cs) | C# | 52 | 0 | 8 | 60 |
+| [Assets/01.Scripts/Tools/Feedbacks/Core/Feedback.cs](/Assets/01.Scripts/Tools/Feedbacks/Core/Feedback.cs) | C# | 27 | 0 | 15 | 42 |
+| [Assets/01.Scripts/Tools/Feedbacks/Core/Feedbacks.cs](/Assets/01.Scripts/Tools/Feedbacks/Core/Feedbacks.cs) | C# | 24 | 0 | 5 | 29 |
+| [Assets/01.Scripts/Tools/Input/PlayerInput.cs](/Assets/01.Scripts/Tools/Input/PlayerInput.cs) | C# | 200 | 12 | 14 | 226 |
+| [Assets/01.Scripts/Tools/Math/PMath.cs](/Assets/01.Scripts/Tools/Math/PMath.cs) | C# | 13 | 0 | 5 | 18 |
+| [Assets/01.Scripts/Tools/ObjectPooling/ObjectPool.cs](/Assets/01.Scripts/Tools/ObjectPooling/ObjectPool.cs) | C# | 37 | 0 | 6 | 43 |
+| [Assets/01.Scripts/Tools/ObjectPooling/ObjectPooler.cs](/Assets/01.Scripts/Tools/ObjectPooling/ObjectPooler.cs) | C# | 120 | 15 | 21 | 156 |
+| [Assets/01.Scripts/Tools/ObjectPooling/PoolableObject.cs](/Assets/01.Scripts/Tools/ObjectPooling/PoolableObject.cs) | C# | 39 | 0 | 12 | 51 |
+| [Assets/01.Scripts/Tools/ObjectPooling/Respawnable.cs](/Assets/01.Scripts/Tools/ObjectPooling/Respawnable.cs) | C# | 17 | 0 | 6 | 23 |
+| [Assets/01.Scripts/Tools/PlayerUtil/AnimationController.cs](/Assets/01.Scripts/Tools/PlayerUtil/AnimationController.cs) | C# | 34 | 0 | 5 | 39 |
+| [Assets/01.Scripts/Tools/PlayerUtil/CameraController.cs](/Assets/01.Scripts/Tools/PlayerUtil/CameraController.cs) | C# | 61 | 0 | 15 | 76 |
+| [Assets/01.Scripts/Tools/PlayerUtil/InputReader.cs](/Assets/01.Scripts/Tools/PlayerUtil/InputReader.cs) | C# | 48 | 0 | 12 | 60 |
+| [Assets/01.Scripts/Tools/Singleton/SingletonMonoBehaviour.cs](/Assets/01.Scripts/Tools/Singleton/SingletonMonoBehaviour.cs) | C# | 36 | 0 | 3 | 39 |
+| [Assets/01.Scripts/Tools/Singleton/SingletonScriptableObject.cs](/Assets/01.Scripts/Tools/Singleton/SingletonScriptableObject.cs) | C# | 36 | 0 | 3 | 39 |
+| [Assets/01.Scripts/Tools/Sprite/SpriteGhostTrail.cs](/Assets/01.Scripts/Tools/Sprite/SpriteGhostTrail.cs) | C# | 62 | 0 | 11 | 73 |
+| [Assets/01.Scripts/Tools/Sprite/SpriteRendererUtil.cs](/Assets/01.Scripts/Tools/Sprite/SpriteRendererUtil.cs) | C# | 28 | 3 | 3 | 34 |
+| [Assets/01.Scripts/Tools/Sprite/SpriteShadow.cs](/Assets/01.Scripts/Tools/Sprite/SpriteShadow.cs) | C# | 29 | 0 | 8 | 37 |
+| [Assets/01.Scripts/Tools/UI/Announcer.cs](/Assets/01.Scripts/Tools/UI/Announcer.cs) | C# | 47 | 0 | 7 | 54 |
+| [Assets/01.Scripts/Tools/UI/BillboardUI.cs](/Assets/01.Scripts/Tools/UI/BillboardUI.cs) | C# | 19 | 0 | 3 | 22 |
+| [Assets/01.Scripts/Tools/UI/UIAnimationTweener.cs](/Assets/01.Scripts/Tools/UI/UIAnimationTweener.cs) | C# | 40 | 0 | 7 | 47 |
+| [Assets/01.Scripts/Tools/UI/UIExtension.cs](/Assets/01.Scripts/Tools/UI/UIExtension.cs) | C# | 13 | 0 | 2 | 15 |
+| [Assets/01.Scripts/Tools/UI/VEffectUtility.cs](/Assets/01.Scripts/Tools/UI/VEffectUtility.cs) | C# | 19 | 0 | 3 | 22 |
+| [Assets/01.Scripts/Tools/Value/FloatValue.cs](/Assets/01.Scripts/Tools/Value/FloatValue.cs) | C# | 81 | 0 | 19 | 100 |
+| [Assets/01.Scripts/Tools/Value/IntValue.cs](/Assets/01.Scripts/Tools/Value/IntValue.cs) | C# | 81 | 0 | 19 | 100 |
+| [Assets/01.Scripts/Tools/Value/MinMax.cs](/Assets/01.Scripts/Tools/Value/MinMax.cs) | C# | 30 | 0 | 7 | 37 |
+| [Assets/01.Scripts/Tools/Value/Point.cs](/Assets/01.Scripts/Tools/Value/Point.cs) | C# | 28 | 1 | 6 | 35 |
+| [Assets/01.Scripts/Tools/Value/Randomizer.cs](/Assets/01.Scripts/Tools/Value/Randomizer.cs) | C# | 51 | 15 | 11 | 77 |
+| [Assets/01.Scripts/UserInterface/HUD/HUD.cs](/Assets/01.Scripts/UserInterface/HUD/HUD.cs) | C# | 31 | 0 | 10 | 41 |
+| [Assets/01.Scripts/UserInterface/HUD/PlayerStatBar.cs](/Assets/01.Scripts/UserInterface/HUD/PlayerStatBar.cs) | C# | 15 | 0 | 3 | 18 |
+| [Assets/01.Scripts/UserInterface/HUD/ProgressBar.cs](/Assets/01.Scripts/UserInterface/HUD/ProgressBar.cs) | C# | 80 | 9 | 16 | 105 |
+| [Assets/01.Scripts/UserInterface/HUD/ValueBar.cs](/Assets/01.Scripts/UserInterface/HUD/ValueBar.cs) | C# | 38 | 0 | 8 | 46 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/AudioSettingsUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/AudioSettingsUI.cs) | C# | 16 | 2 | 5 | 23 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/LobbyUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/LobbyUI.cs) | C# | 33 | 0 | 9 | 42 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/MatchSettingsUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/MatchSettingsUI.cs) | C# | 24 | 0 | 8 | 32 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/RoomUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/RoomUI.cs) | C# | 79 | 0 | 17 | 96 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/ScreenSettingsUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/ScreenSettingsUI.cs) | C# | 46 | 0 | 6 | 52 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/StartMenu.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/StartMenu.cs) | C# | 12 | 0 | 6 | 18 |
+| [Assets/01.Scripts/UserInterface/NonGameplayUI/TitleScreenUI.cs](/Assets/01.Scripts/UserInterface/NonGameplayUI/TitleScreenUI.cs) | C# | 41 | 0 | 12 | 53 |
+
+[Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

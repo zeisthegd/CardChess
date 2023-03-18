@@ -22,15 +22,20 @@ namespace Penwyn.Game
         [Header("Decks")]
         public DeckManager MasterDMPrefab;
         public DeckManager GuestDMPrefab;
+        [Header("Duel Settings")]
+        public MatchSettings DuelSettings;
 
         private BoardView _boardView;
         private PhotonView photonView;
 
-        private StateMachine<Phase> _phaseMachine;
-        private Faction _currentFactionTurn = Faction.WHITE;
 
         private DeckManager _masterDM;
         private DeckManager _guestDM;
+
+
+        private StateMachine<Phase> _phaseMachine;
+        private Faction _currentFactionTurn = Faction.WHITE;
+        private IntValue _currentTurnCount = new IntValue();
 
 
         //In-game params
@@ -70,6 +75,7 @@ namespace Penwyn.Game
             SetBoardViewMode();
             BoardView.SpawnBoardSquares();
             BoardView.SpawnKings();
+            _currentTurnCount = new IntValue(1, DuelSettings.Turn);
         }
 
         public void EndTurn()
@@ -83,9 +89,41 @@ namespace Penwyn.Game
         [PunRPC]
         public void RPC_EndTurn()
         {
+            CheckForEndGame();
+            if (_currentFactionTurn == Faction.BLACK)//Add turn count before changing turn faction, if the last faction to move was black.
+                _currentTurnCount.CurrentValue += 1;
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
             IncreaseTurnStartEnergy();
-            Announcer.Instance.Announce($"{_currentFactionTurn.ToString()} to move.");
+            GameEventList.Instance.TurnChanged.RaiseEvent();
+        }
+
+        private void CheckForEndGame()
+        {
+            if (!ReachedFinalTurn())
+            {
+                Announcer.Instance.Announce($"{_currentFactionTurn.ToString()} to move.");
+            }
+            else
+            {
+                HandleEndgame();
+            }
+        }
+
+        private void HandleEndgame()
+        {
+            GameEventList.Instance.MatchEnded.RaiseEvent();
+            //TODO Calulcate points.
+            int whiteCount = _boardView.GetWhiteSquareCount();
+            int blackCount = _boardView.GetBlackSquareCount();
+            Debug.Log("WHITE: " + whiteCount);
+            Debug.Log("BLACK: " + blackCount);
+            //Announce winner.
+            if (whiteCount > blackCount)
+                Announcer.Instance.Announce($"White Won: {whiteCount} vs. {blackCount}");
+            else if (blackCount > whiteCount)
+                Announcer.Instance.Announce($"Black Won: {blackCount} vs. {whiteCount}");
+            else
+                Announcer.Instance.Announce($"Draw: {whiteCount} vs. {blackCount}");
         }
 
         private void IncreaseTurnStartEnergy()
@@ -149,6 +187,13 @@ namespace Penwyn.Game
             _boardView.ViewMode = PlayerManager.Instance.MainPlayer.Faction == Faction.WHITE ? BoardViewMode.WHITE : BoardViewMode.BLACK;
         }
 
+
+
+        private bool ReachedFinalTurn()
+        {
+            return _currentTurnCount.CurrentValue == DuelSettings.Turn;
+        }
+
         public BoardView BoardView { get => _boardView; }
         public StateMachine<Phase> PhaseMachine { get => _phaseMachine; }
         public Faction CurrentFactionTurn { get => _currentFactionTurn; }
@@ -159,6 +204,7 @@ namespace Penwyn.Game
         public bool IsGuestReady { get => _isGuestReady; }
         public DeckManager MasterDM { get => _masterDM; }
         public DeckManager GuestDM { get => _guestDM; }
+        public IntValue CurrentTurnCount { get => _currentTurnCount; set => _currentTurnCount = value; }
     }
 
 

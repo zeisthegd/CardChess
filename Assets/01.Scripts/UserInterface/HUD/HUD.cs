@@ -13,27 +13,49 @@ namespace Penwyn.UI
 {
     public class HUD : SingletonMonoBehaviour<HUD>
     {
+        public TMP_Text CurrentTurnCount;
+        public TMP_Text CurrentTurnFaction;
 
-        public Button EndTurnButton;
-
-        protected virtual void OnEnable()
+        public virtual void DuelStart()
         {
-            ConnectEvents();
+            DuelManager.Instance.CurrentTurnCount.CurrentValueChanged += UpdateCurrentTurnCount;
+            GameEventList.Instance.TurnChanged.OnEventRaised += UpdateCurrentTurnFaction;
+            GameEventList.Instance.MatchEnded.OnEventRaised += DuelEnd;
+
+            UpdateCurrentTurnCount();
+            UpdateCurrentTurnFaction();
         }
 
-        protected virtual void OnDisable()
+        public virtual void DuelEnd()
         {
-            DisconnectEvents();
+            DuelManager.Instance.CurrentTurnCount.CurrentValueChanged -= UpdateCurrentTurnCount;
+            GameEventList.Instance.TurnChanged.OnEventRaised -= UpdateCurrentTurnFaction;
+            GameEventList.Instance.MatchEnded.OnEventRaised -= DuelEnd;
         }
 
-        public virtual void ConnectEvents()
+        private void UpdateCurrentTurnCount()
         {
-            EndTurnButton?.onClick.AddListener(() => { DuelManager.Instance.EndTurn(); });
+            if (CurrentTurnCount != null)
+                CurrentTurnCount.SetText($"Turn: {DuelManager.Instance.CurrentTurnCount.CurrentValue}/{DuelManager.Instance.DuelSettings.Turn}");
+            else
+                Debug.LogWarning("No CurrentTurnCountTxt Found!");
         }
 
-        public virtual void DisconnectEvents()
+        private void UpdateCurrentTurnFaction()
         {
-            EndTurnButton?.onClick.RemoveAllListeners();
+            string factionTxt = DuelManager.Instance.CurrentFactionTurn == Faction.WHITE ? $"<color=white>{DuelManager.Instance.CurrentFactionTurn.ToString()}</color>" : $"<color=black>{DuelManager.Instance.CurrentFactionTurn.ToString()}</color>";
+            CurrentTurnFaction.SetText(factionTxt + "\nTo Move");
+        }
+
+        private void OnEnable()
+        {
+            GameEventList.Instance.MatchStarted.OnEventRaised += DuelStart;
+
+        }
+
+        private void OnDisable()
+        {
+            GameEventList.Instance.MatchStarted.OnEventRaised -= DuelStart;
         }
     }
 }

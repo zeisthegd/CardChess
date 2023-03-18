@@ -8,8 +8,8 @@ namespace Penwyn.Game
     [CreateAssetMenu(menuName = "Settings/Match")]
     public class MatchSettings : ScriptableObject
     {
-        public float LevelLoadTime = 1;
-        public float PlayerPositioningTime = 1;
+        public int Turn = 20;
+        public bool IsInfinite = false;
     }
 }
 

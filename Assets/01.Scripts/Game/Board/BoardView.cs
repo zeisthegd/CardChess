@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,6 +146,16 @@ namespace Penwyn.Game
             {
                 Debug.LogWarning($"There's no piece on this square: {square.ToString()}");
             }
+        }
+
+        public int GetWhiteSquareCount()
+        {
+            return _board.Cast<Square>().Where(x => x.Faction == Faction.WHITE).Count();
+        }
+
+        public int GetBlackSquareCount()
+        {
+            return _board.Cast<Square>().Where(x => x.Faction == Faction.BLACK).Count();
         }
 
         private Vector3 ArrayPosToWorldPos(Square square)
