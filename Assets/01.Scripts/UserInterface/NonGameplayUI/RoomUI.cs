@@ -17,22 +17,19 @@ namespace Penwyn.UI
     public class RoomUI : MonoBehaviour
     {
         public TMP_Text PasscodeTxt;
+        public TMP_Text HostNameTxt;
+        public TMP_Text GuestNameTxt;
         public Button OpenSettingsBtn;
         public Button StartMatchBtn;
         public Button ReadyButton;
 
-        [Header("Score")]
-        public TMP_Text HostTeamScore;
-        public TMP_Text GuestTeamScore;
-        [Header("Turns")]
-        public TMP_Text TurnTextPrefab;
-        public TMP_Text CurrentTurn;
-        public Transform Container;
-
         void Start()
         {
             if (PhotonNetwork.InRoom)
-                PasscodeTxt.text = (string)PhotonNetwork.CurrentRoom.CustomProperties["Passcode"];
+            {
+                PasscodeTxt.text = "CODE: " + (string)PhotonNetwork.CurrentRoom.CustomProperties["Passcode"];
+                DisplayEnteredPlayerName(PhotonNetwork.MasterClient);
+            }
 
             if (!PhotonNetwork.IsMasterClient)
             {
@@ -79,15 +76,30 @@ namespace Penwyn.UI
             SetUpReadyButton();
         }
 
+        private void DisplayEnteredPlayerName(Photon.Realtime.Player player)
+        {
+            if (player.IsMasterClient)
+            {
+                HostNameTxt?.SetText($"Host: \n{player.NickName}");
+            }
+            else
+            {
+                GuestNameTxt?.SetText($"Guest: \n{player.NickName}");
+            }
+        }
+
 
         void OnEnable()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised += OnGameStarted;
+            NetworkEventList.Instance.PlayerEnteredRoom.OnEventRaised += DisplayEnteredPlayerName;
         }
 
         void OnDisable()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised -= OnGameStarted;
+            NetworkEventList.Instance.PlayerEnteredRoom.OnEventRaised += DisplayEnteredPlayerName;
+
         }
     }
 

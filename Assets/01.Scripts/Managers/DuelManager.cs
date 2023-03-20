@@ -18,6 +18,7 @@ namespace Penwyn.Game
     {
         public string BoardViewPrefabPath;
         public Transform BoardPosition;
+        public EndGameUI EndGameUIPrefab;
 
         [Header("Decks")]
         public DeckManager MasterDMPrefab;
@@ -36,6 +37,8 @@ namespace Penwyn.Game
         private StateMachine<Phase> _phaseMachine;
         private Faction _currentFactionTurn = Faction.WHITE;
         private IntValue _currentTurnCount = new IntValue();
+        private EndGameUI _endGameUI;
+
 
 
         //In-game params
@@ -75,6 +78,8 @@ namespace Penwyn.Game
             SetBoardViewMode();
             BoardView.SpawnBoardSquares();
             BoardView.SpawnKings();
+            BoardView.FadeGhostGrid(1);
+            CreateEndGameUI();
             _currentTurnCount = new IntValue(1, DuelSettings.Turn);
         }
 
@@ -90,6 +95,7 @@ namespace Penwyn.Game
         public void RPC_EndTurn()
         {
             CheckForEndGame();
+            //TODO this must always be black.
             if (_currentFactionTurn == Faction.BLACK)//Add turn count before changing turn faction, if the last faction to move was black.
                 _currentTurnCount.CurrentValue += 1;
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
@@ -109,22 +115,23 @@ namespace Penwyn.Game
             }
         }
 
+        /// <summary>
+        /// Called when duel ends.
+        /// </summary>
         private void HandleEndgame()
         {
+            BoardView.FadeGhostGrid(0);
             GameEventList.Instance.MatchEnded.RaiseEvent();
+
             //TODO Calulcate points.
             int whiteCount = _boardView.GetWhiteSquareCount();
             int blackCount = _boardView.GetBlackSquareCount();
-            Debug.Log("WHITE: " + whiteCount);
-            Debug.Log("BLACK: " + blackCount);
+
             //Announce winner.
-            if (whiteCount > blackCount)
-                Announcer.Instance.Announce($"White Won: {whiteCount} vs. {blackCount}");
-            else if (blackCount > whiteCount)
-                Announcer.Instance.Announce($"Black Won: {blackCount} vs. {whiteCount}");
-            else
-                Announcer.Instance.Announce($"Draw: {whiteCount} vs. {blackCount}");
+            _endGameUI.gameObject.SetActive(true);
+            _endGameUI.PlayGameEndAnimation(whiteCount, blackCount);
         }
+
 
         private void IncreaseTurnStartEnergy()
         {
@@ -173,9 +180,27 @@ namespace Penwyn.Game
 
         public void CreateBoardView()
         {
-            BoardPosition = GameObject.FindGameObjectWithTag("BoardPosition").transform;
-            _boardView = PhotonNetwork.Instantiate(BoardViewPrefabPath, BoardPosition.position, Quaternion.identity).GetComponent<BoardView>();
+            if (_boardView == null)
+            {
+                BoardPosition = GameObject.FindGameObjectWithTag("BoardPosition").transform;
+                _boardView = PhotonNetwork.Instantiate(BoardViewPrefabPath, BoardPosition.position, Quaternion.identity).GetComponent<BoardView>();
+            }
+            else
+                Debug.Log("A BoardView exists");
         }
+
+        public void DestroyBoardView()
+        {
+            Destroy(_boardView.gameObject);
+        }
+
+        public void CreateEndGameUI()
+        {
+            if (_endGameUI == null)
+                _endGameUI = Instantiate(EndGameUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<EndGameUI>();
+            _endGameUI.gameObject.SetActive(false);
+        }
+
 
         public void FindBoardView()
         {

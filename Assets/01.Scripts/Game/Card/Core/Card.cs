@@ -22,6 +22,7 @@ namespace Penwyn.Game
 
         [Header("Text")]
         public TMP_Text NameTxt;
+        public TMP_Text CostTxt;
 
         [Header("Info")]
         public RectTransform InfoPanel;
@@ -44,7 +45,8 @@ namespace Penwyn.Game
         {
             CardAvatar.sprite = data.Avatar;
             NameTxt?.SetText(data.Name);
-            gameObject.name = data.Name + "_UI";
+            CostTxt?.SetText(data.Cost.CurrentValue.ToString());
+            gameObject.name = data.Name + "_UI" + $"_{GetInstanceID()}";
         }
 
         public virtual void ShowNormal()
@@ -61,7 +63,6 @@ namespace Penwyn.Game
         public void ShowHighlight()
         {
             Frame.sprite = Theme.GetHighlightSprite(_owner.Faction);
-
         }
 
         public void ShowBack()

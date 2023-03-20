@@ -110,7 +110,11 @@ namespace Penwyn.Game
             _gameState = GameState.GettingReady;
             if (PhotonNetwork.IsMasterClient)
                 DuelManager.CreateBoardView();
+        }
 
+        public virtual void OnPhotonRoomExit()
+        {
+            DuelManager.DestroyBoardView();
         }
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -118,6 +122,10 @@ namespace Penwyn.Game
             if (scene.name == SceneManager.RoomSceenName)
             {
                 OnRoomSceneLoaded();
+            }
+            else
+            {
+                OnPhotonRoomExit();
             }
         }
 

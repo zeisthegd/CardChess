@@ -7,6 +7,7 @@ using Photon;
 using Photon.Pun;
 
 using NaughtyAttributes;
+using DG.Tweening;
 
 using Penwyn.Tools;
 
@@ -17,6 +18,7 @@ namespace Penwyn.Game
         public Piece PiecePrefab;
         public SquareView SquareViewPrefab;
         public BoardViewMode ViewMode;
+        public SpriteRenderer GhostGrid;
 
         public Pawn Pawn;
         public Knight Knight;
@@ -127,11 +129,21 @@ namespace Penwyn.Game
 
         private void OccupySquares(Piece piece, Square pieceSquare)
         {
+            StartCoroutine(OccupySquaresCoroutine(piece, pieceSquare));
+        }
+
+        private IEnumerator OccupySquaresCoroutine(Piece piece, Square pieceSquare)
+        {
             List<Square> legalMoves = piece.Data.FindLegalMoves(pieceSquare, this._board, piece.Faction);
             foreach (Square square in legalMoves)
             {
                 square.Faction = piece.Faction;
+            }
+
+            foreach (Square square in legalMoves)
+            {
                 _squareViewArray[square.File, square.Rank].SetColor();
+                yield return new WaitForSeconds(0.05F);
             }
         }
 
@@ -146,6 +158,15 @@ namespace Penwyn.Game
             {
                 Debug.LogWarning($"There's no piece on this square: {square.ToString()}");
             }
+        }
+
+        /// <summary>
+        /// Show or hide the ghost grid based on the alpha input.
+        /// </summary>
+        /// <param name="alpha">0 = hide, 1 = show. Duration is always 1 sec.</param>
+        public void FadeGhostGrid(float alpha)
+        {
+            GhostGrid?.DOFade(1, 1);
         }
 
         public int GetWhiteSquareCount()

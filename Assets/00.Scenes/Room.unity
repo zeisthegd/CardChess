@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 6967600654602574990, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6967600654602575026, guid: 58c9f387149c5634bbc64b99ca38b694, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -457,6 +461,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3238217371775842186, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 7098604530881302996, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_Name
       value: RoomUI

@@ -39,6 +39,21 @@ public class NetworkEventHandler : MonoBehaviourPunCallbacks
         SceneManager.Instance.LoadLobbyScene();
     }
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        NetworkEventList.Instance.PlayerEnteredRoom.RaiseEvent(newPlayer);
+        Debug.Log("Entering: " + newPlayer.NickName);
+
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
+        NetworkEventList.Instance.PlayerLeftRoom.RaiseEvent(otherPlayer);
+        Debug.Log("Leaving: " + otherPlayer.NickName);
+    }
+
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
