@@ -80,11 +80,18 @@ namespace Penwyn.Game
             BoardView.SpawnKings();
             BoardView.FadeGhostGrid(1);
             CreateEndGameUI();
+        }
+
+        public void SetUpTurnSystem()
+        {
+            _currentFactionTurn = Faction.WHITE;
             _currentTurnCount = new IntValue(1, DuelSettings.Turn);
         }
 
+
         public void EndTurn()
         {
+            Debug.LogWarning("End Turn");
             if (IsMainPlayerTurn)//If the player using this client initiate the end turn function.
             {
                 photonView.RPC(nameof(RPC_EndTurn), RpcTarget.All);
@@ -153,14 +160,14 @@ namespace Penwyn.Game
             if (PhotonNetwork.IsMasterClient == false)
             {
                 Debug.Log(GameManager.Instance.Mode);
-                photonView.RPC(nameof(RPC_GetGuestReady), RpcTarget.All);
+                photonView.RPC(nameof(RPC_SetGuestReadyStatus), RpcTarget.All, true);
             }
         }
 
         [PunRPC]
-        private void RPC_GetGuestReady()
+        private void RPC_SetGuestReadyStatus(bool status)
         {
-            _isGuestReady = true;
+            _isGuestReady = status;
         }
 
         /// <summary>
@@ -168,15 +175,8 @@ namespace Penwyn.Game
         /// </summary>
         public void UnreadyGuest()
         {
-            photonView.RPC(nameof(RPC_UnreadyGuest), RpcTarget.All);
+            photonView.RPC(nameof(RPC_SetGuestReadyStatus), RpcTarget.All, false);
         }
-
-        [PunRPC]
-        private void RPC_UnreadyGuest()
-        {
-            _isGuestReady = false;
-        }
-
 
         public void CreateBoardView()
         {
@@ -191,7 +191,17 @@ namespace Penwyn.Game
 
         public void DestroyBoardView()
         {
-            Destroy(_boardView.gameObject);
+            if (_boardView != null)
+                Destroy(_boardView.gameObject);
+        }
+
+        public void DestroyDeckManagers()
+        {
+            if (_masterDM != null && _guestDM != null)
+            {
+                Destroy(_masterDM.gameObject);
+                Destroy(_guestDM.gameObject);
+            }
         }
 
         public void CreateEndGameUI()

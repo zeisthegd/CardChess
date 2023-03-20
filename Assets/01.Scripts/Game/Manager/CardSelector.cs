@@ -23,6 +23,11 @@ namespace Penwyn.Game
             ConnectEvents();
         }
 
+        void OnDisable()
+        {
+            DisonnectEvents();
+        }
+
         /// <summary>
         /// Choose the card to play.
         /// </summary>
@@ -67,7 +72,6 @@ namespace Penwyn.Game
         /// </summary>
         public void ChosenCardDonePlaying(Card card)
         {
-            Debug.Log("ChosenCardDonePlaying");
             CardEventList.Instance.CardDonePlaying.OnEventRaised -= ChosenCardDonePlaying;
             if (_chosenCard != null)//&& have target
             {
@@ -79,14 +83,7 @@ namespace Penwyn.Game
 
                 _deckManager.CardHandAnimationController.EnableFunctions();
                 _deckManager.CardHandAnimationController.UpdateCardsTransform();
-
-                EndTurnIfCardIsDeployCat(card);
             }
-        }
-
-        private void EndTurnIfCardIsDeployCat(Card card)
-        {
-            DuelManager.Instance.EndTurn();
         }
 
 
@@ -114,7 +111,6 @@ namespace Penwyn.Game
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised -= Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised -= CancelCard;
-
         }
         public Card ChosenCard { get => _chosenCard; }
         public List<Piece> TargetList { get => _targetList; }

@@ -461,10 +461,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3238217371775842186, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 16.099976
-      objectReference: {fileID: 0}
     - target: {fileID: 7098604530881302996, guid: 11da9986a8a63344087bb8c512a06985, type: 3}
       propertyPath: m_Name
       value: RoomUI

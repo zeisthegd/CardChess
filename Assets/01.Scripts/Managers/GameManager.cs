@@ -12,6 +12,7 @@ using NaughtyAttributes;
 
 using Penwyn.Tools;
 using Penwyn.UI;
+using System;
 
 namespace Penwyn.Game
 {
@@ -48,22 +49,32 @@ namespace Penwyn.Game
 
         public virtual void StartGame()
         {
-            photonView.RPC(nameof(RPC_StartGame), RpcTarget.All);
+            if (CheckStartDuelConditions())
+            {
+                photonView.RPC(nameof(RPC_StartGame), RpcTarget.All);
+            }
         }
 
 
         [PunRPC]
         public virtual void RPC_StartGame()
         {
-            if (CanStartGame)
+            StartCoroutine(StartGameCoroutine());
+        }
+
+        private bool CheckStartDuelConditions()
+        {
+            if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
             {
-                StartCoroutine(StartGameCoroutine());
+                Announcer.Instance.Announce("Need One More Player To Start Playing.");
+                return false;
             }
-            else
+            if (!DuelManager.IsGuestReady)
             {
-                Debug.Log("One of the players is not READY!");
-                Announcer.Instance.Announce("One of the players is not READY!");
+                Announcer.Instance.Announce("Guest Is Not Ready.");
+                return false;
             }
+            return true;
         }
 
 
@@ -82,6 +93,7 @@ namespace Penwyn.Game
             PlayerManager.CreatePlayers(Mode);
 
             DuelManager.Instance.SetUpBoard();
+            DuelManager.Instance.SetUpTurnSystem();
 
             yield return new WaitForSeconds(0.25F);
 
@@ -115,6 +127,7 @@ namespace Penwyn.Game
         public virtual void OnPhotonRoomExit()
         {
             DuelManager.DestroyBoardView();
+            DuelManager.DestroyDeckManagers();
         }
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)
@@ -130,7 +143,6 @@ namespace Penwyn.Game
         }
 
         public GameState State => _gameState;
-        public bool CanStartGame => DuelManager.IsGuestReady || Mode == GameMode.PVE || Mode == GameMode.PVP;
     }
 
     public enum GameState

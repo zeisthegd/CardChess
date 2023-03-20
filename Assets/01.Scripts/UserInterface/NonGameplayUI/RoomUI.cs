@@ -19,6 +19,7 @@ namespace Penwyn.UI
         public TMP_Text PasscodeTxt;
         public TMP_Text HostNameTxt;
         public TMP_Text GuestNameTxt;
+        public TMP_Text GuestReadyStatusTxt;
         public Button OpenSettingsBtn;
         public Button StartMatchBtn;
         public Button ReadyButton;
@@ -49,17 +50,14 @@ namespace Penwyn.UI
             if (PhotonNetwork.IsMasterClient)
             {
                 GameManager.Instance.StartGame();
-                if (GameManager.Instance.CanStartGame)
-                {
-                    OpenSettingsBtn.gameObject.SetActive(false);
-                    StartMatchBtn.gameObject.SetActive(false);
-                }
             }
         }
 
         public virtual void OnGameStarted()
         {
             this.gameObject.SetActive(false);
+            OpenSettingsBtn.gameObject.SetActive(false);
+            StartMatchBtn.gameObject.SetActive(false);
         }
 
         public virtual void SetUpReadyButton()
@@ -70,9 +68,15 @@ namespace Penwyn.UI
         public virtual void ReadyButtonClicked()
         {
             if (DuelManager.Instance.IsGuestReady)
+            {
                 DuelManager.Instance.UnreadyGuest();
+                GuestReadyStatusTxt?.SetText("Ready");
+            }
             else
+            {
                 DuelManager.Instance.GetGuestReady();
+                GuestReadyStatusTxt?.SetText("Ready");
+            }
             SetUpReadyButton();
         }
 

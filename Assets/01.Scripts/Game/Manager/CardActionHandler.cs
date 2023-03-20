@@ -23,7 +23,6 @@ namespace Penwyn.Game
             {
                 _actionQueue.Enqueue(action);
                 Debug.Log($"Action name: {action.name}");
-
             }
         }
 
@@ -37,7 +36,6 @@ namespace Penwyn.Game
             else
             {
                 CardEventList.Instance.CardDonePlaying.RaiseEvent(_currentCard);
-                Debug.Log("No more action.");
             }
         }
 
