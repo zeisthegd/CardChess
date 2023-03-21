@@ -29,7 +29,6 @@ namespace Penwyn.Game
         public EventTrigger EventTrigger;
         private Duelist _owner;
 
-
         public virtual void Use(List<Piece> targetList)
         {
 
@@ -46,6 +45,7 @@ namespace Penwyn.Game
             CardAvatar.sprite = data.Avatar;
             NameTxt?.SetText(data.Name);
             CostTxt?.SetText(data.Cost.CurrentValue.ToString());
+            CostTxt?.gameObject.SetActive(ClientOwned ? true : false);
             gameObject.name = data.Name + "_UI" + $"_{GetInstanceID()}";
         }
 
@@ -57,12 +57,13 @@ namespace Penwyn.Game
                 return;
             }
             Frame.sprite = Theme.GetFrontSprite(_owner.Faction);
-
+            CostTxt?.SetText(Data.Cost.CurrentValue.ToString());
         }
 
         public void ShowHighlight()
         {
             Frame.sprite = Theme.GetHighlightSprite(_owner.Faction);
+            CostTxt?.SetText(Data.Cost.CurrentValue.ToString());
         }
 
         public void ShowBack()
@@ -74,7 +75,7 @@ namespace Penwyn.Game
             }
             SetInfoVisibility(false);
             Frame.sprite = Theme.GetBackSprite(_owner.Faction);
-
+            CostTxt?.SetText("");
         }
 
         public virtual void SetInfoVisibility(bool show)
@@ -136,5 +137,6 @@ namespace Penwyn.Game
 
         public bool EnoughEnergy { get => Data.Cost.CurrentValue <= Owner.Data.Energy.CurrentValue; }
         public Duelist Owner { get => _owner; set => _owner = value; }
+        public bool ClientOwned => DuelManager.Instance.MasterDM.Owner == this._owner;
     }
 }

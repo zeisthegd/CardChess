@@ -159,7 +159,6 @@ namespace Penwyn.Game
         {
             if (PhotonNetwork.IsMasterClient == false)
             {
-                Debug.Log(GameManager.Instance.Mode);
                 photonView.RPC(nameof(RPC_SetGuestReadyStatus), RpcTarget.All, true);
             }
         }
@@ -168,6 +167,10 @@ namespace Penwyn.Game
         private void RPC_SetGuestReadyStatus(bool status)
         {
             _isGuestReady = status;
+            if (_isGuestReady)
+                GameEventList.Instance.GuestReadied.RaiseEvent();
+            else
+                GameEventList.Instance.GuestUnReadied.RaiseEvent();
         }
 
         /// <summary>
@@ -186,7 +189,7 @@ namespace Penwyn.Game
                 _boardView = PhotonNetwork.Instantiate(BoardViewPrefabPath, BoardPosition.position, Quaternion.identity).GetComponent<BoardView>();
             }
             else
-                Debug.Log("A BoardView exists");
+                Debug.LogWarning("A BoardView exists");
         }
 
         public void DestroyBoardView()

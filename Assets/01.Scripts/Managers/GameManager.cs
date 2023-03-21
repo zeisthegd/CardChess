@@ -64,7 +64,7 @@ namespace Penwyn.Game
 
         private bool CheckStartDuelConditions()
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+            if ((PhotonNetwork.CurrentRoom.PlayerCount < 2))
             {
                 Announcer.Instance.Announce("Need One More Player To Start Playing.");
                 return false;
@@ -140,6 +140,11 @@ namespace Penwyn.Game
             {
                 OnPhotonRoomExit();
             }
+        }
+
+        public void ExitApplication()
+        {
+            Application.Quit();
         }
 
         public GameState State => _gameState;

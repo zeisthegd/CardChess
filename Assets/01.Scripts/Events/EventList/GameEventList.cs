@@ -9,6 +9,8 @@ namespace Penwyn.Game
         public VoidEventChannel MatchStarted;
         public VoidEventChannel MatchEnded;
         public VoidEventChannel TurnChanged;
+        public VoidEventChannel GuestReadied;
+        public VoidEventChannel GuestUnReadied;
 
         public static GameEventList Instance;
 
@@ -17,6 +19,8 @@ namespace Penwyn.Game
             MatchStarted = new VoidEventChannel();
             MatchEnded = new VoidEventChannel();
             TurnChanged = new VoidEventChannel();
+            GuestReadied = new VoidEventChannel();
+            GuestUnReadied = new VoidEventChannel();
         }
     }
 

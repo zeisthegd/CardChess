@@ -57,8 +57,8 @@ public class NetworkEventHandler : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         base.OnDisconnected(cause);
-        // Destroy(GameManager.Instance.gameObject);
-        //  GameManager.Instance = null;
+        Destroy(GameManager.Instance.gameObject);
+        GameManager.Instance = null;
         SceneManager.Instance.LoadTitleScene();
     }
 

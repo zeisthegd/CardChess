@@ -16,11 +16,20 @@ namespace Penwyn.UI
         public TMP_Text CurrentTurnCount;
         public TMP_Text CurrentTurnFaction;
 
+        protected virtual void Awake()
+        {
+            CurrentTurnCount.gameObject.SetActive(false);
+            CurrentTurnFaction.gameObject.SetActive(false);
+        }
+
         public virtual void DuelStart()
         {
             DuelManager.Instance.CurrentTurnCount.CurrentValueChanged += UpdateCurrentTurnCount;
             GameEventList.Instance.TurnChanged.OnEventRaised += UpdateCurrentTurnFaction;
             GameEventList.Instance.MatchEnded.OnEventRaised += DuelEnd;
+
+            CurrentTurnCount.gameObject.SetActive(true);
+            CurrentTurnFaction.gameObject.SetActive(true);
 
             UpdateCurrentTurnCount();
             UpdateCurrentTurnFaction();
@@ -50,7 +59,6 @@ namespace Penwyn.UI
         private void OnEnable()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised += DuelStart;
-
         }
 
         private void OnDisable()

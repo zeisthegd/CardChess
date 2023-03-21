@@ -98,7 +98,8 @@ namespace Penwyn.Game
 
                 card.transform.SetParent(ChosenCardZone);
                 card.SetCanvasOrder(100);
-                card.ShowHighlight();
+                if (card.ClientOwned)
+                    card.ShowHighlight();
 
                 card.transform.DOKill();
                 card.transform.DOScale(Vector3.one * HoverScale, HoverSpeed / 2);
@@ -141,7 +142,8 @@ namespace Penwyn.Game
 
                 Vector3 destination = new Vector3(card.transform.localPosition.x, 0, card.transform.localPosition.z);
 
-                card.ShowNormal();
+                if (card.ClientOwned)
+                    card.ShowNormal();
                 card.transform.DOKill();
                 card.transform.DOLocalMove(destination, HoverSpeed);
                 card.transform.SetParent(_deckManager.HandPile.transform);
