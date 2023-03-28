@@ -94,6 +94,7 @@ namespace Penwyn.Game
             Piece newPiece = CreatePieceObject(index, faction);
             newPiece.transform.position = ArrayPosToWorldPos(_board[file, rank]);
             _board[file, rank].Piece = newPiece;
+            GameManager.Instance.AudioPlayer.PlayPieceDeployedSfx();
             OccupySquares(newPiece, _board[file, rank]);
         }
 
@@ -143,7 +144,8 @@ namespace Penwyn.Game
             foreach (Square square in legalMoves)
             {
                 _squareViewArray[square.File, square.Rank].SetColor();
-                yield return new WaitForSeconds(0.05F);
+                yield return new WaitForSeconds(0.1F);
+                GameManager.Instance.AudioPlayer.PlaySquareTakenSfx();
             }
         }
 

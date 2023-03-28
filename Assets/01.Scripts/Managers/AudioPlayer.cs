@@ -16,9 +16,16 @@ namespace Penwyn.Game
 
         [Header("--- BGM Clips ---")]
         public AudioClip[] BGMClips;// Background music clips
+        [Header("--- SFX Clips ---")]
+        public AudioClip CardHoveredSfx;
+        public AudioClip PieceDeployedSfx;
+        public AudioClip SquareTakenSfx;
+
+        [Header("--- UI SFX Clips ---")]
+        public AudioClip ConfirmSfx;
+        public AudioClip CancelSfx;
 
         protected List<AudioSource> _sfxSourceList = new List<AudioSource>();
-
 
         event UnityAction BGMEnded;
 
@@ -39,8 +46,40 @@ namespace Penwyn.Game
         /// </summary>
         public void PlaySFX(AudioClip clip, Vector3 point, bool loop = false)
         {
-            var source = PlayClipAt(clip, point, settings.SfxVolume);
-            _sfxSourceList.Add(source);
+            if (clip != null)
+            {
+                var source = PlayClipAt(clip, point, settings.SfxVolume);
+                _sfxSourceList.Add(source);
+            }
+            else
+            {
+                Debug.Log("Can't find AudioClip");
+            }
+        }
+
+        public void PlayCardHoveredSFX()
+        {
+            PlaySFX(CardHoveredSfx, Camera.main.transform.position);
+        }
+
+        public void PlayPieceDeployedSfx()
+        {
+            PlaySFX(PieceDeployedSfx, Camera.main.transform.position);
+        }
+
+        public void PlaySquareTakenSfx()
+        {
+            PlaySFX(SquareTakenSfx, Camera.main.transform.position);
+        }
+
+        public void PlayConfirmSfx()
+        {
+            PlaySFX(ConfirmSfx, Camera.main.transform.position);
+        }
+
+        public void PlayCancelSfx()
+        {
+            PlaySFX(CancelSfx, Camera.main.transform.position);
         }
 
         public void AdjustAllSFXVolume(float value)

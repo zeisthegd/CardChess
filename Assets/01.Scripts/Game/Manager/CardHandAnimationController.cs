@@ -106,6 +106,7 @@ namespace Penwyn.Game
                 card.transform.DOLocalMove(destination, HoverSpeed);
                 card.transform.DORotate(Vector3.zero, HoverSpeed);
                 MoveNearbyCardAside(card);
+                GameManager.Instance.AudioPlayer.PlayCardHoveredSFX();
             }
         }
 

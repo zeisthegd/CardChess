@@ -101,10 +101,12 @@ namespace Penwyn.Game
         [PunRPC]
         public void RPC_EndTurn()
         {
-            CheckForEndGame();
             //TODO this must always be black.
             if (_currentFactionTurn == Faction.BLACK)//Add turn count before changing turn faction, if the last faction to move was black.
+            {
                 _currentTurnCount.CurrentValue += 1;
+                CheckForEndGame();
+            }
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
             IncreaseTurnStartEnergy();
             GameEventList.Instance.TurnChanged.RaiseEvent();

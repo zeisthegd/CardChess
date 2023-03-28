@@ -102,7 +102,7 @@ MonoBehaviour:
   SceneManager: {fileID: 11400000, guid: b198623539847784b9f292089ffe89ce, type: 2}
   PlayerManager: {fileID: 11400000, guid: 1f975a32920ed864aaf75249d46b1490, type: 2}
   InputManager: {fileID: 11400000, guid: eec8c28d7b387b04a8f105261617e4ad, type: 2}
-  AudioPlayer: {fileID: 0}
+  AudioPlayer: {fileID: 2133920682344676827}
   DuelManager: {fileID: 2133920680565181208}
   MatchSettings: {fileID: 0}
   Mode: 0

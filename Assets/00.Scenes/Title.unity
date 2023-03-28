@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NickNameTxt: {fileID: 808079219}
   StartMenu: {fileID: 1638434421}
-  RandomNickname: 1
-  AutoConnect: 1
+  RandomNickname: 0
+  AutoConnect: 0
 --- !u!1 &808079217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: '[Username]'
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -1655,7 +1655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "[Username]\u200B"
+  m_text: "\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebb561ddf91fc994bad7cdc3d80d74a4, type: 2}
   m_sharedMaterial: {fileID: 2625259176956474026, guid: ebb561ddf91fc994bad7cdc3d80d74a4, type: 2}
@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
+  m_fontSize: 72
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2672,7 +2672,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826818137}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -2685,7 +2685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nickname...
+  m_text: '[Nickname]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebb561ddf91fc994bad7cdc3d80d74a4, type: 2}
   m_sharedMaterial: {fileID: 2625259176956474026, guid: ebb561ddf91fc994bad7cdc3d80d74a4, type: 2}
@@ -2712,10 +2712,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 19
   m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
@@ -3358,5 +3358,25 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: CancelSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: a918ddd8dbe02714a8cf0c7d152bf0f3, type: 3}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: ConfirmSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 24b1adb3c727fa34598a68e26eff07d1, type: 3}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: CardHoveredSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 917fc4f8329b76344ac275e7d36363dd, type: 3}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: SquareTakenSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: b54acb0f3e06156428580aa85b832f1c, type: 3}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: PieceDeployedSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: f0b1506387960bc4cb606eaae7adee60, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}

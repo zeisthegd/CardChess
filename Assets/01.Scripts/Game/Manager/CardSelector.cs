@@ -43,10 +43,12 @@ namespace Penwyn.Game
             }
             if (DuelManager.Instance.IsMainPlayerTurn)
             {
+                GameManager.Instance.AudioPlayer.PlayConfirmSfx();
                 InitiateCardChosenSequence(card);
             }
             else
             {
+                GameManager.Instance.AudioPlayer.PlayCancelSfx();
                 Announcer.Instance.Announce("It is not your turn, Dummy.");
             }
         }
@@ -93,6 +95,7 @@ namespace Penwyn.Game
         /// </summary>
         public void CancelCard()
         {
+            GameManager.Instance.AudioPlayer.PlayCancelSfx();
             _chosenCard = null;
             _deckManager.CardActionHandler.EndCurrentAction(false);
             _deckManager.CardPlayingAnimationManager.CancelClick();
