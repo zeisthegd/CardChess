@@ -109,6 +109,12 @@ namespace Penwyn.Game
             }
             _currentFactionTurn = _currentFactionTurn == Faction.WHITE ? Faction.BLACK : Faction.WHITE;
             IncreaseTurnStartEnergy();
+
+            if (IsMainPlayerTurn)
+            {
+                Debug.Log("Is MainPlayerTurn: " + IsMainPlayerTurn + "Draw 1 more card");
+                MasterDM.DrawCards(1);
+            }
             GameEventList.Instance.TurnChanged.RaiseEvent();
         }
 
@@ -226,8 +232,6 @@ namespace Penwyn.Game
         {
             _boardView.ViewMode = PlayerManager.Instance.MainPlayer.Faction == Faction.WHITE ? BoardViewMode.WHITE : BoardViewMode.BLACK;
         }
-
-
 
         private bool ReachedFinalTurn()
         {

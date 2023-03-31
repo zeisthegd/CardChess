@@ -20,6 +20,7 @@ namespace Penwyn.Game
         public AudioClip CardHoveredSfx;
         public AudioClip PieceDeployedSfx;
         public AudioClip SquareTakenSfx;
+        public AudioClip TurnStartSfx;
 
         [Header("--- UI SFX Clips ---")]
         public AudioClip ConfirmSfx;
@@ -80,6 +81,11 @@ namespace Penwyn.Game
         public void PlayCancelSfx()
         {
             PlaySFX(CancelSfx, Camera.main.transform.position);
+        }
+
+        public void PlayTurnStartSfx()
+        {
+            PlaySFX(TurnStartSfx, Camera.main.transform.position);
         }
 
         public void AdjustAllSFXVolume(float value)

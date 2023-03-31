@@ -62,8 +62,8 @@ namespace Penwyn.Game
 
         public void ResetPlayersEnergy()
         {
-            MainPlayer.Data.Energy.CurrentValue = 13;
-            OtherPlayer.Data.Energy.CurrentValue = 11;
+            MainPlayer.Data.Energy.CurrentValue = MainPlayer.Faction == Faction.WHITE ? 3 : 1;
+            OtherPlayer.Data.Energy.CurrentValue = OtherPlayer.Faction == Faction.WHITE ? 3 : 1;
         }
 
 

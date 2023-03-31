@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NickNameTxt: {fileID: 808079219}
   StartMenu: {fileID: 1638434421}
-  RandomNickname: 0
+  RandomNickname: 1
   AutoConnect: 0
 --- !u!1 &808079217
 GameObject:
@@ -3366,6 +3366,10 @@ PrefabInstance:
       propertyPath: ConfirmSfx
       value: 
       objectReference: {fileID: 8300000, guid: 24b1adb3c727fa34598a68e26eff07d1, type: 3}
+    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
+      propertyPath: TurnStartSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: b73cd29da404c6c4291d7283a86df476, type: 3}
     - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
       propertyPath: CardHoveredSfx
       value: 

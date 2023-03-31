@@ -96,9 +96,10 @@ namespace Penwyn.Game
         public void CancelCard()
         {
             GameManager.Instance.AudioPlayer.PlayCancelSfx();
-            _chosenCard = null;
+            _chosenCard.ShowNormal();
             _deckManager.CardActionHandler.EndCurrentAction(false);
             _deckManager.CardPlayingAnimationManager.CancelClick();
+            _chosenCard = null;
         }
 
         void ConnectEvents()
@@ -106,6 +107,7 @@ namespace Penwyn.Game
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised += Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised += CancelCard;
+            GameEventList.Instance.TurnChanged.OnEventRaised += CancelCard;
 
         }
 
@@ -114,6 +116,7 @@ namespace Penwyn.Game
 
             ProtagonistEventList.Instance.CardChosen.OnEventRaised -= Choose;
             ProtagonistEventList.Instance.ReleaseCard.OnEventRaised -= CancelCard;
+            GameEventList.Instance.TurnChanged.OnEventRaised -= CancelCard;
         }
         public Card ChosenCard { get => _chosenCard; }
         public List<Piece> TargetList { get => _targetList; }

@@ -18,6 +18,7 @@ namespace Penwyn.Game
         public void ConnectEvents()
         {
             _ownerDM.Owner.Data.Energy.CurrentValueChanged += EnergyChanged;
+            EnergyChanged();
         }
 
         private void OnDisable()

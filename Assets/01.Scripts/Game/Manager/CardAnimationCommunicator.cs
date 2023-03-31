@@ -72,6 +72,24 @@ namespace Penwyn.Game
             _ownerDM.Discard(_ownerDM.HandPile.GetCard(cardIndex));
         }
 
+        /// <summary>
+        /// If this object (photonView.IsMine) RPC the ExitHover function on other clients.
+        /// </summary>
+        /// <param name="card"></param>
+        public void Draw(int amount)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC(nameof(RPC_Draw), RpcTarget.Others, amount);
+            }
+        }
+
+        [PunRPC]
+        private void RPC_Draw(int amount)
+        {
+            _ownerDM.DrawCards(amount);
+        }
+
         private void FindOwnerDeckManager()
         {
             if (photonView.IsMine)
@@ -79,6 +97,7 @@ namespace Penwyn.Game
             else _ownerDM = DuelManager.Instance.GuestDM;
         }
         public DeckManager OwnerDM { get => _ownerDM; }
+        public bool IsMine => photonView.IsMine;
 
     }
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c0bf2cd7f2eae469f383d04ee26148, type: 3}
   m_Name: MatchSettings
   m_EditorClassIdentifier: 
-  Turn: 1
+  Turn: 20
   IsInfinite: 0

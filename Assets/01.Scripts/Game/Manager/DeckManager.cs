@@ -131,12 +131,14 @@ namespace Penwyn.Game
         public void DrawCards(int amount)
         {
             StartCoroutine(Draw(amount));
+            if (_cardAnimationCommunicator != null && _cardAnimationCommunicator.IsMine)
+                _cardAnimationCommunicator.Draw(amount);
         }
 
         /// <summary>
         /// Draw a number of cards when the turn start.
         /// </summary>
-        public IEnumerator Draw(int amount)
+        private IEnumerator Draw(int amount)
         {
             for (int i = 0; i < amount; i++)
             {
@@ -191,7 +193,7 @@ namespace Penwyn.Game
         /// </summary>
         public void Discard(Card card)
         {
-            if (photonView.IsMine && _cardAnimationCommunicator != null)//Network animation
+            if (_cardAnimationCommunicator != null && _cardAnimationCommunicator.IsMine)//Network animation
                 _cardAnimationCommunicator.Discard(card);
 
             HandPile.Remove(card);
