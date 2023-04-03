@@ -14,8 +14,7 @@ using Penwyn.Tools;
 
 namespace Penwyn.Game
 {
-    [CreateAssetMenu(menuName = "Managers/Player Manager")]
-    public class PlayerManager : SingletonScriptableObject<PlayerManager>
+    public class PlayerManager : SingletonMonoBehaviour<PlayerManager>
     {
         public Duelist DuelistPrefab;
 
@@ -25,6 +24,18 @@ namespace Penwyn.Game
         public Faction HostFaction = Faction.WHITE;
 
         public DuelistData DefaultData;
+
+        private PhotonView _photonView;
+
+        private void Awake()
+        {
+            _photonView = GetComponent<PhotonView>();
+        }
+
+        private void OnEnable()
+        {
+            HostFaction = Faction.WHITE;
+        }
 
         public void CreatePlayers(GameMode mode)
         {
@@ -58,6 +69,20 @@ namespace Penwyn.Game
         public void CreateAIvAI()
         {
 
+        }
+
+        public void ChangeHostStartingFaction(Faction faction)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                _photonView.RPC(nameof(RPC_ChangeHostStartingFaction), RpcTarget.All, faction);
+            }
+        }
+
+        [PunRPC]
+        private void RPC_ChangeHostStartingFaction(Faction faction)
+        {
+            HostFaction = faction;
         }
 
         public void ResetPlayersEnergy()

@@ -42,7 +42,7 @@ namespace Penwyn.UI
             GameEventList.Instance.MatchEnded.OnEventRaised -= DuelEnd;
         }
 
-        private void UpdateCurrentTurnCount()
+        public void UpdateCurrentTurnCount()
         {
             if (CurrentTurnCount != null)
                 CurrentTurnCount.SetText($"Turn: {DuelManager.Instance.CurrentTurnCount.CurrentValue}/{DuelManager.Instance.DuelSettings.Turn}");

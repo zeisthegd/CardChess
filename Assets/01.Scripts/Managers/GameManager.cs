@@ -23,7 +23,7 @@ namespace Penwyn.Game
         [Expandable] public NetworkManager NetworkManager;
         [Expandable] public CameraManager CameraManager;
         [Expandable] public SceneManager SceneManager;
-        [Expandable] public PlayerManager PlayerManager;
+        public PlayerManager PlayerManager;
 
         [Expandable] public InputManager InputManager;
 
@@ -122,6 +122,7 @@ namespace Penwyn.Game
             _gameState = GameState.GettingReady;
             if (PhotonNetwork.IsMasterClient)
                 DuelManager.CreateBoardView();
+            PlayerManager.HostFaction = Faction.WHITE;
         }
 
         public virtual void OnPhotonRoomExit()

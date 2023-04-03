@@ -168,7 +168,7 @@ namespace Penwyn.Game
         /// <param name="alpha">0 = hide, 1 = show. Duration is always 1 sec.</param>
         public void FadeGhostGrid(float alpha)
         {
-            GhostGrid?.DOFade(1, 1);
+            GhostGrid.color = new Color(GhostGrid.color.r, GhostGrid.color.g, GhostGrid.color.b, alpha);
         }
 
         public int GetWhiteSquareCount()

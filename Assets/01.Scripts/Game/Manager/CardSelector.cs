@@ -96,7 +96,8 @@ namespace Penwyn.Game
         public void CancelCard()
         {
             GameManager.Instance.AudioPlayer.PlayCancelSfx();
-            _chosenCard.ShowNormal();
+            if (_chosenCard != null)
+                _chosenCard.ShowNormal();
             _deckManager.CardActionHandler.EndCurrentAction(false);
             _deckManager.CardPlayingAnimationManager.CancelClick();
             _chosenCard = null;

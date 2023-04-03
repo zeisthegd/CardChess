@@ -57,7 +57,7 @@ namespace Penwyn.Game
         /// </summary>
         public void Rescale(Card card)
         {
-            _scaleToHand = 6 / _deckManager.HandPile.Count;
+            _scaleToHand = 6.0F / _deckManager.HandPile.Count;
             _scaleToHand = Mathf.Clamp(_scaleToHand, 0, 1);
             card.transform.DOScale(Vector3.one * _scaleToHand, HoverSpeed);
         }

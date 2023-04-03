@@ -112,7 +112,6 @@ namespace Penwyn.Game
 
             if (IsMainPlayerTurn)
             {
-                Debug.Log("Is MainPlayerTurn: " + IsMainPlayerTurn + "Draw 1 more card");
                 MasterDM.DrawCards(1);
             }
             GameEventList.Instance.TurnChanged.RaiseEvent();

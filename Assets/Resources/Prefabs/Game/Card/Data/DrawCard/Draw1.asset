@@ -15,8 +15,8 @@ MonoBehaviour:
   Name: Draw One Card
   Category: 1
   Cost:
-    _baseValue: 1
-    _currentValue: 1
+    _baseValue: 0
+    _currentValue: 0
     CanBeHigherThanBase: 0
     CanBeNegative: 0
   Actions:

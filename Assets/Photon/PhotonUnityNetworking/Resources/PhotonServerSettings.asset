@@ -59,6 +59,7 @@ MonoBehaviour:
   - RPC_StartNextTurn
   - RPC_SetGuestReadyStatus
   - RPC_Draw
+  - RPC_ChangeHostStartingFaction
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
