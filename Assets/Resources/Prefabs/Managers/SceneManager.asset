@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8696d46b2cc7801408c6184369cde90f, type: 3}
   m_Name: SceneManager
   m_EditorClassIdentifier: 
-  TitleSceenName: Title
-  LobbySceenName: Lobby
-  RoomSceenName: Room
-  MatchSceenName: Room
+  TitleSceneName: Title
+  StartMenuName: StartMenu
+  SettingsSceneName: Settings
+  LobbySceneName: Lobby
+  RoomSceneName: Room

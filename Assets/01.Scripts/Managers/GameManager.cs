@@ -133,7 +133,7 @@ namespace Penwyn.Game
 
         void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
-            if (scene.name == SceneManager.RoomSceenName)
+            if (scene.name == SceneManager.RoomSceneName)
             {
                 OnRoomSceneLoaded();
             }

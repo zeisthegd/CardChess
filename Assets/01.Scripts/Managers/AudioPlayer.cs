@@ -32,6 +32,7 @@ namespace Penwyn.Game
 
         void Start()
         {
+            PlayBGM();
             BGMEnded += PlayBGM;
             BGMSource.volume = settings.BgmVolume;
         }

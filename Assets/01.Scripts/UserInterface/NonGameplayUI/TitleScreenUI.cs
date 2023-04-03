@@ -13,7 +13,6 @@ using Penwyn.Tools;
 public class TitleScreenUI : MonoBehaviourPunCallbacks
 {
     public TMP_InputField NickNameTxt;
-    public StartMenu StartMenu;
     public bool RandomNickname;
     public bool AutoConnect;
 
@@ -39,7 +38,7 @@ public class TitleScreenUI : MonoBehaviourPunCallbacks
     private void OnMasterConnected()
     {
         gameObject.SetActive(false);
-        StartMenu.gameObject.SetActive(true);
+        SceneManager.Instance.LoadStartMenuScene();
     }
 
     public override void OnDisable()

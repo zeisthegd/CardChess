@@ -15,40 +15,42 @@ namespace Penwyn.Game
     public class SceneManager : SingletonScriptableObject<SceneManager>
     {
         [Header("Scene names")]
-        public string TitleSceenName;
-        public string LobbySceenName;
-        public string RoomSceenName;
-        public string MatchSceenName;
+        public string TitleSceneName;
+        public string StartMenuName;
+        public string SettingsSceneName;
+        public string LobbySceneName;
+        public string RoomSceneName;
 
         #region Load Scenes
         public void LoadTitleScene()
         {
-            LoadScene(TitleSceenName);
+            LoadScene(TitleSceneName);
+        }
+
+        public void LoadStartMenuScene()
+        {
+            LoadScene(StartMenuName);
+        }
+
+        public void LoadSettingsScene()
+        {
+            LoadScene(SettingsSceneName);
         }
 
         public void LoadLobbyScene()
         {
-            LoadScene(LobbySceenName);
+            LoadScene(LobbySceneName);
         }
 
         public void LoadRoomScene()
         {
-            LoadScene(RoomSceenName);
+            LoadScene(RoomSceneName);
         }
 
         void LoadScene(string sceneName)
         {
             PhotonNetwork.LoadLevel(sceneName);
         }
-        #endregion
-
-        #region Load Level
-
-        public void LoadMatchScene()
-        {
-            PhotonNetwork.LoadLevel(MatchSceenName);
-        }
-
         #endregion
 
 

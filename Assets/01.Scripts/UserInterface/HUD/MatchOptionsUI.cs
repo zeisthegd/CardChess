@@ -23,6 +23,7 @@ namespace Penwyn.UI
             PrivateRoomTgl.onValueChanged.AddListener(ChangeRoomVisibility);
             TurnCountDD.onValueChanged.AddListener(ChangeMatchTurnCount);
             HostStartFactionDD.onValueChanged.AddListener(ChangeHostStartFaction);
+            this.gameObject.SetActive(false);
         }
 
         private void ChangeRoomVisibility(bool toggleVal)

@@ -7,7 +7,7 @@ using UnityEngine;
 using TMPro;
 public class ScreenSettingsUI : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown resolutionsDropdown;
+    public TMP_Dropdown ResolutionsDropdown;
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class ScreenSettingsUI : MonoBehaviour
     }
     public void SetScreenResolution(int i)
     {
-        string resolution = resolutionsDropdown.options[i].text;
+        string resolution = ResolutionsDropdown.options[i].text;
         ChangeScreenResolution(resolution);
     }
     public void ChangeWindowMode()
@@ -36,16 +36,19 @@ public class ScreenSettingsUI : MonoBehaviour
 
     void GetSupportedResolutions()
     {
+        if (ResolutionsDropdown == null)
+            return;
         Resolution[] supportedRes = Screen.resolutions;
-        resolutionsDropdown.options = new List<TMP_Dropdown.OptionData>();
+        ResolutionsDropdown.options = new List<TMP_Dropdown.OptionData>();
         for (int i = supportedRes.Length - 1; i >= 0; i--)
         {
-            this.resolutionsDropdown.options.Add(new TMP_Dropdown.OptionData(supportedRes[i].ToString()));
+            this.ResolutionsDropdown.options.Add(new TMP_Dropdown.OptionData(supportedRes[i].ToString()));
         }
     }
 
     void OnEnable()
     {
-        resolutionsDropdown.onValueChanged.AddListener(SetScreenResolution);
+        if (ResolutionsDropdown)
+            ResolutionsDropdown.onValueChanged.AddListener(SetScreenResolution);
     }
 }
