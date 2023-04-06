@@ -162,7 +162,7 @@ namespace Penwyn.Game
         /// </summary>
         public void DrawRandomCard()
         {
-            int randomIndex = Random.Range(0, (int)DrawPile.Count - 1);
+            int randomIndex = Randomizer.RandomNumber(0, (int)DrawPile.Count);
 
             Card card = DrawPile.GetCard(randomIndex);
             HandPile.Add(card);

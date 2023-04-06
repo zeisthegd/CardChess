@@ -75,11 +75,12 @@ namespace Penwyn.Game
         public void ChosenCardDonePlaying(Card card)
         {
             CardEventList.Instance.CardDonePlaying.OnEventRaised -= ChosenCardDonePlaying;
-            if (_chosenCard != null)//&& have target
+            if (_chosenCard != null)
             {
                 CursorManager.Instance.ResetCursor();
                 _deckManager.Discard(card);
                 card.Owner.Data.Energy.SetCurrentValue(card.Owner.Data.Energy.CurrentValue - card.Data.Cost.CurrentValue);
+                _deckManager.CardAnimationCommunicator.AdjustEnergy(-card.Data.Cost.CurrentValue);
 
                 _chosenCard = null;
 

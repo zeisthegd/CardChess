@@ -3,16 +3,26 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using TMPro;
 public class ScreenSettingsUI : MonoBehaviour
 {
     public TMP_Dropdown ResolutionsDropdown;
+    public Toggle FullScreenTgl;
 
-    void Start()
+    private Resolution[] supportedRes;
+
+    private void Awake()
+    {
+        supportedRes = Screen.resolutions;
+    }
+
+    private void Start()
     {
         GetSupportedResolutions();
     }
+
     public void SetScreenResolution(int i)
     {
         string resolution = ResolutionsDropdown.options[i].text;
@@ -23,12 +33,25 @@ public class ScreenSettingsUI : MonoBehaviour
         if (Screen.fullScreen)
             Screen.fullScreenMode = FullScreenMode.Windowed;
         else
-            Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+    }
+
+    public void SwitchFullScreenMode(bool fsValue)
+    {
+        if (fsValue == true)
+        {
+            Resolution maxRes = supportedRes[supportedRes.Length - 1];
+            Screen.SetResolution(maxRes.width, maxRes.height, Screen.fullScreenMode, maxRes.refreshRate);
+        }
+        else
+        {
+            Screen.SetResolution(960, 540, Screen.fullScreenMode, 60);
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
     }
 
     public void ChangeScreenResolution(string resolution)
     {
-        Resolution[] supportedRes = Screen.resolutions;
         Resolution chosenRes = supportedRes[Array.IndexOf(supportedRes, supportedRes.ToList().Find(x => x.ToString() == resolution))];
         Debug.Log(chosenRes);
         Screen.SetResolution(chosenRes.width, chosenRes.height, Screen.fullScreenMode, chosenRes.refreshRate);
@@ -48,7 +71,12 @@ public class ScreenSettingsUI : MonoBehaviour
 
     void OnEnable()
     {
-        if (ResolutionsDropdown)
-            ResolutionsDropdown.onValueChanged.AddListener(SetScreenResolution);
+        ResolutionsDropdown?.onValueChanged.AddListener(SetScreenResolution);
+        FullScreenTgl?.onValueChanged.AddListener(SwitchFullScreenMode);
+    }
+
+    private void OnDisable()
+    {
+        FullScreenTgl?.onValueChanged.RemoveAllListeners();
     }
 }

@@ -16,6 +16,9 @@ namespace Penwyn.Game
         public event UnityAction OnCancelStarted;
         public event UnityAction OnCancelCancelled;
 
+        public event UnityAction OnOpenIGMenuStarted;
+        public event UnityAction OnOpenIGMenuCancelled;
+
         private PlayerInput _playerInput;
 
 
@@ -53,6 +56,14 @@ namespace Penwyn.Game
         public void DisablePlayCardInput()
         {
             _playerInput.PlayCard.Disable();
+        }
+
+        public void OnOpenIGMenu(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            if (context.started)
+                OnOpenIGMenuStarted?.Invoke();
+            if (context.canceled)
+                OnOpenIGMenuCancelled?.Invoke();
         }
     }
 

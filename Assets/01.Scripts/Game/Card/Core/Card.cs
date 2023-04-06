@@ -82,6 +82,7 @@ namespace Penwyn.Game
         {
             CardAvatar.gameObject.SetActive(show);
             NameTxt.gameObject.SetActive(show);
+            CostTxt.gameObject.SetActive(show);
         }
 
 

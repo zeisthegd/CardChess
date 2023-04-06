@@ -153,6 +153,14 @@ namespace Penwyn.Game
             }
         }
 
+        public void HideAllCardsInfo()
+        {
+            foreach (Card card in _deckManager.HandPile.Cards)
+            {
+                card.SetInfoVisibility(false);
+            }
+        }
+
         /// <summary>
         /// Returns true if their is a card in the play zone.
         /// </summary>

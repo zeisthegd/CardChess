@@ -2161,29 +2161,5 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2133920682344676826, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: BGMClips.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: BGMClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1eec54d6c904eeb4baeaba7d94dcc4e8, type: 3}
-    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: BGMClips.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1366cf84068277a47ae7c56d62cc311a, type: 3}
-    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: BGMClips.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 67c3f901a68fb7d43aea28eee170ffa8, type: 3}
-    - target: {fileID: 2133920682344676827, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}
-      propertyPath: BGMClips.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: e0ea7b9345e86174e97682ef4504d493, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa8a5050b7347d4ba9751c020201f61, type: 3}

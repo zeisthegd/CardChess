@@ -173,6 +173,7 @@ namespace Penwyn.Game
         [PunRPC]
         private void RPC_SetGuestReadyStatus(bool status)
         {
+            Debug.Log("GetGuestReady");
             _isGuestReady = status;
             if (_isGuestReady)
                 GameEventList.Instance.GuestReadied.RaiseEvent();

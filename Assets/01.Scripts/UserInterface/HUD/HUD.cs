@@ -15,6 +15,7 @@ namespace Penwyn.UI
     {
         public TMP_Text CurrentTurnCount;
         public TMP_Text CurrentTurnFaction;
+        public GameObject InGameMenu;
 
         protected virtual void Awake()
         {
@@ -42,6 +43,14 @@ namespace Penwyn.UI
             GameEventList.Instance.MatchEnded.OnEventRaised -= DuelEnd;
         }
 
+        public void OnOpenIGMenuClicked()
+        {
+            if (InGameMenu != null)
+                InGameMenu?.SetActive(!InGameMenu.activeInHierarchy);
+            else
+                Debug.LogWarning("No Ingame Menu Assigned");
+        }
+
         public void UpdateCurrentTurnCount()
         {
             if (CurrentTurnCount != null)
@@ -59,11 +68,13 @@ namespace Penwyn.UI
         private void OnEnable()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised += DuelStart;
+            InputReader.Instance.OnOpenIGMenuStarted += OnOpenIGMenuClicked;
         }
 
         private void OnDisable()
         {
             GameEventList.Instance.MatchStarted.OnEventRaised -= DuelStart;
+            InputReader.Instance.OnOpenIGMenuStarted -= OnOpenIGMenuClicked;
         }
     }
 }

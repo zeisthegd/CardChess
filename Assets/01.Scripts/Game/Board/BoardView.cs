@@ -96,6 +96,7 @@ namespace Penwyn.Game
             _board[file, rank].Piece = newPiece;
             GameManager.Instance.AudioPlayer.PlayPieceDeployedSfx();
             OccupySquares(newPiece, _board[file, rank]);
+            Announcer.Instance.Announce($"{faction} deployed {newPiece.Data.name} on {Square.GetName(rank, file)}");
         }
 
         public PieceData GetPieceDataFromIndex(PieceIndex index)
@@ -139,6 +140,7 @@ namespace Penwyn.Game
             foreach (Square square in legalMoves)
             {
                 square.Faction = piece.Faction;
+                DestroyOpponentPieceOnSquare(square, square.Faction);
             }
 
             foreach (Square square in legalMoves)
@@ -149,16 +151,12 @@ namespace Penwyn.Game
             }
         }
 
-        public void DestroyPieceOnSquare(Square square)
+        public void DestroyOpponentPieceOnSquare(Square square, Faction mainFaction)
         {
-            if (square.Piece != null)
+            if (square.Piece != null && square.Piece.Faction != mainFaction)
             {
                 Destroy(square.Piece.gameObject);
                 square.Piece = null;
-            }
-            else
-            {
-                Debug.LogWarning($"There's no piece on this square: {square.ToString()}");
             }
         }
 

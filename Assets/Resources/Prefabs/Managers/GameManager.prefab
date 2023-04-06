@@ -249,7 +249,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BGMSource: {fileID: 2133920682344676826}
   settings: {fileID: 11400000, guid: ab672071912789b4cbd78482edd7f630, type: 2}
-  BGMClips: []
+  BGMClips:
+  - {fileID: 8300000, guid: 1eec54d6c904eeb4baeaba7d94dcc4e8, type: 3}
+  - {fileID: 8300000, guid: 1366cf84068277a47ae7c56d62cc311a, type: 3}
+  - {fileID: 8300000, guid: 67c3f901a68fb7d43aea28eee170ffa8, type: 3}
+  - {fileID: 8300000, guid: e0ea7b9345e86174e97682ef4504d493, type: 3}
   CardHoveredSfx: {fileID: 8300000, guid: 917fc4f8329b76344ac275e7d36363dd, type: 3}
   PieceDeployedSfx: {fileID: 8300000, guid: f0b1506387960bc4cb606eaae7adee60, type: 3}
   SquareTakenSfx: {fileID: 8300000, guid: b54acb0f3e06156428580aa85b832f1c, type: 3}

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,15 +62,17 @@ namespace Penwyn.Game
         {
             if (photonView.IsMine)
             {
-                photonView.RPC(nameof(RPC_Discard), RpcTarget.Others, _ownerDM.HandPile.GetCardIndex(card));
+                photonView.RPC(nameof(RPC_Discard), RpcTarget.Others, _ownerDM.HandPile.GetCardIndex(card), card.Data.Name);
             }
         }
 
         [PunRPC]
-        private void RPC_Discard(int cardIndex)
+        private void RPC_Discard(int cardIndex, string cardDataName)
         {
             Debug.Log(_ownerDM.name + $": {cardIndex}");
-            _ownerDM.Discard(_ownerDM.HandPile.GetCard(cardIndex));
+            Card card = _ownerDM.HandPile.GetCard(cardIndex);
+            card.DisplayCard(_ownerDM.Deck.Find(x => x.Name == cardDataName));
+            _ownerDM.Discard(card);
         }
 
         /// <summary>
@@ -88,6 +91,21 @@ namespace Penwyn.Game
         private void RPC_Draw(int amount)
         {
             _ownerDM.DrawCards(amount);
+            _ownerDM.CardHandAnimationController.HideAllCardsInfo();
+        }
+
+        public void AdjustEnergy(int amount)
+        {
+            if (photonView.IsMine)
+            {
+                photonView.RPC(nameof(RPC_AdjustEnergy), RpcTarget.Others, amount);
+            }
+        }
+
+        [PunRPC]
+        private void RPC_AdjustEnergy(int amount)
+        {
+            _ownerDM.Owner.Data.Energy.CurrentValue += amount;
         }
 
         private void FindOwnerDeckManager()
@@ -96,6 +114,8 @@ namespace Penwyn.Game
                 _ownerDM = DuelManager.Instance.MasterDM;
             else _ownerDM = DuelManager.Instance.GuestDM;
         }
+
+
         public DeckManager OwnerDM { get => _ownerDM; }
         public bool IsMine => photonView.IsMine;
 

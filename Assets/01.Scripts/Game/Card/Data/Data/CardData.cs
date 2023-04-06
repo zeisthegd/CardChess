@@ -13,7 +13,6 @@ namespace Penwyn.Game
     {
         [Header("Data")]
         public string Name;
-        public Category Category;
         public IntValue Cost;
         public List<Action> Actions;
 

@@ -60,6 +60,7 @@ MonoBehaviour:
   - RPC_SetGuestReadyStatus
   - RPC_Draw
   - RPC_ChangeHostStartingFaction
+  - RPC_AdjustEnergy
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -44,6 +44,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenIGMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddd667d3-ea37-4943-8479-4252a3be3f00"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -90,6 +99,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56e2d333-9a07-4210-95d1-9a2e2e73ade1"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenIGMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df8a2ef0-9266-40cb-8624-83e05851e51b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenIGMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +143,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_PlayCard = asset.FindActionMap("PlayCard", throwIfNotFound: true);
         m_PlayCard_Choose = m_PlayCard.FindAction("Choose", throwIfNotFound: true);
         m_PlayCard_Cancel = m_PlayCard.FindAction("Cancel", throwIfNotFound: true);
+        m_PlayCard_OpenIGMenu = m_PlayCard.FindAction("OpenIGMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -175,12 +207,14 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayCardActions> m_PlayCardActionsCallbackInterfaces = new List<IPlayCardActions>();
     private readonly InputAction m_PlayCard_Choose;
     private readonly InputAction m_PlayCard_Cancel;
+    private readonly InputAction m_PlayCard_OpenIGMenu;
     public struct PlayCardActions
     {
         private @PlayerInput m_Wrapper;
         public PlayCardActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Choose => m_Wrapper.m_PlayCard_Choose;
         public InputAction @Cancel => m_Wrapper.m_PlayCard_Cancel;
+        public InputAction @OpenIGMenu => m_Wrapper.m_PlayCard_OpenIGMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayCard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -196,6 +230,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Cancel.started += instance.OnCancel;
             @Cancel.performed += instance.OnCancel;
             @Cancel.canceled += instance.OnCancel;
+            @OpenIGMenu.started += instance.OnOpenIGMenu;
+            @OpenIGMenu.performed += instance.OnOpenIGMenu;
+            @OpenIGMenu.canceled += instance.OnOpenIGMenu;
         }
 
         private void UnregisterCallbacks(IPlayCardActions instance)
@@ -206,6 +243,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Cancel.started -= instance.OnCancel;
             @Cancel.performed -= instance.OnCancel;
             @Cancel.canceled -= instance.OnCancel;
+            @OpenIGMenu.started -= instance.OnOpenIGMenu;
+            @OpenIGMenu.performed -= instance.OnOpenIGMenu;
+            @OpenIGMenu.canceled -= instance.OnOpenIGMenu;
         }
 
         public void RemoveCallbacks(IPlayCardActions instance)
@@ -236,5 +276,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnChoose(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnOpenIGMenu(InputAction.CallbackContext context);
     }
 }

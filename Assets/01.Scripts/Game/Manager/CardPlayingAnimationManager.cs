@@ -65,6 +65,7 @@ namespace Penwyn.Game
         {
             if (card != null)
             {
+                card.SetInfoVisibility(true);
                 card.ShowNormal();
                 card.gameObject.SetActive(true);
                 card.DOKill();
