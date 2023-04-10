@@ -35,6 +35,7 @@ namespace Penwyn.Game
             _pile = GetComponent<Pile>();
             ConnectGeneralEvents();
         }
+
         public void Act()
         {
             CloseOtherViews();
@@ -64,6 +65,7 @@ namespace Penwyn.Game
                 clone.transform.DOScale(DisplaySize, 0);
                 clone.transform.DORotate(Vector3.zero, 0);
                 clones.Add(clone);
+                clone.SetCanvasOrder(11);
             }
         }
 
@@ -118,8 +120,7 @@ namespace Penwyn.Game
         /// </summary>
         public void UpdateCount(Card card)
         {
-            if (Count != null)
-                Count.text = _pile.Count.ToString();
+            Count?.SetText(_pile.Count.ToString());
         }
         public void ConnectEvents()
         {

@@ -18,12 +18,15 @@ namespace Penwyn.UI
         public TMP_Dropdown TurnCountDD;
         public TMP_Dropdown HostStartFactionDD;
 
-        public void Awake()
+
+        private void Awake()
         {
-            PrivateRoomTgl.onValueChanged.AddListener(ChangeRoomVisibility);
-            TurnCountDD.onValueChanged.AddListener(ChangeMatchTurnCount);
-            HostStartFactionDD.onValueChanged.AddListener(ChangeHostStartFaction);
-            this.gameObject.SetActive(false);
+            ConnectEvents();
+        }
+
+        private void OnEnable()
+        {
+            ConnectEvents();
         }
 
         private void ChangeRoomVisibility(bool toggleVal)
@@ -38,6 +41,7 @@ namespace Penwyn.UI
         private void ChangeMatchTurnCount(int option)
         {
             int turnCount = int.Parse(TurnCountDD.options[option].text);
+            Debug.Log(turnCount);
             DuelManager.Instance.DuelSettings.Turn = turnCount;
         }
 
@@ -54,11 +58,24 @@ namespace Penwyn.UI
             }
         }
 
-        public void OnDisable()
+        private void ConnectEvents()
+        {
+            RemoveAllListeners();
+            PrivateRoomTgl.onValueChanged.AddListener(ChangeRoomVisibility);
+            TurnCountDD.onValueChanged.AddListener(ChangeMatchTurnCount);
+            HostStartFactionDD.onValueChanged.AddListener(ChangeHostStartFaction);
+        }
+
+        private void RemoveAllListeners()
         {
             PrivateRoomTgl.onValueChanged.RemoveAllListeners();
             TurnCountDD.onValueChanged.RemoveAllListeners();
             HostStartFactionDD.onValueChanged.RemoveAllListeners();
+        }
+
+        public void OnDisable()
+        {
+            RemoveAllListeners();
         }
     }
 
