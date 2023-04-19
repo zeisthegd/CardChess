@@ -64,12 +64,12 @@ namespace Penwyn.Game
 
         private bool CheckStartDuelConditions()
         {
-            if (!(PhotonNetwork.CurrentRoom.PlayerCount < 2))
+            if ((PhotonNetwork.CurrentRoom.PlayerCount < 2))
             {
                 Announcer.Instance.Announce("Need One More Player To Start Playing.");
                 return false;
             }
-            if (DuelManager.IsGuestReady)
+            if (!DuelManager.IsGuestReady)
             {
                 Announcer.Instance.Announce("Guest Is Not Ready.");
                 return false;
